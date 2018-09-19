@@ -9,7 +9,8 @@
 
 **- IN-GAME -**
 
-* Hablando del juego y sus mecánicas, nuestro objetivo como jugador será destruir la base enemiga. Para ello contaremos con una serie de tropas las cuales costarán un valor x según la calidad de la tropa y tendrán un tiempo x de recarga que dependerá de la tropa de igual manera. Nosotros como jugador lo que podemos hacer es elegir la tropa que queremos lanzar al combate, administrar el dinero que ganamos y mejorar las tropas que tenemos, ya que el combate en si es automático, conforme nuestras tropas van encontrando adversarios van atacándose mutuamente. Podremos jugar en solitario o en línea contra otro jugador.
+* Hablando del juego y sus mecánicas, nuestro objetivo como jugador será destruir la base enemiga. Para ello contaremos con una serie de tropas las cuales costarán un valor x según la calidad de la tropa y tendrán un tiempo x de recarga que dependerá de la tropa de igual manera. Nosotros como jugador lo que podemos hacer es elegir la tropa que queremos lanzar al combate, administrar el dinero que ganamos y mejorar las tropas que tenemos, ya que el combate en si es automático, conforme nuestras tropas van encontrando adversarios van atacándose mutuamente. Podremos jugar en solitario o en línea contra otro jugador,
+* La estetica del juego sera pixelart y las mejoras de las tropas cambiaran la apariencia de las mismas.*
 
 **- FAQ -**
 
