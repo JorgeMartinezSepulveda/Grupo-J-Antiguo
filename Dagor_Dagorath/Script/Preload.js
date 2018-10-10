@@ -24,7 +24,8 @@ DagorDagorath.Preload.prototype = {
     this.load.image('background', 'images/dagor.png');
     this.load.image('background2', 'images/dagor_escalada.png');
     this.load.image('background3', 'images/Ilustracion_2.png');
-    
+    this.load.image('back', 'images/fondo.png');
+    this.load.image('fondotropas', 'images/fondotropas.png');
   },
   create: function() {
   	this.state.start('MainMenu');
