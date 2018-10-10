@@ -20,22 +20,27 @@ DagorDagorath.MainMenu.prototype = {
     menu.height = 600;
 
     
-    button = this.game.add.button(392.5, 232, 'Boton1', this.actionOnClick, this,1,0);
+    button = this.game.add.button(392.5, 232, 'Boton1', this.actionOnClick1, this,1,0);
     button.width = 220;
     button.height = 100;
 
-    button2 = this.game.add.button(392.5, 360, 'Boton2', this.actionOnClick, this,1,0);
+    button2 = this.game.add.button(392.5, 360, 'Boton2', this.actionOnClick1, this,1,0);
     button2.width = 220;
     button2.height = 100;
 
-    button3 = this.game.add.button(392.5, 488, 'Boton3', this.actionOnClick, this,1,0);
+    button3 = this.game.add.button(392.5, 488, 'Boton3', this.actionOnClick2, this,1,0);
     button3.width = 220;
     button3.height = 100;
   },
 
-  actionOnClick: function () 
+  actionOnClick1: function () 
   {
     this.game.state.start('Game');
+  },
+
+  actionOnClick2: function () 
+  {
+    this.game.state.start('ControlMenu');
   }
 
 };
