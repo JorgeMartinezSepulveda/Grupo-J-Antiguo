@@ -31,6 +31,10 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion1_Tierra', 'images/Ilustracion1_MAPA.png');
     this.load.image('Ilustracion1_Olas', 'images/ilustracion1_OLAS.png');
 
+    this.load.image('Ilustracion2_Marco', 'images/ilustracion2_MARCO.png');
+    this.load.image('Ilustracion2_Morgoth', 'images/Ilustracion_2_MORGOTH.png');
+    this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
+
     this.load.image('back', 'images/fondo.png');
     this.load.image('fondotropas', 'images/fondotropas.png');
 
