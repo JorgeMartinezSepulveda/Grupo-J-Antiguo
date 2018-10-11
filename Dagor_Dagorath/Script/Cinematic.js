@@ -46,7 +46,7 @@ DagorDagorath.Cinematic.prototype = {
 	 	morgoth.width = 580;
 		morgoth.height = 667;
 
-	 	nazguls = this.game.add.sprite(500,-370,'Ilustracion2_Nazguls');
+	 	nazguls = this.game.add.sprite(500,-150,'Ilustracion2_Nazguls');
 	 	nazguls.width = 370;
 		nazguls.height = 150;
 		//
@@ -62,7 +62,7 @@ DagorDagorath.Cinematic.prototype = {
 
 		tween.onComplete.add(this.actionOnClick, this); 
 
-		button = this.game.add.button(30, 30, 'BotonRetroceso', this.saltar, this,1,0);
+		button = this.game.add.button(880, 30, 'BotonAvance', this.saltar, this,0,1);
 		button.width = 90;
 		button.height = 60;
 
@@ -90,8 +90,27 @@ DagorDagorath.Cinematic.prototype = {
 
 	entradaMorgoth: function()
 	{
-		tween2 = this.game.add.tween(morgoth).to({x: 0}, 3000, Phaser.Easing.Linear.None);   
-		tween2.start();
+		tween = this.game.add.tween(morgoth).to({x: 0}, 3000, Phaser.Easing.Linear.None);   
+		tween.start();
+
+		tween.onComplete.add(this.entradaNaguls, this);
+
+	},
+
+	entradaNaguls: function()
+	{
+		tween = this.game.add.tween(nazguls).to({x:450, y:20}, 3000, Phaser.Easing.Linear.None);   
+		tween.start();
+
+		tween.onComplete.add(this.salidaNaguls, this);
+	},
+
+	salidaNaguls: function()
+	{
+		tween = this.game.add.tween(nazguls).to({x:400, y:-150}, 3000, Phaser.Easing.Linear.None);   
+		tween.start();
+
+		tween.onComplete.add(this.saltar, this);
 	},
 
 	saltar: function(){

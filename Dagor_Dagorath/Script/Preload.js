@@ -21,6 +21,7 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('Boton2', 'images/boton_2.png',296,143);
     this.load.spritesheet('Boton3', 'images/boton3.png',296,143);
     this.load.spritesheet('BotonRetroceso', 'images/boton_retroceso.png',300,190);
+    this.load.spritesheet('BotonAvance', 'images/boton_avance.png',300,190);
     this.load.image('background', 'images/dagor.png');
     this.load.image('background2', 'images/dagor_escalada.png');
     this.load.image('background3', 'images/Ilustracion_2.png');
