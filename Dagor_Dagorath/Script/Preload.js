@@ -24,7 +24,12 @@ DagorDagorath.Preload.prototype = {
     this.load.image('background', 'images/dagor.png');
     this.load.image('background2', 'images/dagor_escalada.png');
     this.load.image('background3', 'images/Ilustracion_2.png');
-    
+
+    this.load.image('Fondo', 'images/Ilustracion1_FONDO.png');
+    this.load.image('Ilustracion1_Marco', 'images/Ilustracion1_MARCONEGRO.png');
+    this.load.image('Ilustracion1_Letras', 'images/Ilustracion1_LETRAS.png');
+    this.load.image('Ilustracion1_Tierra', 'images/Ilustracion1_MAPA.png');
+    this.load.image('Ilustracion1_Olas', 'images/ilustracion1_OLAS.png');
   },
   create: function() {
   	this.state.start('MainMenu');
