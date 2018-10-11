@@ -33,6 +33,7 @@ DagorDagorath.Preload.prototype = {
 
     this.load.image('back', 'images/fondo.png');
     this.load.image('fondotropas', 'images/fondotropas.png');
+    this.load.spritesheet('momia', 'images/momia.png', 37, 45, 18);
 
   },
   create: function() {
