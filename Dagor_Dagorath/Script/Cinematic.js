@@ -30,14 +30,14 @@ DagorDagorath.Cinematic.prototype = {
 
 	tierra.alpha = 1;
 	  
-	tween = this.game.add.tween(olas).to({x: -1000}, 30000, Phaser.Easing.Linear.None);   
+	tween = this.game.add.tween(olas).to({x: -1000}, 2000, Phaser.Easing.Linear.None);   
 	tween.start(); 
-	tween = this.game.add.tween(tierra.scale).to({x: 0.55, y: 0.55}, 20000, Phaser.Easing.Linear.None);
+	tween = this.game.add.tween(tierra.scale).to({x: 0.55, y: 0.55}, 2000, Phaser.Easing.Linear.None);
 	tween.start();
-	tween = this.game.add.tween(tierra).to({x: -120, y: -100}, 20000, Phaser.Easing.Linear.None);
+	tween = this.game.add.tween(tierra).to({x: -120, y: -100}, 2000, Phaser.Easing.Linear.None);
 	tween.start();
 
-	tween = this.game.add.tween(tierra).to( { alpha: 0 }, 20000, "Linear", true);
+	tween = this.game.add.tween(tierra).to( { alpha: 0 }, 2000, "Linear", true);
 
 	    //Para hacer otra cosa cuando acabe la animacion se usa nombreSprite.onComplete.add(NombreFuncion, this);
 	tween.onComplete.add(this.actionOnClick, this); //Esto nos lleva al menu una vez acabada la animacion
