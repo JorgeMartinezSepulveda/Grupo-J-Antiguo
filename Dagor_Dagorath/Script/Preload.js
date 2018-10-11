@@ -30,6 +30,10 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion1_Letras', 'images/Ilustracion1_LETRAS.png');
     this.load.image('Ilustracion1_Tierra', 'images/Ilustracion1_MAPA.png');
     this.load.image('Ilustracion1_Olas', 'images/ilustracion1_OLAS.png');
+
+    this.load.image('back', 'images/fondo.png');
+    this.load.image('fondotropas', 'images/fondotropas.png');
+
   },
   create: function() {
   	this.state.start('MainMenu');

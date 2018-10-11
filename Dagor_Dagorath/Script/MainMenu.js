@@ -35,7 +35,7 @@ DagorDagorath.MainMenu.prototype = {
 
   actionOnClick1: function () 
   {
-    this.game.state.start('Game');
+    this.game.state.start('Cinematic');
   },
 
   actionOnClick2: function () 

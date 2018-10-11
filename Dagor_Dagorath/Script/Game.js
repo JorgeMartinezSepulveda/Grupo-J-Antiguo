@@ -1,56 +1,47 @@
 var DagorDagorath = DagorDagorath || {};
 var button;
-var tween;
-
-var tierra;
-var marco;
-var letras;
-var olas;
+var cursors;
+var image1;
 
 //title screen
 DagorDagorath.Game = function(){};
 
 DagorDagorath.Game.prototype = {
   create: function() {
-  	//set world dimensions
-    this.game.world.setBounds(0, 0, 1000, 667);
 
-    //background
-    this.background = this.game.add.tileSprite(0, 0, 1200, 667, 'Fondo');
+	//set world dimensions
+  this.game.world.setBounds(0, 0, 1500, 667);
 
-    olas = this.game.add.sprite(0,0,'Ilustracion1_Olas');
-
-    marco = this.game.add.sprite(0,0, 'Ilustracion1_Marco');
-    marco.width = 1000;
-    marco.height = 667;
-
-    tierra = this.game.add.sprite(65,85, 'Ilustracion1_Tierra');
-    tierra.width = 860;
-    tierra.height = 500;
-
-
-    tierra.alpha = 1;
+  //background
+  this.background = this.game.add.tileSprite(0, 7, 1500, 667, 'back');
   
-    tween = this.game.add.tween(olas).to({x: -1000}, 30000, Phaser.Easing.Linear.None);   
-    tween.start(); 
-    tween = this.game.add.tween(tierra.scale).to({x: 0.55, y: 0.55}, 20000, Phaser.Easing.Linear.None);
-    tween.start();
-    tween = this.game.add.tween(tierra).to({x: -120, y: -100}, 20000, Phaser.Easing.Linear.None);
-    tween.start();
+  button = this.game.add.button(30, 30, 'BotonRetroceso', this.actionOnClick, this,1,0);
+  button.width = 90;
+  button.height = 60;
+  button.fixedToCamera = true;
 
-    tween = this.game.add.tween(tierra).to( { alpha: 0 }, 20000, "Linear", true);
+  image1 = this.game.add.sprite(800, 30, 'fondotropas');
+  image1.fixedToCamera = true;
 
-    //Para hacer otra cosa cuando acabe la animacion se usa nombreSprite.onComplete.add(NombreFuncion, this);
-    tween.onComplete.add(this.actionOnClick, this); //Esto nos lleva al menu una vez acabada la animacion
+  cursors = this.game.input.keyboard.createCursorKeys();
 
-    button = this.game.add.button(30, 30, 'BotonRetroceso', this.actionOnClick, this,1,0);
-    button.width = 90;
-    button.height = 60;
+},
 
-  },
+update: function () {
 
-   actionOnClick: function () 
+  if (cursors.left.isDown)
+  {
+    this.game.camera.x -= 6;
+  }
+  else if (cursors.right.isDown)
+  {
+    this.game.camera.x += 6;
+  }
+
+},
+actionOnClick: function () 
   {
     this.game.state.start('MainMenu');
-  }
+  },
+
 };
