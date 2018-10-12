@@ -62,9 +62,11 @@ DagorDagorath.Cinematic.prototype = {
 
 		tween.onComplete.add(this.actionOnClick, this); 
 
-		button = this.game.add.button(880, 30, 'BotonAvance', this.saltar, this,0,1);
-		button.width = 90;
-		button.height = 60;
+		button = this.game.add.button(925, 20, 'BotonAvance', this.saltar, this,0,1);
+		button.width = 55;
+		button.height = 40;
+
+		button.alpha = 0.7;
 
 	},
 

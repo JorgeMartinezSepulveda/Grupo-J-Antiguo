@@ -16,17 +16,19 @@ DagorDagorath.Game.prototype = {
   //background
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
   
-  button = this.game.add.button(30, 30, 'BotonRetroceso', this.actionOnClick, this,1,0);
-  button.width = 90;
-  button.height = 60;
+  button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
+  button.width = 50;
+  button.height = 50;
   button.fixedToCamera = true;
 
-  image1 = this.game.add.sprite(800, 30, 'fondotropas');
+  image1 = this.game.add.sprite(800, 25, 'fondotropas');
+  image1.width =175 ;
+  image1.height = 85;
   image1.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(820, 45, 'BotonRetroceso', this.actionOnClick1, this,1,0);
-  tropa1.width = 20;
-  tropa1.height = 20;
+  tropa1 = this.game.add.button(815, 40, 'BotonRetroceso', this.actionOnClick1, this,1,0);
+  tropa1.width = 30;
+  tropa1.height = 30;
   tropa1.fixedToCamera = true;
 
   cursors = this.game.input.keyboard.createCursorKeys();
@@ -52,7 +54,6 @@ actionOnClick: function ()
 actionOnClick1: function () 
 {
 	sprite = this.game.add.sprite(100, 525, 'momia');
-
 
 	sprite.animations.add('walk');
 

@@ -37,8 +37,9 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
 
     this.load.image('back', 'images/fondo.png');
-    this.load.image('fondotropas', 'images/fondotropas.png');
+    this.load.image('fondotropas', 'images/Panel_Tropas.png');
     this.load.spritesheet('momia', 'images/momia.png', 37, 45, 18);
+    this.load.spritesheet('BotonHome', 'images/boton_home.png',194,190);
 
   },
   create: function() {
