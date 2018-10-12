@@ -43,6 +43,15 @@ update: function () {
             this.game.camera.x-=6;
     }
 
+  if (cursors.left.isDown)
+  {
+    this.game.camera.x -= 6;
+  }
+  else if (cursors.right.isDown)
+  {
+    this.game.camera.x += 6;
+  }
+    
 },
 actionOnClick: function () 
 {
