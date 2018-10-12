@@ -21,12 +21,12 @@ DagorDagorath.Game.prototype = {
   button.height = 50;
   button.fixedToCamera = true;
 
-  image1 = this.game.add.sprite(800, 25, 'fondotropas');
+  image1 = this.game.add.sprite(810, 15, 'fondotropas');
   image1.width =175 ;
   image1.height = 85;
   image1.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(815, 40, 'BotonRetroceso', this.actionOnClick1, this,1,0);
+  tropa1 = this.game.add.button(830, 30, 'BotonHome', this.actionOnClick1, this,1,0);
   tropa1.width = 30;
   tropa1.height = 30;
   tropa1.fixedToCamera = true;
@@ -37,9 +37,9 @@ DagorDagorath.Game.prototype = {
 
 update: function () {
 
-	if(this.game.input.mousePointer.x>900){
+	if(this.game.input.mousePointer.x>985){
             this.game.camera.x+=6;
-    } else if(this.game.input.mousePointer.x<50){
+    } else if(this.game.input.mousePointer.x<15){
             this.game.camera.x-=6;
     }
 
