@@ -35,11 +35,14 @@ DagorDagorath.Game.prototype = {
 
 update: function () {
 
-	if(game.input.mousePointer.x>900){
-            game.camera.x+=6;
-    } else if(game.input.mousePointer.x<50){
-            game.camera.x-=6;
-    }
+	if (cursors.left.isDown)
+	{
+		this.game.camera.x -= 6;
+	}
+	else if (cursors.right.isDown)
+	{
+		this.game.camera.x += 6;
+	}
 
 },
 actionOnClick: function () 
