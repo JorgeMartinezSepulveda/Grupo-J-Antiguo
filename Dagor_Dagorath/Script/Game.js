@@ -4,16 +4,16 @@ var cursors;
 var image1;
 var tropa1;
 var sprite;
-//title screen
+
 DagorDagorath.Game = function(){};
 
 DagorDagorath.Game.prototype = {
 	create: function() {
 
-	//set world dimensions
+	//Dimensiones del mundo
 	this.game.world.setBounds(0, 0, 2000, 667);
 
-  //background
+  //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
   
   button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
@@ -33,38 +33,46 @@ DagorDagorath.Game.prototype = {
 
   cursors = this.game.input.keyboard.createCursorKeys();
 
-},
+  },
 
-update: function () {
+  update: function () {
 
-	if(this.game.input.mousePointer.x>985){
-            this.game.camera.x+=6;
-    } else if(this.game.input.mousePointer.x<15){
-            this.game.camera.x-=6;
+    //movimiento de camara con raton
+  	if(this.game.input.mousePointer.x>985)
+    {
+      this.game.camera.x+=6;
+    } 
+    else if(this.game.input.mousePointer.x<15)
+    {
+      this.game.camera.x-=6;
     }
 
-  if (cursors.left.isDown)
+    //movimiento de camara con teclado
+    if (cursors.left.isDown)
+    {
+      this.game.camera.x -= 6;
+    }
+    else if (cursors.right.isDown)
+    {
+      this.game.camera.x += 6;
+    }
+      
+  },
+
+  actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
-    this.game.camera.x -= 6;
-  }
-  else if (cursors.right.isDown)
+  	this.game.state.start('MainMenu');
+  },
+
+  actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-    this.game.camera.x += 6;
+  	sprite = this.game.add.sprite(100, 525, 'momia');
+
+  	sprite.animations.add('walk');
+
+  	sprite.animations.play('walk', 20, true);
+
+  	this.game.add.tween(sprite).to({ x: this.game.width+800 }, 20000, Phaser.Easing.Linear.None, true);
   }
-    
-},
-actionOnClick: function () 
-{
-	this.game.state.start('MainMenu');
-},
-actionOnClick1: function () 
-{
-	sprite = this.game.add.sprite(100, 525, 'momia');
-
-	sprite.animations.add('walk');
-
-	sprite.animations.play('walk', 20, true);
-
-	this.game.add.tween(sprite).to({ x: this.game.width+800 }, 20000, Phaser.Easing.Linear.None, true);
-}
+  
 };

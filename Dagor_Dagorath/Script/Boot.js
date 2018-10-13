@@ -17,14 +17,11 @@ DagorDagorath.Boot.prototype = {
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.setMinMax(450,300,1000, 667);
 	
-	//have the game centered horizontally
-	this.scale.pageAlignHorizontally = true;
+	  //have the game centered horizontally
+	  this.scale.pageAlignHorizontally = true;
 
-	//screen size will be set automatically
-	// DEPRECATED this.scale.setScreenSize(true);
-
-	//physics system for movement
-	this.game.physics.startSystem(Phaser.Physics.ARCADE);
+	  //physics system for movement
+	  this.game.physics.startSystem(Phaser.Physics.ARCADE);
     
     this.state.start('Preload');
   }

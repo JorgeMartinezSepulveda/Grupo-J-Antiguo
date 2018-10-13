@@ -16,10 +16,11 @@ DagorDagorath.Cinematic = function(){};
 
 DagorDagorath.Cinematic.prototype = {
 	create: function() {
+
 		//set world dimensions
 		this.game.world.setBounds(0, 0, 1000, 667);
 
-		  //background
+		//background
 		this.background = this.game.add.tileSprite(0, 0, 1000, 667, 'Fondo');
 
 		olas = this.game.add.sprite(0,0,'Ilustracion1_Olas');
@@ -36,7 +37,7 @@ DagorDagorath.Cinematic.prototype = {
 		tierra.alpha = 1;
 		olas.alpha = 1;
 		
-		//Cinematica 2
+		//Cinematica 2///////////////////////////////////////////////////////
 		alrededores = this.game.add.sprite(0,0,'Ilustracion2_Marco');
 		alrededores.width = 1000;
 		alrededores.height = 667;
@@ -49,7 +50,7 @@ DagorDagorath.Cinematic.prototype = {
 	 	nazguls = this.game.add.sprite(500,-150,'Ilustracion2_Nazguls');
 	 	nazguls.width = 370;
 		nazguls.height = 150;
-		//
+		/////////////////////////////////////////////////////////////////////
 		  
 		tween = this.game.add.tween(olas).to({x: -500}, 20000, Phaser.Easing.Linear.None);   
 		tween.start(); 
