@@ -41,6 +41,9 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('momia', 'images/momia.png', 37, 45, 18);
     this.load.spritesheet('BotonHome', 'images/boton_home.png',194,190);
 
+    this.load.image('Texto_1', 'images/Texto1.png');
+    this.load.image('Texto_1_2', 'images/Texto1_2.png');
+
   },
   create: function() {
   	this.state.start('MainMenu');
