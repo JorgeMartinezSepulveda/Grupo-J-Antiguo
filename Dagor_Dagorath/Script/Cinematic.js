@@ -26,6 +26,7 @@ DagorDagorath.Cinematic.prototype = {
 		//Fondo
 		this.background = this.game.add.tileSprite(0, 0, 1000, 667, 'Fondo');
 
+		//Cinematica 1//////////////////////////////////////////////////////////////////////////////////////
 		olas = this.game.add.sprite(0,0,'Ilustracion1_Olas');
 
 		marco = this.game.add.sprite(0,0, 'Ilustracion1_Marco');
@@ -49,6 +50,8 @@ DagorDagorath.Cinematic.prototype = {
 		olas.alpha = 1;
 		texto1.alpha = 0;
 		texto1_2.alpha = 0;
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 		//Cinematica 2//////////////////////////////////////////////////////////////////////////////////////
 		alrededores = this.game.add.sprite(0,0,'Ilustracion2_Marco');
@@ -60,9 +63,9 @@ DagorDagorath.Cinematic.prototype = {
 	 	morgoth.width = 580;
 		morgoth.height = 667;
 
-	 	nazguls = this.game.add.sprite(620,-120,'Ilustracion2_Nazguls');
-	 	nazguls.width = 300;
-		nazguls.height = 122;
+	 	nazguls = this.game.add.sprite(150,-120,'Ilustracion2_Nazguls');
+	 	nazguls.width = 250;
+		nazguls.height = 102;
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		  
 
@@ -99,6 +102,10 @@ DagorDagorath.Cinematic.prototype = {
 
 	},
 
+	saltar: function(){
+		this.game.state.start('Game');
+	},
+
 	desapareceTexto1: function() 
 	{
 		tween3 = this.game.add.tween(texto1).to( { alpha: 0 }, 2000,  Phaser.Easing.Quartic.Out, true);
@@ -119,7 +126,6 @@ DagorDagorath.Cinematic.prototype = {
 		tween2 = this.game.add.tween(olas).to({x: -1000}, 20000, Phaser.Easing.Linear.None);   
 		tween2.start();
 		tween.onComplete.add(this.cinematica2, this);
-		//this.game.state.start('Game');
 	},
 
 	cinematica2: function()
@@ -143,25 +149,32 @@ DagorDagorath.Cinematic.prototype = {
 
 	entradaNazguls: function()
 	{
-		tween = this.game.add.tween(nazguls).to({x:470, y:60}, 5000, Phaser.Easing.Quartic.In);   
+		tween = this.game.add.tween(nazguls).to({x:270, y:60}, 2000, Phaser.Easing.Bounce.In);   
 		tween.start();
-		tween = this.game.add.tween(nazguls.scale).to({x: 0.45, y: 0.45}, 5000, Phaser.Easing.Quartic.In);
-		tween.start();
+		tween2 = this.game.add.tween(nazguls.scale).to({x: 0.30, y: 0.30}, 2000, Phaser.Easing.Cubic.In);
+		tween2.start();
 
-		tween.onComplete.add(this.salidaNazguls, this);
+		tween2.onComplete.add(this.salidaNazguls, this);
 	},
 
 	salidaNazguls: function()
 	{
-		tween = this.game.add.tween(nazguls).to({x:200, y:-260}, 5000, Phaser.Easing.Quartic.Out);   
+		tween = this.game.add.tween(nazguls).to({x:410, y:-260}, 2000, Phaser.Easing.Bounce.Out);   
 		tween.start();
-		tween = this.game.add.tween(nazguls.scale).to({x: 0.60, y: 0.60}, 5000, Phaser.Easing.Quartic.Out);
-		tween.start();
+		tween2 = this.game.add.tween(nazguls.scale).to({x: 0.40, y: 0.40}, 2000, Phaser.Easing.Cubic.Out);
+		tween2.start();
 
-		tween.onComplete.add(this.saltar, this);
+		tween2.onComplete.add(this.entradaNazguls2, this);
 	},
 
-	saltar: function(){
-		this.game.state.start('Game');
+	entradaNazguls2: function()
+	{
+		tween = this.game.add.tween(nazguls).to({x:535, y:45}, 2000, Phaser.Easing.Cubic.Out);   
+		tween.start();
+		tween2 = this.game.add.tween(nazguls.scale).to({x: 0.50, y: 0.50}, 2000, Phaser.Easing.Cubic.Out);
+		tween2.start();
+
+		//tween2.onComplete.add(this.saltar, this);
 	}
+
 }
