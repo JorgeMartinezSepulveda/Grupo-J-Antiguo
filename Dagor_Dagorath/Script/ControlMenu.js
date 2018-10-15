@@ -17,11 +17,11 @@ DagorDagorath.ControlMenu.prototype = {
     marco.width = 1000;
     marco.height = 667;    
 
-  	ventanaControles = this.game.add.sprite(100,58, 'controles');
-    ventanaControles.width = 800;
+  	ventanaControles = this.game.add.sprite(110,58, 'controles');
+    ventanaControles.width = 780;
     ventanaControles.height = 550;
 
-    button = this.game.add.button(210, 137, 'BotonRetroceso', this.actionOnClick, this,1,0);
+    button = this.game.add.button(206, 137, 'BotonRetroceso', this.actionOnClick, this,1,0);
     button.width = 85;
     button.height = 60;
 
