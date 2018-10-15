@@ -52,13 +52,13 @@ DagorDagorath.Cinematic.prototype = {
 		nazguls.height = 150;
 		/////////////////////////////////////////////////////////////////////
 		  
-		tween = this.game.add.tween(olas).to({x: -500}, 20000, Phaser.Easing.Linear.None);   
+		tween = this.game.add.tween(olas).to({x: -500}, 2000, Phaser.Easing.Linear.None);   
 		tween.start(); 
-		tween = this.game.add.tween(tierra.scale).to({x: 0.55, y: 0.55}, 20000, Phaser.Easing.Linear.None);
+		tween = this.game.add.tween(tierra.scale).to({x: 0.55, y: 0.55}, 2000, Phaser.Easing.Linear.None);
 		tween.start();
-		tween = this.game.add.tween(tierra).to({x: -120, y: -100}, 20000, Phaser.Easing.Linear.None);
+		tween = this.game.add.tween(tierra).to({x: -120, y: -100}, 2000, Phaser.Easing.Linear.None);
 		tween.start();
-		tween = this.game.add.tween(tierra).to( { alpha: 0 }, 20000, "Linear", true);
+		tween = this.game.add.tween(tierra).to( { alpha: 0 }, 2000, "Linear", true);
 		tween.start();
 
 		tween.onComplete.add(this.actionOnClick, this); 
@@ -73,9 +73,9 @@ DagorDagorath.Cinematic.prototype = {
 
 	actionOnClick: function () 
 	{
-		tween = this.game.add.tween(olas).to( { alpha: 0 }, 1000, "Linear", true);
+		tween = this.game.add.tween(olas).to( { alpha: 0 }, 100, "Linear", true);
 		tween.start();
-		tween2 = this.game.add.tween(olas).to({x: -1000}, 20000, Phaser.Easing.Linear.None);   
+		tween2 = this.game.add.tween(olas).to({x: -1000}, 2000, Phaser.Easing.Linear.None);   
 		tween2.start();
 		tween.onComplete.add(this.cinematica2, this);
 		//this.game.state.start('Game');
@@ -93,7 +93,7 @@ DagorDagorath.Cinematic.prototype = {
 
 	entradaMorgoth: function()
 	{
-		tween = this.game.add.tween(morgoth).to({x: 0}, 3000, Phaser.Easing.Linear.None);   
+		tween = this.game.add.tween(morgoth).to({x: 0}, 6000, Phaser.Easing.Cubic.Out, true);   
 		tween.start();
 
 		tween.onComplete.add(this.entradaNaguls, this);
