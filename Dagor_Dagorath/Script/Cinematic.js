@@ -10,6 +10,8 @@ var letras;
 var olas;
 var texto1;
 var texto1_2;
+var texto2;
+var texto3;
 
 var alrededores;
 var morgoth;
@@ -45,11 +47,16 @@ DagorDagorath.Cinematic.prototype = {
 		texto1_2.width = 111.7;
 		texto1_2.height = 33;
 
+		texto2 = this.game.add.sprite(330,450, 'Texto_2');
+		texto2.width = 280;
+		texto2.height = 155;
+
 
 		tierra.alpha = 1;
 		olas.alpha = 1;
 		texto1.alpha = 0;
 		texto1_2.alpha = 0;
+		texto2.alpha = 0;
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -66,6 +73,11 @@ DagorDagorath.Cinematic.prototype = {
 	 	nazguls = this.game.add.sprite(150,-120,'Ilustracion2_Nazguls');
 	 	nazguls.width = 250;
 		nazguls.height = 102;
+
+		texto3 = this.game.add.sprite(375,385, 'Texto_3');
+		texto3.width = 385;
+		texto3.height = 126;
+		texto3.alpha = 0;
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		  
 
@@ -110,13 +122,28 @@ DagorDagorath.Cinematic.prototype = {
 	{
 		tween3 = this.game.add.tween(texto1).to( { alpha: 0 }, 2000,  Phaser.Easing.Quartic.Out, true);
 		tween3.start();
-		tween3.onComplete.add(this.desapareceTexto2, this);
+		tween3.onComplete.add(this.desapareceTexto1_2, this);
 	},
 
-	desapareceTexto2: function()
+	desapareceTexto1_2: function()
 	{
 		tween3 = this.game.add.tween(texto1_2).to( { alpha: 0 }, 2000,  Phaser.Easing.Quartic.In, true);
 		tween3.start();
+		tween3.onComplete.add(this.apareceTexto2, this);
+	},
+
+	apareceTexto2: function()
+	{
+		tween3 = this.game.add.tween(texto2).to( { alpha: 1}, 5000,  Phaser.Easing.Quartic.Out, true);
+		tween3.start();
+		tween3.onComplete.add(this.desapareceTexto2, this);
+	},
+
+	desapareceTexto2: function() 
+	{
+		tween3 = this.game.add.tween(texto2).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween3.start();
+		//tween3.onComplete.add(this.desapareceTexto1_2, this);
 	},
 
 	actionOnClick: function () 
@@ -142,6 +169,8 @@ DagorDagorath.Cinematic.prototype = {
 	{
 		tween = this.game.add.tween(morgoth).to({x: 0}, 5000, Phaser.Easing.Quadratic.Out, true);   
 		tween.start();
+		tween3 = this.game.add.tween(texto3).to( { alpha: 1}, 5000,  Phaser.Easing.Quartic.In, true);
+		tween3.start();
 
 		tween.onComplete.add(this.entradaNazguls, this);
 
