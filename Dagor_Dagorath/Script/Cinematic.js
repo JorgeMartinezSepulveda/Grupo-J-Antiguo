@@ -39,17 +39,17 @@ DagorDagorath.Cinematic.prototype = {
 		tierra.width = 860;
 		tierra.height = 500;
 
-		texto1 = this.game.add.sprite(330,450, 'Texto_1');
-		texto1.width = 280;
-		texto1.height = 118;
+		texto1 = this.game.add.sprite(310,450, 'Texto_1');          //  TEXTO1  //
+		texto1.width = 300;
+		texto1.height = 125;
 
-		texto1_2 = this.game.add.sprite(412.5,563.5, 'Texto_1_2'); //563.5
-		texto1_2.width = 111.7;
-		texto1_2.height = 33;
+		texto1_2 = this.game.add.sprite(397.5,570.5, 'Texto_1_2');  // TEXTO1_2 //
+		texto1_2.width = 131.7;
+		texto1_2.height = 40;
 
-		texto2 = this.game.add.sprite(330,450, 'Texto_2');
-		texto2.width = 280;
-		texto2.height = 155;
+		texto2 = this.game.add.sprite(310,450, 'Texto_2');          //  TEXTO2  //
+		texto2.width = 300;
+		texto2.height = 167;
 
 
 		tierra.alpha = 1;
@@ -66,17 +66,17 @@ DagorDagorath.Cinematic.prototype = {
 		alrededores.height = 667;
 		alrededores.alpha = 0;
 
-		morgoth = this.game.add.sprite(-580,20,'Ilustracion2_Morgoth');
+		morgoth = this.game.add.sprite(-580,5,'Ilustracion2_Morgoth');
 	 	morgoth.width = 580;
-		morgoth.height = 667;
+		morgoth.height = 680;
 
 	 	nazguls = this.game.add.sprite(150,-120,'Ilustracion2_Nazguls');
 	 	nazguls.width = 250;
 		nazguls.height = 102;
 
-		texto3 = this.game.add.sprite(375,385, 'Texto_3');
-		texto3.width = 385;
-		texto3.height = 126;
+		texto3 = this.game.add.sprite(380,320, 'Texto_3');  // TEXTO 3 //
+		texto3.width = 400;
+		texto3.height = 130;
 		texto3.alpha = 0;
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		  
@@ -167,7 +167,7 @@ DagorDagorath.Cinematic.prototype = {
 
 	entradaMorgoth: function()
 	{
-		tween = this.game.add.tween(morgoth).to({x: 0}, 5000, Phaser.Easing.Quadratic.Out, true);   
+		tween = this.game.add.tween(morgoth).to({x: -5}, 5000, Phaser.Easing.Quadratic.Out, true);   
 		tween.start();
 		tween3 = this.game.add.tween(texto3).to( { alpha: 1}, 5000,  Phaser.Easing.Quartic.In, true);
 		tween3.start();
@@ -203,7 +203,19 @@ DagorDagorath.Cinematic.prototype = {
 		tween2 = this.game.add.tween(nazguls.scale).to({x: 0.50, y: 0.50}, 2000, Phaser.Easing.Cubic.Out);
 		tween2.start();
 
-		//tween2.onComplete.add(this.saltar, this);
+		tween2.onComplete.add(this.finCinematica2, this);
+	},
+
+	finCinematica2: function()
+	{
+		tween = this.game.add.tween(texto3).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+		tween2 = this.game.add.tween(morgoth).to({ x: -580 }, 4000, Phaser.Easing.Quadratic.In, true);   
+		tween2.start();
+		tween = this.game.add.tween(alrededores).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+		tween3 = this.game.add.tween(nazguls).to({x:645, y:-280}, 5000, Phaser.Easing.Bounce.Out);   
+		tween3.start();
 	}
 
 }
