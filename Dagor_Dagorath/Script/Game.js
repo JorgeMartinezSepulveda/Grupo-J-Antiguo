@@ -59,6 +59,19 @@ DagorDagorath.Game.prototype = {
       
   },
 
+  generateEnanos: function(vida){
+    console.log();
+    this.enanos = this.game.add.group();
+    this.enanos.enableBody = true;
+    this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
+    var vida = vida || 0;
+    var enano;
+    enano = this.game.add.sprite(900, 525, 'momia');
+    enano.animations.add('walk');
+    enano.animations.play('walk', 20, true);
+    this.game.add.tween(enano).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+  },
+
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
   	this.game.state.start('MainMenu');
@@ -66,13 +79,7 @@ DagorDagorath.Game.prototype = {
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-  	sprite = this.game.add.sprite(100, 525, 'momia');
-
-  	sprite.animations.add('walk');
-
-  	sprite.animations.play('walk', 20, true);
-
-  	this.game.add.tween(sprite).to({ x: this.game.width+800 }, 20000, Phaser.Easing.Linear.None, true);
+    this.generateEnanos();
   }
   
 };
