@@ -216,6 +216,8 @@ DagorDagorath.Cinematic.prototype = {
 		tween.start();
 		tween3 = this.game.add.tween(nazguls).to({x:645, y:-280}, 5000, Phaser.Easing.Bounce.Out);   
 		tween3.start();
+
+		tween3.onComplete.add(this.saltar, this);
 	}
 
 }

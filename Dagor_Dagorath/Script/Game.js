@@ -4,6 +4,8 @@ var cursors;
 var image1;
 var tropa1;
 var sprite;
+var trasgos;
+var enanos;
 
 DagorDagorath.Game = function(){};
 
@@ -33,6 +35,34 @@ DagorDagorath.Game.prototype = {
 
   cursors = this.game.input.keyboard.createCursorKeys();
 
+  this.trasgos = this.game.add.group();
+  this.trasgos.enableBody = true;
+  this.trasgos.physicsBodyType = Phaser.Physics.ARCADE;
+
+  this.enanos = this.game.add.group();
+  this.enanos.enableBody = true;
+  this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
+  },
+
+  generateEnanos: function(vida)
+  {
+    
+    var vida = vida || 0;
+    var en;
+    en = this.enanos.create(700, 525, 'momia');
+    en.animations.add('walk');
+    en.animations.play('walk', 20, true);
+    this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+  },
+
+  generateTrasgos: function(vida)
+  {
+    var vida = vida || 0;
+    var tras;
+    tras = this.trasgos.create(300, 525, 'momia');
+    tras.animations.add('walk');
+    tras.animations.play('walk', 20, true);
+    this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   update: function () {
@@ -56,7 +86,16 @@ DagorDagorath.Game.prototype = {
     {
       this.game.camera.x += 6;
     }
+
+    this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
+    
+    
       
+  },
+
+  pruebaColision: function(enan, trasg)
+  {
+    enan.kill();
   },
 
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
@@ -66,13 +105,8 @@ DagorDagorath.Game.prototype = {
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-  	sprite = this.game.add.sprite(100, 525, 'momia');
-
-  	sprite.animations.add('walk');
-
-  	sprite.animations.play('walk', 20, true);
-
-  	this.game.add.tween(sprite).to({ x: this.game.width+800 }, 20000, Phaser.Easing.Linear.None, true);
+    this.generateEnanos();
+    this.generateTrasgos();    
   }
   
 };
