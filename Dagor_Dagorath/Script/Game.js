@@ -4,14 +4,16 @@ var cursors;
 var image1;
 var tropa1;
 var sprite;
+var trasgos;
+var enanos;
 
 DagorDagorath.Game = function(){};
 
 DagorDagorath.Game.prototype = {
-	create: function() {
+  create: function() {
 
-	//Dimensiones del mundo
-	this.game.world.setBounds(0, 0, 2000, 667);
+  //Dimensiones del mundo
+  this.game.world.setBounds(0, 0, 2000, 667);
 
   //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
@@ -33,12 +35,55 @@ DagorDagorath.Game.prototype = {
 
   cursors = this.game.input.keyboard.createCursorKeys();
 
+  this.trasgos = this.game.add.group();
+  this.trasgos.enableBody = true;
+  this.trasgos.physicsBodyType = Phaser.Physics.ARCADE;
+
+  this.enanos = this.game.add.group();
+  this.enanos.enableBody = true;
+  this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
+  },
+
+  tropa: function(vida, daño){
+    this.vida = vida;
+    this.daño = daño;
+  },
+
+  Aliadas.prototype = Object.create(tropa.prototype);
+  Aliadas: function (vida, daño){
+    tropa.call(this, vida, daño);
+  },
+
+
+  Enemigas.prototype = Object.create(tropa.prototype);
+  Enemigas: function (vida, daño){
+    tropa.call(this, vida, daño);
+  },
+
+  Enanos.prototype = Object.create(Aliadas.prototype);
+  Enanos: function(vida, daño){
+    Aliadas.call(this, vida, daño);
+    var en;
+    en = this.enanos.create(700, 525, 'momia');
+    en.animations.add('walk');
+    en.animations.play('walk', 20, true);
+    this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+  },
+
+  generateTrasgos: function(vida)
+  {
+    var vida = vida || 0;
+    var tras;
+    tras = this.trasgos.create(300, 525, 'momia');
+    tras.animations.add('walk');
+    tras.animations.play('walk', 20, true);
+    this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   update: function () {
 
     //movimiento de camara con raton
-  	if(this.game.input.mousePointer.x>985)
+    if(this.game.input.mousePointer.x>985)
     {
       this.game.camera.x+=6;
     } 
@@ -56,30 +101,27 @@ DagorDagorath.Game.prototype = {
     {
       this.game.camera.x += 6;
     }
+
+    this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
+    
+    
       
   },
 
-  generateEnanos: function(vida){
-    console.log();
-    this.enanos = this.game.add.group();
-    this.enanos.enableBody = true;
-    this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
-    var vida = vida || 0;
-    var enano;
-    enano = this.game.add.sprite(900, 525, 'momia');
-    enano.animations.add('walk');
-    enano.animations.play('walk', 20, true);
-    this.game.add.tween(enano).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+  pruebaColision: function(enan, trasg)
+  {
+    enan.kill();
   },
 
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
-  	this.game.state.start('MainMenu');
+    this.game.state.start('MainMenu');
   },
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-    this.generateEnanos();
+    this.Enanos();
+    this.generateTrasgos();    
   }
   
 };
