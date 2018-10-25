@@ -36,9 +36,9 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion2_Morgoth', 'images/Ilustracion_2_MORGOTH.png');
     this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
 
-    this.load.image('back', 'images/fondo.png');
+    this.load.image('back', 'images/A_FONDO.png');
     this.load.image('fondotropas', 'images/Panel_Tropas.png');
-    this.load.spritesheet('momia', 'images/momia.png', 37, 45, 18);
+    this.load.spritesheet('momia', 'images/Enano_Andando_Sheet.png', 85, 100);
     this.load.spritesheet('BotonHome', 'images/boton_home.png',194,190);
 
     this.load.image('Texto_1', 'images/Texto1.png');

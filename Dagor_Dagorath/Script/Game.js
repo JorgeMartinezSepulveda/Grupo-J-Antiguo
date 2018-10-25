@@ -23,14 +23,14 @@ DagorDagorath.Game.prototype = {
   button.height = 50;
   button.fixedToCamera = true;
 
-  image1 = this.game.add.sprite(810, 15, 'fondotropas');
-  image1.width =175 ;
-  image1.height = 85;
+  image1 = this.game.add.sprite(760, 15, 'fondotropas');
+  image1.width = 225 ;
+  image1.height = 75;
   image1.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(830, 30, 'BotonHome', this.actionOnClick1, this,1,0);
-  tropa1.width = 30;
-  tropa1.height = 30;
+  tropa1 = this.game.add.button(775, 28, 'BotonHome', this.actionOnClick1, this,1,0);
+  tropa1.width = 50;
+  tropa1.height = 50;
   tropa1.fixedToCamera = true;
 
   cursors = this.game.input.keyboard.createCursorKeys();
@@ -49,9 +49,11 @@ DagorDagorath.Game.prototype = {
     
     var vida = vida || 0;
     var en;
-    en = this.enanos.create(700, 525, 'momia');
+    en = this.enanos.create(700, 545, 'momia');
+    en.width = 55.25;
+    en.height = 65;
     en.animations.add('walk');
-    en.animations.play('walk', 20, true);
+    en.animations.play('walk', 9, true);
     this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
@@ -59,9 +61,11 @@ DagorDagorath.Game.prototype = {
   {
     var vida = vida || 0;
     var tras;
-    tras = this.trasgos.create(300, 525, 'momia');
+    tras = this.trasgos.create(330, 545, 'momia');
+    tras.width = 55.25;
+    tras.height = 65;
     tras.animations.add('walk');
-    tras.animations.play('walk', 20, true);
+    tras.animations.play('walk', 9, true);
     this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
