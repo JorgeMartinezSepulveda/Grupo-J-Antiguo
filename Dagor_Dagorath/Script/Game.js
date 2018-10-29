@@ -11,6 +11,7 @@ var dinero = 2000;
 var dineroTexto = 2000;
 var enanotimer= 0;
 var contadorenano=0;
+var monedas;
 
 DagorDagorath.Game = function(){};
 
@@ -23,8 +24,11 @@ DagorDagorath.Game.prototype = {
   //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
 
-  dineroTexto = this.add.text(80, 20, '2000', { fontSize: '32px', fill: '#EBE54C' });
+  dineroTexto = this.add.text(100, 20, '2000', { fontSize: '30px', fill: '#EBE54C' });
   dineroTexto.fixedToCamera = true;
+
+  monedas = this.game.add.sprite(70, 25, 'monedas');
+  monedas.fixedToCamera = true;
 
   button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
   button.width = 50;

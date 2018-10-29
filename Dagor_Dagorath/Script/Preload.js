@@ -25,6 +25,7 @@ DagorDagorath.Preload.prototype = {
     this.load.image('background', 'images/dagor.png');
     this.load.image('background2', 'images/dagor_escalada.png');
     this.load.image('background3', 'images/Ilustracion_2.png');
+    this.load.image('monedas', 'images/monedas.png');
 
     this.load.image('Fondo', 'images/Ilustracion1_FONDO.png');
     this.load.image('Ilustracion1_Marco', 'images/Ilustracion1_MARCONEGRO.png');
