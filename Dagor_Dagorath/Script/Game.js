@@ -44,29 +44,32 @@ DagorDagorath.Game.prototype = {
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
   },
 
-  generateEnanos: function(vida)
+  generateEnanos: function()
   {
     
-    var vida = vida || 0;
+    //var vida = vida || 0;
     var en;
-    en = this.enanos.create(700, 545, 'momia');
+    en = this.enanos.create(330, 545, 'momia');
     en.width = 55.25;
     en.height = 65;
+    en.vida = 100;
     en.animations.add('walk');
-    en.animations.play('walk', 9, true);
-    this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+    en.animations.play('walk', 7.5, true);
+    en.body.velocity.x = 30;
+    //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   generateTrasgos: function(vida)
   {
     var vida = vida || 0;
     var tras;
-    tras = this.trasgos.create(330, 545, 'momia');
+    tras = this.trasgos.create(700, 545, 'momia');
     tras.width = 55.25;
     tras.height = 65;
     tras.animations.add('walk');
-    tras.animations.play('walk', 9, true);
-    this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
+    tras.animations.play('walk', 7.5, true);
+    tras.body.velocity.x = -30;
+    //this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   update: function () {
@@ -99,7 +102,11 @@ DagorDagorath.Game.prototype = {
 
   pruebaColision: function(enan, trasg)
   {
-    enan.kill();
+    enan.animations.stop(null, true);
+    enan.body.velocity.x = 0;
+    console.log(enan.vida);
+    trasg.animations.stop(null, true);
+    trasg.body.velocity.x = 0;
   },
 
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
