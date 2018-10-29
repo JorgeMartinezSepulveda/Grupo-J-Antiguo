@@ -6,6 +6,11 @@ var tropa1;
 var sprite;
 var trasgos;
 var enanos;
+var dineroIA= 2000;
+var dinero = 2000;
+var dineroTexto = 2000;
+var enanotimer= 0;
+var contadorenano=0;
 
 DagorDagorath.Game = function(){};
 
@@ -17,20 +22,26 @@ DagorDagorath.Game.prototype = {
 
   //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
-  
+
+  dineroTexto = this.add.text(80, 20, '2000', { fontSize: '32px', fill: '#EBE54C' });
+  dineroTexto.fixedToCamera = true;
+
   button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
   button.width = 50;
   button.height = 50;
   button.fixedToCamera = true;
 
-  image1 = this.game.add.sprite(810, 15, 'fondotropas');
-  image1.width =175 ;
-  image1.height = 85;
+  image1 = this.game.add.sprite(760, 15, 'fondotropas');
+  image1.width = 225 ;
+  image1.height = 75;
   image1.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(830, 30, 'BotonHome', this.actionOnClick1, this,1,0);
-  tropa1.width = 30;
-  tropa1.height = 30;
+  contadorenano = this.add.text(800, 100, '0', { fontSize: '18px', fill: '#000000' });
+  contadorenano.fixedToCamera = true;
+
+  tropa1 = this.game.add.button(775, 28, 'BotonHome', this.actionOnClick1, this,1,0);
+  tropa1.width = 50;
+  tropa1.height = 50;
   tropa1.fixedToCamera = true;
 
   cursors = this.game.input.keyboard.createCursorKeys();
@@ -44,40 +55,35 @@ DagorDagorath.Game.prototype = {
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
   },
 
-  tropa: function(vida, daño){
-    this.vida = vida;
-    this.daño = daño;
-  },
-
-  Aliadas.prototype = Object.create(tropa.prototype);
-  Aliadas: function (vida, daño){
-    tropa.call(this, vida, daño);
-  },
-
-
-  Enemigas.prototype = Object.create(tropa.prototype);
-  Enemigas: function (vida, daño){
-    tropa.call(this, vida, daño);
-  },
-
-  Enanos.prototype = Object.create(Aliadas.prototype);
-  Enanos: function(vida, daño){
-    Aliadas.call(this, vida, daño);
+  generateEnanos: function()
+  {
+    
+    //var vida = vida || 0;
     var en;
-    en = this.enanos.create(700, 525, 'momia');
+    en = this.enanos.create(330, 545, 'momia');
+    en.width = 55.25;
+    en.height = 65;
+    en.vida = 100;
     en.animations.add('walk');
-    en.animations.play('walk', 20, true);
-    this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
+    en.animations.play('walk', 7.5, true);
+    en.body.velocity.x = 30;
+    dinero -= 100;
+    dineroTexto.setText(dinero);
+    
+    //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   generateTrasgos: function(vida)
   {
     var vida = vida || 0;
     var tras;
-    tras = this.trasgos.create(300, 525, 'momia');
+    tras = this.trasgos.create(1800, 545, 'momia');
+    tras.width = 55.25;
+    tras.height = 65;
     tras.animations.add('walk');
-    tras.animations.play('walk', 20, true);
-    this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
+    tras.animations.play('walk', 7.5, true);
+    tras.body.velocity.x = -30;
+    //this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
   update: function () {
@@ -102,16 +108,37 @@ DagorDagorath.Game.prototype = {
       this.game.camera.x += 6;
     }
 
+    if (enanotimer==1){
+      this.game.time.events.add(Phaser.Timer.SECOND * 3, this.timer, this);
+    }
+    contadorenano.setText(enanotimer);
+
+    this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
+
     this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
+    this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
     
-    
-      
+  },
+
+  timer: function(){
+    enanotimer=0;
   },
 
   pruebaColision: function(enan, trasg)
   {
-    enan.kill();
+    enan.animations.stop(null, true);
+    enan.body.velocity.x = 0;
+    console.log(enan.vida);
+    trasg.animations.stop(null, true);
+    trasg.body.velocity.x = 0;
   },
+
+  colisionMismoGrupo: function(grupo, grupo)
+  {
+    grupo.animations.stop(null, true);
+    grupo.body.velocity.x = 0;
+  },
+
 
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
@@ -120,8 +147,10 @@ DagorDagorath.Game.prototype = {
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-    this.Enanos();
-    this.generateTrasgos();    
+    if (dinero>=100 && enanotimer==0){
+      enanotimer= 1;
+      this.generateEnanos();
+      this.generateTrasgos(); 
+    }
   }
-  
 };
