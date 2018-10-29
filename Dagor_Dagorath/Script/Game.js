@@ -6,6 +6,9 @@ var tropa1;
 var sprite;
 var trasgos;
 var enanos;
+var dineroIA= 2000;
+var dinero = 2000;
+var dineroTexto = 2000;
 
 DagorDagorath.Game = function(){};
 
@@ -17,6 +20,9 @@ DagorDagorath.Game.prototype = {
 
   //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
+
+  dineroTexto = this.add.text(80, 25, '2000', { fontSize: '32px', fill: '#EBE54C' });
+  dineroTexto.fixedToCamera = true;
   
   button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
   button.width = 50;
@@ -56,6 +62,8 @@ DagorDagorath.Game.prototype = {
     en.animations.add('walk');
     en.animations.play('walk', 7.5, true);
     en.body.velocity.x = 30;
+    dinero -= 100;
+    dineroTexto.setText(dinero);
     //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
@@ -116,8 +124,9 @@ DagorDagorath.Game.prototype = {
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
-    this.generateEnanos();
-    this.generateTrasgos();    
+    if (dinero>=100){
+      this.generateEnanos();
+      this.generateTrasgos(); 
+    }
   }
-  
 };
