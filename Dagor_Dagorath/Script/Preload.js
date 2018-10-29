@@ -45,6 +45,7 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
+    this.load.audio('musica','audio/intro.ogg');
 
   },
   create: function() {
