@@ -42,11 +42,11 @@ DagorDagorath.MainMenu.prototype = {
 
     if (pointer.x < 500)
     {
-      music.volume -= 0.1;
+      music.volume -= 0.05;
     }
     else if (pointer.x > 500)
     {
-        music.volume += 0.1;
+        music.volume += 0.05;
     }
   },
 
