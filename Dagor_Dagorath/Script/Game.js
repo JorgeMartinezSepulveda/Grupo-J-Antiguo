@@ -69,7 +69,7 @@ DagorDagorath.Game.prototype = {
     en.body.velocity.x = 30;
     dinero -= 100;
     dineroTexto.setText(dinero);
-    
+    enanotimer= 1;
     //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
@@ -108,9 +108,7 @@ DagorDagorath.Game.prototype = {
       this.game.camera.x += 6;
     }
 
-    if (enanotimer==1){
-      this.game.time.events.add(Phaser.Timer.SECOND * 3, this.timer, this);
-    }
+    
     contadorenano.setText(enanotimer);
 
     this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
@@ -120,7 +118,7 @@ DagorDagorath.Game.prototype = {
     
   },
 
-  timer: function(){
+  enanostimer: function(){
     enanotimer=0;
   },
 
@@ -139,7 +137,6 @@ DagorDagorath.Game.prototype = {
     grupo.body.velocity.x = 0;
   },
 
-
   actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
     this.game.state.start('MainMenu');
@@ -148,9 +145,11 @@ DagorDagorath.Game.prototype = {
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
     if (dinero>=100 && enanotimer==0){
-      enanotimer= 1;
       this.generateEnanos();
       this.generateTrasgos(); 
+      if (enanotimer==1){
+      this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
+    } 
     }
   }
 };
