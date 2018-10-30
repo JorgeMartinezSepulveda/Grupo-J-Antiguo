@@ -12,6 +12,8 @@ var dineroTexto = 2000;
 var enanotimer= 0;
 var contadorenano=0;
 var monedas;
+var enAtacando=0;
+var trasAtacando=0;
 
 DagorDagorath.Game = function(){};
 
@@ -68,6 +70,7 @@ DagorDagorath.Game.prototype = {
     en.width = 55.25;
     en.height = 65;
     en.vida = 100;
+    en.daño = 25;
     en.animations.add('walk');
     en.animations.play('walk', 7.5, true);
     en.body.velocity.x = 30;
@@ -77,16 +80,19 @@ DagorDagorath.Game.prototype = {
     //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
-  generateTrasgos: function(vida)
+  generateTrasgos: function()
   {
-    var vida = vida || 0;
+    //var vida = vida || 0;
     var tras;
     tras = this.trasgos.create(1800, 545, 'momia');
     tras.width = 55.25;
     tras.height = 65;
+    tras.vida = 100;
+    tras.daño = 5;
     tras.animations.add('walk');
     tras.animations.play('walk', 7.5, true);
     tras.body.velocity.x = -30;
+
     //this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
   },
 
@@ -112,7 +118,6 @@ DagorDagorath.Game.prototype = {
       this.game.camera.x += 6;
     }
 
-    
     contadorenano.setText(enanotimer);
 
     this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
@@ -126,13 +131,48 @@ DagorDagorath.Game.prototype = {
     enanotimer=0;
   },
 
+  pelea: function(enan, trasg){
+    while (trasg.vida>0){
+      console.log(trasg.vida);
+      if (enAtacando==0){
+        enAtacando=1;
+        this.game.time.events.add(Phaser.Timer.SECOND*1.5, this.ataqueEnano, this);
+      }
+      if (trasg.vida <=0){
+        trasg.kill();
+      }
+    }
+    while (enan.vida>0){
+      console.log(enan.vida);
+      if (trasAtacando==0){
+        trasAtacando=1
+        this.game.time.events.add(Phaser.Timer.SECOND*2, this.ataqueTrasgo, this);
+      }
+      if (enan.vida <=0){
+        enan.kill();
+      }
+    }
+  },
+
+  ataqueTrasgo: function(trasg, enan){
+    enan.vida -= trasg.daño;
+    trasAtacando=0;
+  },
+
+  ataqueEnano: function(enan, trasg){
+    trasg.vida -= enan.daño;
+    enAtacando=0;
+  },
+
   pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
-    enan.body.velocity.x = 0;
-    console.log(enan.vida);
+    enan.body.velocity.x = 0;        
     trasg.animations.stop(null, true);
     trasg.body.velocity.x = 0;
+    this.pelea(enan, trasg);
+    console.log(enan.vida);
+    console.log(trasg.vida);
   },
 
   colisionMismoGrupo: function(grupo, grupo)
