@@ -140,7 +140,7 @@ DagorDagorath.Game.prototype = {
         console.log('y hasta aqui llega aqui?');
         enAtacando=1;  
         this.game.time.events.add(Phaser.Timer.SECOND, this.ataqueEnano(ena, trasga), this);
-        console.log('angelgay'+ trasga.vida);
+        console.log('vida trasgos'+ trasga.vida);
         enAtacando=0;
       } 
 
@@ -174,11 +174,11 @@ DagorDagorath.Game.prototype = {
   },
 
   ataqueEnano: function(E,T){
-    console.log('penegordo');
+    console.log('entra');
     console.log('daño'+ E.daño);
 
     T.vida -= E.daño;
-    console.log('polla'+ T.vida);
+    console.log('vida T'+ T.vida);
     console.log('aepikdth');
   },
 
