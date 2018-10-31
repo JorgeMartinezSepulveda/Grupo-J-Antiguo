@@ -39,7 +39,7 @@ DagorDagorath.Game.prototype = {
   contadorenano = this.add.text(795, 67, '1', { fontSize: '18px', fill: '#000000' });
   contadorenano.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(775, 21, 'BotonHome', this.actionOnClick1, this,1,0);
+  tropa1 = this.game.add.button(775, 21, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
   tropa1.width = 50;
   tropa1.height = 50;
   tropa1.fixedToCamera = true;
