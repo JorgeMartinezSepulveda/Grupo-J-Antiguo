@@ -4,6 +4,7 @@ var button2;
 var button3;
 var menu;
 var music;
+var sprite;
 //title screen
 DagorDagorath.MainMenu = function(){};
 
@@ -62,3 +63,4 @@ DagorDagorath.MainMenu.prototype = {
   }
 
 };
+

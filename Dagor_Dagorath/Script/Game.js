@@ -134,14 +134,24 @@ DagorDagorath.Game.prototype = {
 
   pelea: function(ena, trasga){
     console.log(ena.vida);
+    console.log(enAtacando);
     if (trasga.vida>0){
       console.log('llega aqui?');
       if (enAtacando==0){
         console.log('y hasta aqui llega aqui?');
         enAtacando=1;  
-        this.game.time.events.add(Phaser.Timer.SECOND, this.ataqueEnano(ena, trasga), this);
+        this.game.time.events.add(Phaser.Timer.SECOND, function(){
+    	console.log('entra');
+    	console.log('daño'+ ena.daño);
+
+    	trasga.vida -= ena.daño;
+    	enAtacando=0;
+    	console.log('vida T'+ trasga.vida);
+    	console.log('aepikdth');
+    	console.log(enAtacando);
+        }, this);
         console.log('vida trasgos'+ trasga.vida);
-        enAtacando=0;
+
       } 
 
     }
@@ -172,7 +182,7 @@ DagorDagorath.Game.prototype = {
    //   }
   //  }
   },
-
+/*
   ataqueEnano: function(E,T){
     console.log('entra');
     console.log('daño'+ E.daño);
@@ -181,7 +191,7 @@ DagorDagorath.Game.prototype = {
     console.log('vida T'+ T.vida);
     console.log('aepikdth');
   },
-
+*/
   //ataqueTrasgo: function(enan, trasg){
    // enan.vida -= trasg.daño;
  //   trasAtacando=0;
