@@ -154,6 +154,7 @@ pelea: function(ena, trasga){
             ena.animations.play('walk',7.5,true);
             continua=1;
      }
+   },
 pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
