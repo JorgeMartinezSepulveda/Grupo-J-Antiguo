@@ -15,6 +15,7 @@ var monedas;
 var enAtacando=0;
 var trasAtacando=0;
 var continua=0;
+var showDebug = true;
 
 DagorDagorath.Game = function(){};
 
@@ -61,6 +62,8 @@ DagorDagorath.Game.prototype = {
   this.enanos.enableBody = true;
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
 
+   
+
   },
 update: function () {
 
@@ -87,10 +90,12 @@ update: function () {
   contadorenano.setText(enanotimer);
 
   this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
+  this.game.debug.bodyInfo(this.enanos, 500, 300);
+  this.game.debug.body(this.enanos);
 
   this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
   this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
-  this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo,null,this);
+  this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo2,null,this);
 
 },
 
@@ -107,13 +112,14 @@ generateEnanos: function(){
   dinero -= 100;
   dineroTexto.setText(dinero);
   enanotimer= 1;
+  en.body.setSize(100, 91, 5, 5);
 },
 
 generateTrasgos: function()
   {
-    //var vida = vida || 0;
+
     var tras;
-    tras = this.trasgos.create(800, 545, 'momia');
+    tras = this.trasgos.create(1000, 545, 'momia');
     tras.width = 55.25;
     tras.height = 65;
     tras.vida = 100;
@@ -121,27 +127,24 @@ generateTrasgos: function()
     tras.animations.add('walk');
     tras.animations.play('walk', 7.5, true);
     tras.body.velocity.x = -30;
-//this.game.add.tween(tras).to({ x:'800'}, 20000, Phaser.Easing.Linear.None, true);
+    tras.body.setSize(100, 50, 50, 25);
+
   },
+
 enanostimer: function(){
     enanotimer=0;
   },
+
 pelea: function(ena, trasga){
-    console.log(ena.vida);
-    console.log(enAtacando);
-    if (trasga.vida>0){
-      console.log('llega aqui?');
-      if (enAtacando==0){
-        console.log('y hasta aqui llega aqui?');
-        enAtacando=1;  
-        this.game.time.events.add(Phaser.Timer.SECOND, function(){
-      console.log('entra');
-      console.log('daño'+ ena.daño);
+  if (trasga.vida>0){
+    if (enAtacando==0){
+      enAtacando=1;
+      ena.loadTexture('enanopegando', 0);
+      ena.animations.add('pegar');
+      ena.animations.play('pegar', 7.5, true);
+      this.game.time.events.add(Phaser.Timer.SECOND*0.70, function(){
         trasga.vida -= ena.daño;
-      enAtacando=0;
-      console.log('vida T'+ trasga.vida);
-      console.log('aepikdth');
-      console.log(enAtacando);
+        enAtacando=0;
         ena.body.velocity.x=1;
         trasga.body.velocity.x=-1;
         }, this);
@@ -153,7 +156,12 @@ pelea: function(ena, trasga){
             ena.body.velocity.x=30;
             ena.animations.play('walk',7.5,true);
             continua=1;
+            ena.loadTexture('momia', 0);
+            ena.animations.add('walk');
+            ena.animations.play('walk',7.5, true);
      }
+   },
+
 pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
@@ -162,21 +170,30 @@ pruebaColision: function(enan, trasg)
     trasg.body.velocity.x = 0;
     this.pelea(enan, trasg);
   },
+
 colisionMismoGrupo: function(grupo, grupo)
+  {
+    grupo.animations.stop(null, false);
+    grupo.body.velocity.x = 0;
+    
+
+  },
+  colisionMismoGrupo2: function(grupo, grupo)
   {
     grupo.animations.stop(null, true);
     grupo.body.velocity.x = 0;
   },
-   
+
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
     this.game.state.start('MainMenu');
   },
+
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
     if (dinero>=100 && enanotimer==0){
       this.generateEnanos();
-      this.generateTrasgos(); 
+      this.generateTrasgos();
       if (enanotimer==1){
         this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
       } 
