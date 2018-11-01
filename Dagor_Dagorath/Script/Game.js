@@ -63,6 +63,7 @@ DagorDagorath.Game.prototype = {
 
   },
 update: function () {
+
 //movimiento de camara con raton
     if(this.game.input.mousePointer.x>985)
     {
@@ -72,6 +73,7 @@ update: function () {
     {
       this.game.camera.x-=6;
     }
+
 //movimiento de camara con teclado
     if (cursors.left.isDown)
     {
@@ -81,29 +83,32 @@ update: function () {
     {
       this.game.camera.x += 6;
     }
-contadorenano.setText(enanotimer);
-this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
-this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
-    this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
-        this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo,null,this);
+
+  contadorenano.setText(enanotimer);
+
+  this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
+
+  this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
+  this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
+  this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo,null,this);
+
 },
-generateEnanos: function()
-  {
-//var vida = vida || 0;
-    var en;
-    en = this.enanos.create(330, 545, 'momia');
-    en.width = 55.25;
-    en.height = 65;
-    en.vida = 100;
-    en.daño = 25;
-    en.animations.add('walk');
-    en.animations.play('walk', 7.5, true);
-    en.body.velocity.x = 30;
-    dinero -= 100;
-    dineroTexto.setText(dinero);
-    enanotimer= 1;
-    //this.game.add.tween(en).to({ x:'-800'}, 20000, Phaser.Easing.Linear.None, true);
-  },
+
+generateEnanos: function(){
+  var en;
+  en = this.enanos.create(330, 545, 'momia');
+  en.width = 55.25;
+  en.height = 65;
+  en.vida = 100;
+  en.daño = 25;
+  en.animations.add('walk');
+  en.animations.play('walk', 7.5, true);
+  en.body.velocity.x = 30;
+  dinero -= 100;
+  dineroTexto.setText(dinero);
+  enanotimer= 1;
+},
+
 generateTrasgos: function()
   {
     //var vida = vida || 0;
