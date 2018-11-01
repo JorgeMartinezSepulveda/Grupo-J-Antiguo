@@ -3,6 +3,8 @@ var button;
 var button2;
 var button3;
 var menu;
+var music;
+var sprite;
 //title screen
 DagorDagorath.MainMenu = function(){};
 
@@ -31,10 +33,27 @@ DagorDagorath.MainMenu.prototype = {
     button3 = this.game.add.button(392.5, 488, 'Boton3', this.actionOnClick2, this,1,0);
     button3.width = 220;
     button3.height = 100;
+
+    music=this.game.add.audio('musica');
+    music.play();
+    this.game.input.onDown.add(this.changeVolume, this);
+
+  },
+  changeVolume: function (pointer) {
+
+    if (pointer.x < 500)
+    {
+      music.volume -= 0.05;
+    }
+    else if (pointer.x > 500)
+    {
+        music.volume += 0.05;
+    }
   },
 
   actionOnClick1: function () 
   {
+    music.destroy();
     this.game.state.start('Cinematic');
   },
 
@@ -44,3 +63,4 @@ DagorDagorath.MainMenu.prototype = {
   }
 
 };
+

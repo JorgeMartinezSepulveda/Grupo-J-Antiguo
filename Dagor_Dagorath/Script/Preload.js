@@ -5,8 +5,8 @@ DagorDagorath.Preload = function(){};
 
 DagorDagorath.Preload.prototype = {
   preload: function() {
-  	//show loading screen
-  	this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
+    //show loading screen
+    this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
     this.splash.anchor.setTo(0.5);
 
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
@@ -14,7 +14,7 @@ DagorDagorath.Preload.prototype = {
 
     this.load.setPreloadSprite(this.preloadBar);
 
-  	//load game assets
+    //load game assets
     this.load.image('titulo', 'images/titulo4.png');
     this.load.image('controles', 'images/Controles.png');
     this.load.spritesheet('Boton1', 'images/boton.png',296,143);
@@ -25,6 +25,7 @@ DagorDagorath.Preload.prototype = {
     this.load.image('background', 'images/dagor.png');
     this.load.image('background2', 'images/dagor_escalada.png');
     this.load.image('background3', 'images/Ilustracion_2.png');
+    this.load.image('monedas', 'images/monedas.png');
 
     this.load.image('Fondo', 'images/Ilustracion1_FONDO.png');
     this.load.image('Ilustracion1_Marco', 'images/Ilustracion1_MARCONEGRO.png');
@@ -46,9 +47,14 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
+    this.load.audio('musica','audio/intro.ogg');
 
   },
   create: function() {
+<<<<<<< HEAD
+    this.state.start('MainMenu');  //'MainMenu'
+=======
   	this.state.start('MainMenu');  //'MainMenu'
+>>>>>>> e179a695d41d84d3e758cc68ee7437beeb50590b
   }
-};
+};;
