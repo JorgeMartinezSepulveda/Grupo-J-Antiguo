@@ -51,10 +51,6 @@ DagorDagorath.Preload.prototype = {
 
   },
   create: function() {
-<<<<<<< HEAD
-    this.state.start('MainMenu');  //'MainMenu'
-=======
   	this.state.start('MainMenu');  //'MainMenu'
->>>>>>> e179a695d41d84d3e758cc68ee7437beeb50590b
   }
-};;
+};
