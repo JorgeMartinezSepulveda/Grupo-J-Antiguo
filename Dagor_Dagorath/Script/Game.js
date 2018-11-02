@@ -16,6 +16,8 @@ var enAtacando=0;
 var trasAtacando=0;
 var continua=0;
 var showDebug = true;
+var base1;
+var base2;
 
 DagorDagorath.Game = function(){};
 
@@ -62,6 +64,11 @@ DagorDagorath.Game.prototype = {
   this.enanos.enableBody = true;
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
 
+  base1 = this.game.add.group();
+  base1.enableBody = true;
+
+  base2 = this.game.add.group();
+  
    
 
   },
