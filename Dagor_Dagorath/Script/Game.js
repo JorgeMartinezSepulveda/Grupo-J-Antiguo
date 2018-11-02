@@ -14,7 +14,7 @@ var contadorenano=0;
 var monedas;
 var enAtacando=0;
 var trasAtacando=0;
-var continua=0;
+var continua=false;
 
 DagorDagorath.Game = function(){};
 
@@ -92,6 +92,11 @@ update: function () {
   this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
   this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo,null,this);
 
+  if(continua){
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('play',null,'walk',7.5,true);
+  }
+
 },
 
 generateEnanos: function(){
@@ -127,32 +132,33 @@ enanostimer: function(){
     enanotimer=0;
   },
 pelea: function(ena, trasga){
-    console.log(ena.vida);
-    console.log(enAtacando);
+//    console.log(ena.vida);
+//    console.log(enAtacando);
     if (trasga.vida>0){
-      console.log('llega aqui?');
+//      console.log('llega aqui?');
+      continua=false;
       if (enAtacando==0){
-        console.log('y hasta aqui llega aqui?');
+//        console.log('y hasta aqui llega aqui?');
         enAtacando=1;  
         this.game.time.events.add(Phaser.Timer.SECOND, function(){
-      console.log('entra');
-      console.log('daño'+ ena.daño);
+//      console.log('entra');
+//      console.log('daño'+ ena.daño);
         trasga.vida -= ena.daño;
       enAtacando=0;
-      console.log('vida T'+ trasga.vida);
-      console.log('aepikdth');
-      console.log(enAtacando);
+//      console.log('vida T'+ trasga.vida);
+//      console.log('aepikdth');
+//      console.log(enAtacando);
         ena.body.velocity.x=1;
         trasga.body.velocity.x=-1;
         }, this);
-        console.log('vida trasgos'+ trasga.vida);
+//        console.log('vida trasgos'+ trasga.vida);
       }
     }   
      if(trasga.vida<=0){
             trasga.kill();
             ena.body.velocity.x=30;
             ena.animations.play('walk',7.5,true);
-            continua=1;
+            continua=true;
      }
    },
 pruebaColision: function(enan, trasg)
@@ -166,7 +172,7 @@ pruebaColision: function(enan, trasg)
 colisionMismoGrupo: function(grupo, grupo)
   {
     grupo.animations.stop(null, true);
-    grupo.body.velocity.x = 0;
+    //grupo.body.velocity.x = 0;
   },
    
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
