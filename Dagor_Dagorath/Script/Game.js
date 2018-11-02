@@ -16,8 +16,7 @@ var enAtacando=0;
 var trasAtacando=0;
 var continua=0;
 var showDebug = true;
-var base1;
-var base2;
+
 
 DagorDagorath.Game = function(){};
 
@@ -29,6 +28,16 @@ DagorDagorath.Game.prototype = {
 
 //Fondo del estado
   this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
+
+  this.base = this.game.add.group();
+  this.base.enableBody = true;
+  this.base.physicsBodyType = Phaser.Physics.ARCADE;
+
+  var base1 = this.base.create(0, 0, 'base1'); 
+  base1.vida= 200;
+
+  var base2 = this.base.create(1694, 0, 'base2'); 
+  base2.vida= 200;
 
   dineroTexto = this.add.text(100, 20, '2000', { fontSize: '30px', fill: '#EBE54C' });
   dineroTexto.fixedToCamera = true;
@@ -64,10 +73,7 @@ DagorDagorath.Game.prototype = {
   this.enanos.enableBody = true;
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
 
-  base1 = this.game.add.group();
-  base1.enableBody = true;
-
-  base2 = this.game.add.group();
+  
   
    
 
@@ -154,20 +160,20 @@ pelea: function(ena, trasga){
         enAtacando=0;
         ena.body.velocity.x=1;
         trasga.body.velocity.x=-1;
-        }, this);
-        console.log('vida trasgos'+ trasga.vida);
-      }
-    }   
-     if(trasga.vida<=0){
-            trasga.kill();
-            ena.body.velocity.x=30;
-            ena.animations.play('walk',7.5,true);
-            continua=1;
-            ena.loadTexture('momia', 0);
-            ena.animations.add('walk');
-            ena.animations.play('walk',7.5, true);
-     }
-   },
+      }, this);
+      console.log('vida trasgos'+ trasga.vida);
+    }
+  }   
+  if(trasga.vida<=0){
+    trasga.kill();
+    ena.body.velocity.x=30;
+    ena.animations.play('walk',7.5,true);
+    continua=1;
+    ena.loadTexture('momia', 0);
+    ena.animations.add('walk');
+    ena.animations.play('walk',7.5, true);
+  }
+},
 
 pruebaColision: function(enan, trasg)
   {
@@ -178,16 +184,14 @@ pruebaColision: function(enan, trasg)
     this.pelea(enan, trasg);
   },
 
-colisionMismoGrupo: function(grupo, grupo)
+colisionMismoGrupo: function(grupo2, grupo1)
   {
-    grupo.animations.stop(null, false);
-    grupo.body.velocity.x = 0;
-    
-
+    grupo1.animations.stop(null, false);
+    grupo1.body.velocity.x = 0;
   },
   colisionMismoGrupo2: function(grupo, grupo)
   {
-    grupo.animations.stop(null, true);
+    //grupo.animations.stop(null, true);
     grupo.body.velocity.x = 0;
   },
 

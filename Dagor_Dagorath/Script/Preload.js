@@ -41,7 +41,7 @@ DagorDagorath.Preload.prototype = {
 
     this.load.image('back', 'images/A_FONDO.png');
     this.load.image('fondotropas', 'images/Panel_Tropas.png');
-    this.load.spritesheet('momia', 'images/Enano_Andando_Sheet.png', 85, 100);
+    this.load.spritesheet('momia', 'images/Enano_Andando_Sheet.png', 85, 115);
     this.load.spritesheet('BotonHome', 'images/boton_home.png',194,190);
     this.load.spritesheet('Boton_Tropa_Enano', 'images/boton_tropa_enano.png',194,190);
     this.load.spritesheet('enanopegando', 'images/Enano_Ataque_Spritesheet.png', 114, 115);
