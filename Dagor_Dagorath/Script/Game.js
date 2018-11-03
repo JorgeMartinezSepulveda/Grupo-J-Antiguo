@@ -40,9 +40,11 @@ DagorDagorath.Game.prototype = {
 
   base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
+  base1.body.setSize(368, 300, 0, 0);
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
+  base2.body.setSize(300, 400, 0, 0);
 
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -147,12 +149,13 @@ update: function () {
   this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
   this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
   this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo2,null,this);
+  this.game.physics.arcade.collide(this.enanos,this.base, this.colisionconbase,null,this);
 
 },
 
 generateEnanos: function(){
   var en;
-  en = this.enanos.create(330, 545, 'momia');
+  en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
   en.vida = 100;
@@ -170,13 +173,13 @@ generateTrasgos: function()
   {
 
     var tras;
-    tras = this.trasgos.create(1000, 545, 'momia');
-    tras.width = 55.25;
-    tras.height = 65;
+    tras = this.trasgos.create(1000, 561, 'Trasgo_Andando_Sheet');
+    tras.width = 70;
+    tras.height =50;
     tras.vida = 100;
     tras.daño = 5;
     tras.animations.add('walk');
-    tras.animations.play('walk', 7.5, true);
+    tras.animations.play('walk', 7, true);
     tras.body.velocity.x = -30;
     tras.body.setSize(100, 50, 50, 25);
 
@@ -232,6 +235,19 @@ colisionMismoGrupo: function(grupo2, grupo1)
     //grupo.animations.stop(null, true);
     grupo.body.velocity.x = 0;
   },
+
+  colisionconbase: function(tropa, base){
+    tropa.animations.stop(null, true);
+    tropa.body.velocity.x = 0;
+    this.peleabase(tropa, base);
+  },
+
+  peleabase: function(tropa, base){
+    tropa.loadTexture('enanopegando', 0);
+    tropa.animations.add('pegar');
+    tropa.animations.play('pegar', 7.5, true);
+  },
+
 
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
