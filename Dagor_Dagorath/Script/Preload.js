@@ -38,6 +38,8 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
     this.load.image('base1', 'images/base1.png');
     this.load.image('base2', 'images/base2.png');
+    this.load.image('barravidabg', 'images/barravidabg.png');
+    this.load.image('barravida', 'images/barravida.png');
 
     this.load.image('back', 'images/A_FONDO.png');
     this.load.image('fondotropas', 'images/Panel_Tropas.png');

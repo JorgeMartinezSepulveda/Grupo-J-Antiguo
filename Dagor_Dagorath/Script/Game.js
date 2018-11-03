@@ -16,7 +16,12 @@ var enAtacando=0;
 var trasAtacando=0;
 var continua=0;
 var showDebug = true;
-
+var barravidabg1;
+var barravidabg2;
+var barravida1;
+var barravida2;
+var base1;
+var base2;
 
 DagorDagorath.Game = function(){};
 
@@ -33,11 +38,21 @@ DagorDagorath.Game.prototype = {
   this.base.enableBody = true;
   this.base.physicsBodyType = Phaser.Physics.ARCADE;
 
-  var base1 = this.base.create(0, 0, 'base1'); 
+  base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
 
-  var base2 = this.base.create(1694, 0, 'base2'); 
+  base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
+
+  barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
+  barravida1 = this.game.add.sprite(50, 630, 'barravida');
+  barravidabg1.alpha = 0;
+  barravida1.alpha = 0;
+
+  barravidabg2 = this.game.add.sprite(1750, 630, 'barravidabg');
+  barravida2 = this.game.add.sprite(1750, 630, 'barravida');
+  barravidabg2.alpha = 0;
+  barravida2.alpha = 0;
 
   dineroTexto = this.add.text(100, 20, '2000', { fontSize: '30px', fill: '#EBE54C' });
   dineroTexto.fixedToCamera = true;
@@ -73,9 +88,10 @@ DagorDagorath.Game.prototype = {
   this.enanos.enableBody = true;
   this.enanos.physicsBodyType = Phaser.Physics.ARCADE;
 
-  
-  
-   
+  base1.inputEnabled = true;
+  base2.inputEnabled = true;
+
+
 
   },
 update: function () {
@@ -88,6 +104,28 @@ update: function () {
     else if(this.game.input.mousePointer.x<15)
     {
       this.game.camera.x-=6;
+    }
+
+    if (base1.input.pointerOver())
+    {
+      barravidabg1.alpha = 1;
+      barravida1.alpha = 1;
+    }
+    else
+    {
+      barravidabg1.alpha = 0;
+      barravida1.alpha = 0;
+    }
+
+    if (base2.input.pointerOver())
+    {
+      barravidabg2.alpha = 1;
+      barravida2.alpha = 1;
+    }
+    else
+    {
+      barravidabg2.alpha = 0;
+      barravida2.alpha = 0;
     }
 
 //movimiento de camara con teclado
