@@ -2,6 +2,8 @@ var DagorDagorath = DagorDagorath || {};
 var button;
 var cursors;
 var image1;
+var image_menu;
+var mascara;
 var tropa1;
 var sprite;
 var trasgos;
@@ -27,6 +29,7 @@ DagorDagorath.Game = function(){};
 
 DagorDagorath.Game.prototype = {
   create: function() {
+  //this.game.paused = false;
 
 //Dimensiones del mundo
   this.game.world.setBounds(0, 0, 2000, 667);
@@ -67,7 +70,7 @@ DagorDagorath.Game.prototype = {
   button.height = 50;
   button.fixedToCamera = true;
 
-  image1 = this.game.add.sprite(760, 15, 'fondotropas');
+  image1 = this.game.add.sprite(760, 15, 'fondotropas');//image_menu
   image1.width = 225 ;
   image1.height = 75;
   image1.fixedToCamera = true;
@@ -93,9 +96,30 @@ DagorDagorath.Game.prototype = {
   base1.inputEnabled = true;
   base2.inputEnabled = true;
 
+  mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
+  mascara.alpha = 0;
 
+  image_menu = this.game.add.sprite(170, 100, 'Menu_Pausa');//image_menu
+  image_menu.width = 640;
+  image_menu.height = 462;
+  image_menu.fixedToCamera = true;
+  image_menu.alpha = 0;
+
+  this.game.input.onDown.add(this.unpause, this);
 
   },
+
+  unpause: function(event){
+    if(this.game.paused === true)
+    {
+      console.log("Menu pausado");
+    }
+    else
+    {
+      console.log("Menu despausado");
+    }
+  },
+
 update: function () {
 
 //movimiento de camara con raton
@@ -155,9 +179,9 @@ update: function () {
 
 generateEnanos: function(){
   var en;
-  en = this.enanos.create(370, 545, 'momia');
-  en.width = 55.25;
-  en.height = 65;
+  en = this.enanos.create(370, 530, 'momia');
+  en.width = 62.75;
+  en.height = 84;
   en.vida = 100;
   en.daño = 25;
   en.animations.add('walk');
@@ -201,19 +225,6 @@ pelea: function(ena, trasga){
         enAtacando=0;
         ena.body.velocity.x=1;
         trasga.body.velocity.x=-1;
-<<<<<<< HEAD
-        }, this);
-        console.log('vida trasgos'+ trasga.vida);
-      }
-    }   
-     if(trasga.vida<=0){
-            trasga.kill();
-            ena.body.velocity.x=30;
-            ena.animations.play('walk',7.5,true);
-            continua=1;
-     }
-   },
-=======
       }, this);
       console.log('vida trasgos'+ trasga.vida);
     }
@@ -229,7 +240,6 @@ pelea: function(ena, trasga){
   }
 },
 
->>>>>>> jesus
 pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
@@ -265,7 +275,20 @@ colisionMismoGrupo: function(grupo2, grupo1)
 
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
-    this.game.state.start('MainMenu');
+    //this.game.state.start('MainMenu');
+
+    if(this.game.paused === true)
+    {
+      this.game.paused = false;
+      image_menu.alpha = 0;
+      mascara.alpha = 0;
+    }
+    else
+    {
+      this.game.paused = true;
+      image_menu.alpha = 1;
+      mascara.alpha = 1;
+    }
   },
 
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
