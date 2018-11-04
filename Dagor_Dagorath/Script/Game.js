@@ -22,6 +22,9 @@ var barravida1;
 var barravida2;
 var base1;
 var base2;
+var bottonnivel;
+var niveltropa=1;
+var lvl;
 
 DagorDagorath.Game = function(){};
 
@@ -69,13 +72,21 @@ DagorDagorath.Game.prototype = {
 
   image1 = this.game.add.sprite(760, 15, 'fondotropas');
   image1.width = 225 ;
-  image1.height = 75;
+  image1.height = 100;
   image1.fixedToCamera = true;
 
-  contadorenano = this.add.text(800, 100, '0', { fontSize: '18px', fill: '#000000' });
+  bottonnivel = this.game.add.button(790, 70, 'boton_tropa_nivel', this.sibirnivel, this,1,0);
+  bottonnivel.width = 25;
+  bottonnivel.height = 25;
+  bottonnivel.fixedToCamera = true;
+
+  contadorenano = this.add.text(740, 35, '0', { fontSize: '18px', fill: '#000000' });
   contadorenano.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(775, 28, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
+  lvl = this.add.text(775, 92, 'lvl = 1', { fontSize: '18px', fill: '#000000' });
+  lvl.fixedToCamera = true;
+
+  tropa1 = this.game.add.button(775, 20, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
   tropa1.width = 50;
   tropa1.height = 50;
   tropa1.fixedToCamera = true;
@@ -141,6 +152,7 @@ update: function () {
     }
 
   contadorenano.setText(enanotimer);
+  lvl.setText('lvl = ' + niveltropa);
 
   this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
   this.game.debug.bodyInfo(this.enanos, 500, 300);
@@ -153,7 +165,13 @@ update: function () {
 
 },
 
+sibirnivel: function(){
+  dinero -= 500;
+  niveltropa = 2;
+},
+
 generateEnanos: function(){
+  if (niveltropa==1){
   var en;
   en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
@@ -167,6 +185,22 @@ generateEnanos: function(){
   dineroTexto.setText(dinero);
   enanotimer= 1;
   en.body.setSize(100, 91, 5, 5);
+  }
+  if (niveltropa==2){
+  var en2;
+  en2 = this.enanos.create(370, 545, 'enanolvl2');
+  en2.width = 55.25;
+  en2.height = 65;
+  en2.vida = 105;
+  en2.daño = 30;
+  en2.animations.add('andar');
+  en2.animations.play('andar', 7.5, true);
+  en2.body.velocity.x = 30;
+  dinero -= 100;
+  dineroTexto.setText(dinero);
+  enanotimer= 1;
+  en2.body.setSize(100, 91, 5, 5);
+  }
 },
 
 generateTrasgos: function()
