@@ -4,6 +4,7 @@ var cursors;
 var image1;
 var image_menu;
 var mascara;
+var button2_menu_Pause;
 var tropa1;
 var sprite;
 var trasgos;
@@ -65,11 +66,6 @@ DagorDagorath.Game.prototype = {
   monedas = this.game.add.sprite(70, 25, 'monedas');
   monedas.fixedToCamera = true;
 
-  button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
-  button.width = 50;
-  button.height = 50;
-  button.fixedToCamera = true;
-
   image1 = this.game.add.sprite(760, 15, 'fondotropas');//image_menu
   image1.width = 225 ;
   image1.height = 75;
@@ -98,15 +94,35 @@ DagorDagorath.Game.prototype = {
 
   mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
   mascara.alpha = 0;
+  mascara.fixedToCamera = true;
 
-  image_menu = this.game.add.sprite(170, 100, 'Menu_Pausa');//image_menu
+  button = this.game.add.button(15, 15, 'Boton_Menu_Pausa', this.actionOnClick, this,1,0);
+  button.width = 50;
+  button.height = 50;
+  button.fixedToCamera = true;
+
+  image_menu = this.game.add.sprite(180, 100, 'Menu_Pausa');//image_menu
   image_menu.width = 640;
   image_menu.height = 462;
   image_menu.fixedToCamera = true;
   image_menu.alpha = 0;
 
+  button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+  button2_menu_Pause.width = 220;
+  button2_menu_Pause.height = 100;
+  button2_menu_Pause.alpha = 0;
+  button2_menu_Pause.fixedToCamera = true;
+
   this.game.input.onDown.add(this.unpause, this);
 
+  },
+
+  backToMenu: function()
+  {
+    console.log('Hola');
+    this.game.paused = false;
+    this.state.start('MainMenu');
+    console.log('Adio');
   },
 
   unpause: function(event){
@@ -282,12 +298,20 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       this.game.paused = false;
       image_menu.alpha = 0;
       mascara.alpha = 0;
+
+      button2_menu_Pause.x = -200;
+      button2_menu_Pause.y = -200;
+      button2_menu_Pause.alpha = 0;
     }
     else
     {
       this.game.paused = true;
       image_menu.alpha = 1;
       mascara.alpha = 1;
+
+      button2_menu_Pause.x = image_menu.x + 110;
+      button2_menu_Pause.y = image_menu.y + 270;
+      button2_menu_Pause.alpha = 1;
     }
   },
 
