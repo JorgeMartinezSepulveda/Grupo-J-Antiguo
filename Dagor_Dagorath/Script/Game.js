@@ -152,7 +152,7 @@ update: function () {
   this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo2,null,this);
   this.game.physics.arcade.collide(this.enanos,this.base, this.colisionconbase,null,this);
 
-  if (continua){
+    if(continua){
     this.enanos.setAll('body.velocity.x',30);
     this.enanos.callAll('loadTexture',null,'momia', 0);
     this.enanos.callAll('play',null,'walk',7.5,true);
@@ -164,8 +164,8 @@ update: function () {
     this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
     this.trasgos.callAll('play',null,'walk',7,true);
     continua2=false;
+    //console.log(this.trasgos.body.velocity.x);
   }
-  
 },
 
 generateEnanos: function(){
@@ -216,7 +216,7 @@ pelea: function(ena, trasga){
         trasga.vida -= ena.daño;
         enAtacando=0;
         ena.body.velocity.x=1;
-        //trasga.body.velocity.x=-1;
+        trasga.body.velocity.x=-1;
       }, this);
    
       console.log('vida trasgos'+ trasga.vida);
@@ -233,18 +233,18 @@ pelea: function(ena, trasga){
         ena.vida-=trasga.daño;
         trasAtacando=0;
         trasga.body.velocity.x=-1;
-        //ena.body.velocity.x=1;
-        console.log('vida enano: '+ ena.vida);
+        ena.body.velocity.x=1;
+        console.log(ena.vida);
       })
     }
   }   
   if(trasga.vida<=0){
     trasga.kill();
     ena.body.velocity.x=30;
+    this.enanos.setAll('body.velocity.x');
     continua=true;
-    //this.continuaEnano();
-    //ena.loadTexture('momia', 0);
-    //ena.animations.play('walk',7.5, true);
+    ena.loadTexture('momia', 0);
+    ena.animations.play('walk',7.5, true);
   }
   if(ena.vida<=0){
     ena.kill();
@@ -256,14 +256,7 @@ pelea: function(ena, trasga){
     //trasga.animations.play('walk',7.5,true);
   }
 },
-/*
-continuaEnano: function()
-{
-    this.enanos.setAll('body.velocity.x',30);
-    this.enanos.callAll('loadTexture',null,'momia', 0);
-    this.enanos.callAll('play',null,'walk',7.5,true);
-},
-*/
+
 pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
