@@ -213,9 +213,9 @@ sibirnivel: function(){
 generateEnanos: function(){
   if (niveltropa==1){
   var en;
-  en = this.enanos.create(370, 530, 'momia');
-  en.width = 62.75;
-  en.height = 84;
+  en = this.enanos.create(370, 545, 'momia');
+  en.width = 55.25;
+  en.height = 65;
   en.vida = 100;
   en.daño = 25;
   en.animations.add('walk');
