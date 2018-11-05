@@ -94,6 +94,8 @@ DagorDagorath.Game.prototype = {
   base1.inputEnabled = true;
   base2.inputEnabled = true;
 
+  //this.generateTrasgos(); //para debug (ignorar)
+
   },
 update: function () {
 
@@ -186,7 +188,7 @@ generateTrasgos: function()
   {
 
     var tras;
-    tras = this.trasgos.create(770, 561, 'Trasgo_Andando_Sheet');
+    tras = this.trasgos.create(570, 561, 'Trasgo_Andando_Sheet');
     tras.width = 70;
     tras.height =50;
     tras.vida = 100;
@@ -214,6 +216,7 @@ pelea: function(ena, trasga){
         trasga.vida -= ena.daño;
         enAtacando=0;
         ena.body.velocity.x=1;
+        //trasga.body.velocity.x=-1;
       }, this);
    
       console.log('vida trasgos'+ trasga.vida);
@@ -223,13 +226,14 @@ pelea: function(ena, trasga){
     continua2=false;
     if(trasAtacando==0){
       trasAtacando=1;
-      trasga.loadTexture('Trasgo_pegando',0);
-      trasga.animations.add('pegar');
-      trasga.animations.play('pegar',7,true);
+      //trasga.loadTexture('Trasgo_',0);
+      //trasga.animations.add('',7,true);
+      //trasga.animations.play('');
          this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
         ena.vida-=trasga.daño;
         trasAtacando=0;
         trasga.body.velocity.x=-1;
+        //ena.body.velocity.x=1;
         console.log('vida enano: '+ ena.vida);
       })
     }
@@ -238,6 +242,9 @@ pelea: function(ena, trasga){
     trasga.kill();
     ena.body.velocity.x=30;
     continua=true;
+    //this.continuaEnano();
+    //ena.loadTexture('momia', 0);
+    //ena.animations.play('walk',7.5, true);
   }
   if(ena.vida<=0){
     ena.kill();
@@ -245,12 +252,22 @@ pelea: function(ena, trasga){
     continua2=true;
     trasga.loadTexture('Trasgo_Andando_Sheet',0);
     trasga.animations.play('walk',7,true);
+    //trasga.loadTexture():
+    //trasga.animations.play('walk',7.5,true);
   }
 },
-
+/*
+continuaEnano: function()
+{
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('loadTexture',null,'momia', 0);
+    this.enanos.callAll('play',null,'walk',7.5,true);
+},
+*/
 pruebaColision: function(enan, trasg)
   {
     enan.animations.stop(null, true);
+    //enan.animations.play('pegar', 7.5, true);
     enan.body.velocity.x = 0;        
     trasg.animations.stop(null, true);
     trasg.body.velocity.x = 0;
