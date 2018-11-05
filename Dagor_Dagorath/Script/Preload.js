@@ -36,12 +36,22 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion2_Marco', 'images/ilustracion2_MARCO.png');
     this.load.image('Ilustracion2_Morgoth', 'images/Ilustracion_2_MORGOTH.png');
     this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
+    this.load.image('base1', 'images/base1.png');
+    this.load.image('base2', 'images/base2.png');
+    this.load.image('barravidabg', 'images/barravidabg.png');
+    this.load.image('barravida', 'images/barravida.png');
 
     this.load.image('back', 'images/A_FONDO.png');
     this.load.image('fondotropas', 'images/Panel_Tropas.png');
-    this.load.spritesheet('momia', 'images/Enano_Andando_Sheet.png', 85, 100);
+    this.load.spritesheet('momia', 'images/Enano_Andando_Sheet.png', 85, 115);
     this.load.spritesheet('BotonHome', 'images/boton_home.png',194,190);
     this.load.spritesheet('Boton_Tropa_Enano', 'images/boton_tropa_enano.png',194,190);
+    this.load.spritesheet('enanopegando', 'images/Enano_Ataque_Spritesheet.png', 114, 115);
+    this.load.spritesheet('Trasgo_Andando_Sheet', 'images/Trasgo_Andando_Sheet.png',105,75);
+    this.load.image('Menu_Pausa', 'images/Imagen_Menu_Pausa.png');
+    this.load.image('Mascara_Menu_Pausa', 'images/Mascara_MenuPausa.png');
+    this.load.spritesheet('Boton_Menu_Pausa', 'images/boton_pausa.png',194,190);
+    this.load.spritesheet('Boton_Vuelta_A_Inicio', 'images/boton_pausa_regresoAMenu.png',296,143);
 
     this.load.image('Texto_1', 'images/Texto1.png');
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
