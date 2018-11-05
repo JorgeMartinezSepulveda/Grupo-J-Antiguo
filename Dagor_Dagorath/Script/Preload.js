@@ -14,6 +14,9 @@ DagorDagorath.Preload.prototype = {
 
     this.load.setPreloadSprite(this.preloadBar);
 
+    //Audio
+    this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
+
     //load game assets
     this.load.image('titulo', 'images/titulo4.png');
     this.load.image('controles', 'images/Controles.png');
@@ -60,7 +63,7 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
-    this.load.audio('musica','audio/intro.ogg');
+    
 
   },
   create: function() {
