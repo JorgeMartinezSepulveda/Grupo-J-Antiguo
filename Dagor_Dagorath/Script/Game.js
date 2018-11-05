@@ -23,6 +23,9 @@ var barravida1;
 var barravida2;
 var base1;
 var base2;
+var bottonnivel;
+var niveltropa=1;
+var lvl;
 
 DagorDagorath.Game = function(){};
 
@@ -70,13 +73,21 @@ DagorDagorath.Game.prototype = {
 
   image1 = this.game.add.sprite(760, 15, 'fondotropas');
   image1.width = 225 ;
-  image1.height = 75;
+  image1.height = 100;
   image1.fixedToCamera = true;
 
-  contadorenano = this.add.text(800, 100, '0', { fontSize: '18px', fill: '#000000' });
+  bottonnivel = this.game.add.button(790, 70, 'boton_tropa_nivel', this.sibirnivel, this,1,0);
+  bottonnivel.width = 25;
+  bottonnivel.height = 25;
+  bottonnivel.fixedToCamera = true;
+
+  contadorenano = this.add.text(740, 35, '0', { fontSize: '18px', fill: '#000000' });
   contadorenano.fixedToCamera = true;
 
-  tropa1 = this.game.add.button(775, 28, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
+  lvl = this.add.text(775, 92, 'lvl = 1', { fontSize: '18px', fill: '#000000' });
+  lvl.fixedToCamera = true;
+
+  tropa1 = this.game.add.button(775, 20, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
   tropa1.width = 50;
   tropa1.height = 50;
   tropa1.fixedToCamera = true;
@@ -94,6 +105,53 @@ DagorDagorath.Game.prototype = {
   base1.inputEnabled = true;
   base2.inputEnabled = true;
 
+<<<<<<< HEAD
+=======
+  mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
+  mascara.alpha = 0;
+  mascara.fixedToCamera = true;
+
+  mascarafinal1 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final1');
+  mascarafinal1.alpha = 0;
+  mascarafinal1.fixedToCamera = true;
+
+  mascarafinal2 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final2');
+  mascarafinal2.alpha = 0;
+  mascarafinal2.fixedToCamera = true;
+
+
+  button = this.game.add.button(15, 15, 'Boton_Menu_Pausa', this.actionOnClick, this,1,0);
+  button.width = 50;
+  button.height = 50;
+  button.fixedToCamera = true;
+
+  image_menu = this.game.add.sprite(180, 100, 'Menu_Pausa');//image_menu
+  image_menu.width = 640;
+  image_menu.height = 462;
+  image_menu.fixedToCamera = true;
+  image_menu.alpha = 0;
+
+  button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+  button2_menu_Pause.width = 220;
+  button2_menu_Pause.height = 100;
+  button2_menu_Pause.alpha = 0;
+  button2_menu_Pause.fixedToCamera = true;
+
+  this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
+
+  this.game.input.onDown.add(this.unpause, this);
+
+
+
+  },
+
+  backToMenu: function()
+  {
+    console.log('Hola');
+    this.game.paused = false;
+    this.state.start('MainMenu');
+    console.log('Adio');
+>>>>>>> master
   },
 update: function () {
 
@@ -140,6 +198,7 @@ update: function () {
     }
 
   contadorenano.setText(enanotimer);
+  
 
   this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
   this.game.debug.bodyInfo(this.enanos, 500, 300);
@@ -166,12 +225,23 @@ update: function () {
   
 },
 
+sibirnivel: function(){
+  dinero -= 500;
+  niveltropa = 2;
+  lvl.setText('lvl = ' + niveltropa);
+},
+
 generateEnanos: function(){
+  if (niveltropa==1){
   var en;
   en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
+<<<<<<< HEAD
   en.vida = 105;
+=======
+  en.vida = 100;
+>>>>>>> master
   en.daño = 25;
   en.animations.add('walk');
   en.animations.play('walk', 7.5, true);
@@ -180,6 +250,22 @@ generateEnanos: function(){
   dineroTexto.setText(dinero);
   enanotimer= 1;
   en.body.setSize(100, 91, 5, 5);
+  }
+  if (niveltropa==2){
+  var en2;
+  en2 = this.enanos.create(370, 545, 'enanolvl2');
+  en2.width = 55.25;
+  en2.height = 65;
+  en2.vida = 105;
+  en2.daño = 30;
+  en2.animations.add('andar');
+  en2.animations.play('andar', 7.5, true);
+  en2.body.velocity.x = 30;
+  dinero -= 100;
+  dineroTexto.setText(dinero);
+  enanotimer= 1;
+  en2.body.setSize(100, 91, 5, 5);
+  }
 },
 
 generateTrasgos: function()
@@ -286,11 +372,21 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
     this.game.state.start('MainMenu');
   },
 
+  finalpartida1: function(){
+    this.game.paused = true;
+      image_menu.alpha = 1;
+      mascara.alpha = 1;
+
+      button2_menu_Pause.x = image_menu.x + 110;
+      button2_menu_Pause.y = image_menu.y + 270;
+      button2_menu_Pause.alpha = 1;
+  },
+
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
     if (dinero>=100 && enanotimer==0){
       this.generateEnanos();
-      this.generateTrasgos();
+      //this.generateTrasgos();
       if (enanotimer==1){
         this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
       } 
