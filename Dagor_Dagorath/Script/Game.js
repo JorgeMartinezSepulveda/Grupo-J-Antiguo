@@ -225,7 +225,7 @@ pelea: function(ena, trasga){
       trasAtacando=1;
       trasga.loadTexture('Trasgo_pegando',0);
       trasga.animations.add('pegar');
-      trasga.animations.play('pegar',7,true);
+      trasga.animations.play('pegar',7.5,true);
          this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
         ena.vida-=trasga.daño;
         trasAtacando=0;
@@ -244,7 +244,7 @@ pelea: function(ena, trasga){
     trasga.body.velocity.x=-30;
     continua2=true;
     trasga.loadTexture('Trasgo_Andando_Sheet',0);
-    trasga.animations.play('walk',7,true);
+    trasga.animations.play('walk',7.5,true);
   }
 },
 
