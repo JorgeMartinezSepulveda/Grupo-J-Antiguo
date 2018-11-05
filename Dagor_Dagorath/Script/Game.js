@@ -15,6 +15,7 @@ var monedas;
 var enAtacando=0;
 var trasAtacando=0;
 var continua=false;
+var continua2=false;
 var showDebug = true;
 var barravidabg1;
 var barravidabg2;
@@ -93,7 +94,7 @@ DagorDagorath.Game.prototype = {
   base1.inputEnabled = true;
   base2.inputEnabled = true;
 
-  this.generateTrasgos(); //para debug (ignorar)
+  //this.generateTrasgos(); //para debug (ignorar)
 
   },
 update: function () {
@@ -155,11 +156,16 @@ update: function () {
     this.enanos.setAll('body.velocity.x',30);
     this.enanos.callAll('loadTexture',null,'momia', 0);
     this.enanos.callAll('play',null,'walk',7.5,true);
-    console.log(continua);
     continua=false;
-    console.log(continua);
   }
 
+  if (continua2){
+    this.trasgos.setAll('body.velocity.x',-30);
+    this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
+    this.trasgos.callAll('play',null,'walk',7,true);
+    continua2=false;
+    //console.log(this.trasgos.body.velocity.x);
+  }
 },
 
 generateEnanos: function(){
@@ -167,7 +173,7 @@ generateEnanos: function(){
   en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
-  en.vida = 100;
+  en.vida = 105;
   en.daño = 25;
   en.animations.add('walk');
   en.animations.play('walk', 7.5, true);
@@ -185,11 +191,11 @@ generateTrasgos: function()
     tras = this.trasgos.create(570, 561, 'Trasgo_Andando_Sheet');
     tras.width = 70;
     tras.height =50;
-    tras.vida = 300;
-    tras.daño = 5;
+    tras.vida = 100;
+    tras.daño = 15;
     tras.animations.add('walk');
     tras.animations.play('walk', 7, true);
-    //tras.body.velocity.x = -30;
+    tras.body.velocity.x = -30;
     tras.body.setSize(100, 50, 50, 25);
 
   },
@@ -212,19 +218,42 @@ pelea: function(ena, trasga){
         ena.body.velocity.x=1;
         trasga.body.velocity.x=-1;
       }, this);
+   
       console.log('vida trasgos'+ trasga.vida);
+    }
+  }
+  if(ena.vida>0){
+    continua2=false;
+    if(trasAtacando==0){
+      trasAtacando=1;
+      //trasga.loadTexture('Trasgo_',0);
+      //trasga.animations.add('',7,true);
+      //trasga.animations.play('');
+         this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
+        ena.vida-=trasga.daño;
+        trasAtacando=0;
+        trasga.body.velocity.x=-1;
+        ena.body.velocity.x=1;
+        console.log(ena.vida);
+      })
     }
   }   
   if(trasga.vida<=0){
     trasga.kill();
     ena.body.velocity.x=30;
-    //this.enanos.setAll('body.velocity.x',30);
-    //ena.animations.play('walk',7.5,true);
+    this.enanos.setAll('body.velocity.x');
     continua=true;
     ena.loadTexture('momia', 0);
-    //ena.animations.add('walk');
     ena.animations.play('walk',7.5, true);
-    //this.enanos.callAll('play',null,'walk',7.5,true);
+  }
+  if(ena.vida<=0){
+    ena.kill();
+    trasga.body.velocity.x=-30;
+    continua2=true;
+    trasga.loadTexture('Trasgo_Andando_Sheet',0);
+    trasga.animations.play('walk',7,true);
+    //trasga.loadTexture():
+    //trasga.animations.play('walk',7.5,true);
   }
 },
 
@@ -245,7 +274,7 @@ colisionMismoGrupo: function(grupo2, grupo1)
   },
   colisionMismoGrupo2: function(grupo, grupo)
   {
-    grupo.animations.stop(null, true);
+    grupo.animations.stop(null, false);
     grupo.body.velocity.x = 0;
   },
 
@@ -271,7 +300,7 @@ actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
     if (dinero>=100 && enanotimer==0){
       this.generateEnanos();
-      //this.generateTrasgos();
+      this.generateTrasgos();
       if (enanotimer==1){
         this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
       } 
