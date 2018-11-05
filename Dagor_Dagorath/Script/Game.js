@@ -47,11 +47,11 @@ DagorDagorath.Game.prototype = {
 
   base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
-  base1.body.setSize(368, 300, 0, 0);
+  base1.body.setSize(368, 300, 0, 337);
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
-  base2.body.setSize(300, 400, 0, 0);
+  base2.body.setSize(300, 400, 0, 267);
 
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -227,7 +227,7 @@ sibirnivel: function(){
 generateEnanos: function(){
   if (niveltropa==1){
   var en;
-  en = this.enanos.create(370, 545, 'momia');
+  en = this.enanos.create(1500, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
   en.vida = 100;
