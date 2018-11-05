@@ -107,6 +107,15 @@ DagorDagorath.Game.prototype = {
   mascara.alpha = 0;
   mascara.fixedToCamera = true;
 
+  mascarafinal1 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final1');
+  mascarafinal1.alpha = 0;
+  mascarafinal1.fixedToCamera = true;
+
+  mascarafinal2 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final2');
+  mascarafinal2.alpha = 0;
+  mascarafinal2.fixedToCamera = true;
+
+
   button = this.game.add.button(15, 15, 'Boton_Menu_Pausa', this.actionOnClick, this,1,0);
   button.width = 50;
   button.height = 50;
@@ -125,6 +134,8 @@ DagorDagorath.Game.prototype = {
   button2_menu_Pause.fixedToCamera = true;
 
   this.game.input.onDown.add(this.unpause, this);
+
+
 
   },
 
@@ -347,6 +358,16 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       button2_menu_Pause.y = image_menu.y + 270;
       button2_menu_Pause.alpha = 1;
     }
+  },
+
+  finalpartida1: function(){
+    this.game.paused = true;
+      image_menu.alpha = 1;
+      mascara.alpha = 1;
+
+      button2_menu_Pause.x = image_menu.x + 110;
+      button2_menu_Pause.y = image_menu.y + 270;
+      button2_menu_Pause.alpha = 1;
   },
 
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
