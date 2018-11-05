@@ -14,6 +14,11 @@ DagorDagorath.MainMenu.prototype = {
   	//show the space tile, repeated
     this.background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background');
                                              //0, 0, this.game.width, this.game.height, 'background'
+
+    music=this.game.add.audio('Menu_Music');
+    music.play();
+    this.game.input.onDown.add(this.changeVolume, this);
+
     //give it speed in x
     this.background.autoScroll(-20, -20);
 
@@ -34,10 +39,6 @@ DagorDagorath.MainMenu.prototype = {
     button3.width = 220;
     button3.height = 100;
 
-    music=this.game.add.audio('musica');
-    music.play();
-    this.game.input.onDown.add(this.changeVolume, this);
-
   },
   changeVolume: function (pointer) {
 
@@ -53,12 +54,15 @@ DagorDagorath.MainMenu.prototype = {
 
   actionOnClick1: function () 
   {
+    music.pause();
     music.destroy();
     this.game.state.start('Cinematic');
   },
 
   actionOnClick2: function () 
   {
+    music.pause();
+    music.destroy();
     this.game.state.start('ControlMenu');
   }
 
