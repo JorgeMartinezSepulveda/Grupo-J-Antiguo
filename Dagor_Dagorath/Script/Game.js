@@ -133,6 +133,8 @@ DagorDagorath.Game.prototype = {
   button2_menu_Pause.alpha = 0;
   button2_menu_Pause.fixedToCamera = true;
 
+  this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
+
   this.game.input.onDown.add(this.unpause, this);
 
 
@@ -203,7 +205,7 @@ update: function () {
     }
 
   contadorenano.setText(enanotimer);
-  lvl.setText('lvl = ' + niveltropa);
+  
 
   this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
   this.game.debug.bodyInfo(this.enanos, 500, 300);
@@ -219,6 +221,7 @@ update: function () {
 sibirnivel: function(){
   dinero -= 500;
   niveltropa = 2;
+  lvl.setText('lvl = ' + niveltropa);
 },
 
 generateEnanos: function(){
@@ -374,7 +377,7 @@ actionOnClick1: function () //Prueba de spawn de tropas aliadas
   {
     if (dinero>=100 && enanotimer==0){
       this.generateEnanos();
-      this.generateTrasgos();
+      //this.generateTrasgos();
       if (enanotimer==1){
         this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
       } 
