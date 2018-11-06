@@ -29,6 +29,10 @@ var base2;
 var bottonnivel;
 var niveltropa=1;
 var lvl;
+var textvida = 100;
+var textdaño = 25;
+
+var musica;
 
 var numeroEnanos = 0;
 
@@ -44,6 +48,8 @@ DagorDagorath.Game.prototype = {
 
     //Fondo del estado
     this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
+
+    musica=this.game.add.audio('isengard',0.5, true);
 
     this.base = this.game.add.group();
     this.base.enableBody = true;
@@ -99,6 +105,10 @@ DagorDagorath.Game.prototype = {
     tropa1.fixedToCamera = true;
     tropa1.inputEnabled = true;
 
+
+    musica.play();
+    
+
     cursors = this.game.input.keyboard.createCursorKeys();
 
     //Definicion Grupos de Tropas/////////////////////////////////////////////////////////////////
@@ -118,6 +128,14 @@ DagorDagorath.Game.prototype = {
     panel_Stats.height = 161;
     panel_Stats.fixedToCamera = true;
     panel_Stats.alpha = 0;
+
+    textvida = this.add.text(590, 65, 'vida = 100', { fontSize: '24px', fill: '#000000' });
+    textvida.alpha= 0;
+    textvida.fixedToCamera = true;
+
+    textdaño = this.add.text(590, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
+    textdaño.alpha= 0;
+    textdaño.fixedToCamera = true;
 
     mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
     mascara.alpha = 0;
@@ -151,6 +169,7 @@ DagorDagorath.Game.prototype = {
     //this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
     this.game.input.onDown.add(this.unpause, this);
+
 
   },
 
@@ -210,10 +229,15 @@ DagorDagorath.Game.prototype = {
 
     if (tropa1.input.pointerOver())
     {
-      panel_Stats.alpha = 1;    }
+      panel_Stats.alpha = 1;
+      textvida.alpha = 1;
+      textdaño.alpha = 1;
+    }
     else
     {
       panel_Stats.alpha = 0;
+      textdaño.alpha = 0;
+      textvida.alpha = 0;
     }
 
     //movimiento de camara con teclado
@@ -249,6 +273,9 @@ DagorDagorath.Game.prototype = {
     dineroTexto.setText(dinero);
     niveltropa = 2;
     lvl.setText('lvl = ' + niveltropa);
+    textvida.setText('vida = ' + 105);
+    textdaño.setText('daño = ' + 30);
+
   },
 
 generateEnanos: function(){
