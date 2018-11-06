@@ -2,25 +2,24 @@ var DagorDagorath = DagorDagorath || {};
 var button;
 var cursors;
 var image1;
-<<<<<<< HEAD
-=======
 var image_menu;
 var mascara;
+var button1_menu_Pause;
 var button2_menu_Pause;
 var panel_Stats;
->>>>>>> master
 var tropa1;
 var sprite;
 var trasgos;
 var enanos;
 var dineroIA= 2000;
-var dinero = 2000;
-var dineroTexto = 2000;
+var dinero = 1000;
+var dineroTexto = 1000;
 var enanotimer= 0;
 var contadorenano=0;
 var monedas;
 var enAtacando=0;
 var trasAtacando=0;
+var continua=0;
 var showDebug = true;
 var barravidabg1;
 var barravidabg2;
@@ -28,8 +27,6 @@ var barravida1;
 var barravida2;
 var base1;
 var base2;
-<<<<<<< HEAD
-=======
 var bottonnivel;
 var niveltropa=1;
 var lvl;
@@ -39,14 +36,10 @@ var textdaño = 25;
 var musica;
 
 var numeroEnanos = 0;
->>>>>>> master
 
 DagorDagorath.Game = function(){};
 
 DagorDagorath.Game.prototype = {
-<<<<<<< HEAD
-  create: function() {
-=======
   create: function() 
   {
     //Dimensiones del mundo
@@ -56,9 +49,8 @@ DagorDagorath.Game.prototype = {
 
     //Fondo del estado
     this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
->>>>>>> master
 
-    musica=this.game.add.audio('isengard',0.5, true);
+    musica=this.game.add.audio('isengard',0.2, true);
 
     this.base = this.game.add.group();
     this.base.enableBody = true;
@@ -81,38 +73,13 @@ DagorDagorath.Game.prototype = {
     barravidabg1.alpha = 0;
     barravida1.alpha = 0;
 
-<<<<<<< HEAD
-  base1 = this.base.create(0, 330, 'base1'); 
-  base1.vida= 200;
-  base1.body.setSize(368, 300, 0, 267);
-  base1.body.immovable = true;
-<<<<<<< HEAD
-  base1.body.setSize(368, 300, 0, 337);
-=======
->>>>>>> master
-
-  base2 = this.base.create(1694, 136, 'base2'); 
-  base2.vida= 200;
-  base2.body.setSize(300, 400, 0, 267);
-  base2.body.immovable = true;
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> master
-  barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
-  barravida1 = this.game.add.sprite(50, 630, 'barravida');
-  barravidabg1.alpha = 0;
-  barravida1.alpha = 0;
-=======
     barravidabg2 = this.game.add.sprite(1750, 630, 'barravidabg');
     barravida2 = this.game.add.sprite(1750, 630, 'barravida');
     barravidabg2.alpha = 0;
     barravida2.alpha = 0;
 
-    dineroTexto = this.add.text(100, 20, '2000', { fontSize: '30px', fill: '#EBE54C' });
+    dineroTexto = this.add.text(100, 20, '1000', { fontSize: '30px', fill: '#EBE54C' });
     dineroTexto.fixedToCamera = true;
->>>>>>> master
 
     monedas = this.game.add.sprite(70, 25, 'monedas');
     monedas.fixedToCamera = true;
@@ -127,25 +94,6 @@ DagorDagorath.Game.prototype = {
     bottonnivel.height = 26;
     bottonnivel.fixedToCamera = true;
 
-<<<<<<< HEAD
-  button = this.game.add.button(15, 15, 'BotonHome', this.actionOnClick, this,1,0);
-  button.width = 50;
-  button.height = 50;
-  button.fixedToCamera = true;
-
-  image1 = this.game.add.sprite(760, 15, 'fondotropas');
-  image1.width = 225 ;
-  image1.height = 75;
-  image1.fixedToCamera = true;
-
-  contadorenano = this.add.text(800, 100, '0', { fontSize: '18px', fill: '#000000' });
-  contadorenano.fixedToCamera = true;
-
-  tropa1 = this.game.add.button(775, 28, 'Boton_Tropa_Enano', this.actionOnClick1, this,1,0);
-  tropa1.width = 50;
-  tropa1.height = 50;
-  tropa1.fixedToCamera = true;
-=======
     contadorenano = this.add.text(843, 32, '0', { fontSize: '18px', fill: '#000000' });
     contadorenano.fixedToCamera = true;
 
@@ -161,7 +109,6 @@ DagorDagorath.Game.prototype = {
 
     musica.play();
     
->>>>>>> master
 
     cursors = this.game.input.keyboard.createCursorKeys();
 
@@ -183,21 +130,17 @@ DagorDagorath.Game.prototype = {
     panel_Stats.fixedToCamera = true;
     panel_Stats.alpha = 0;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
-  mascara.alpha = 0;
-  mascara.fixedToCamera = true;
-=======
-    textvida = this.add.text(590, 65, 'vida = 100', { fontSize: '24px', fill: '#000000' });
+    textvida = this.add.text(580, 65, 'Vida = 100', { fontSize: '24px', fill: '#000000' });
     textvida.alpha= 0;
     textvida.fixedToCamera = true;
->>>>>>> master
+    textvida.stroke = '#EEE8AA';
+    textvida.strokeThickness = 3.5;
 
-    textdaño = this.add.text(590, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
+    textdaño = this.add.text(580, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
     textdaño.alpha= 0;
     textdaño.fixedToCamera = true;
+    textdaño.stroke = '#EEE8AA';
+    textdaño.strokeThickness = 3.5;
 
     mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
     mascara.alpha = 0;
@@ -222,7 +165,13 @@ DagorDagorath.Game.prototype = {
     image_menu.fixedToCamera = true;
     image_menu.alpha = 0;
 
-    button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button1_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button1_menu_Pause.width = 220;
+    button1_menu_Pause.height = 100;
+    button1_menu_Pause.alpha = 0;
+    button1_menu_Pause.fixedToCamera = true;
+
+    button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Reinicio', this.restart, this,1,0);
     button2_menu_Pause.width = 220;
     button2_menu_Pause.height = 100;
     button2_menu_Pause.alpha = 0;
@@ -235,12 +184,42 @@ DagorDagorath.Game.prototype = {
 
   },
 
+  restart: function()
+  {
+    dinero = 1000;
+    dineroTexto = 1000;
+    dineroIA = 2000;
+    enanotimer= 0;
+    contadorenano=0;
+    enAtacando=0;
+    trasAtacando=0;
+    continua=0;
+    showDebug = true;
+    niveltropa=1;
+    textvida = 100;
+    textdaño = 25;
+
+    this.game.paused = false;
+    this.state.start('Game');
+  },
+
   backToMenu: function()
   {
-    console.log('Hola');
+    dinero = 1000;
+    dineroTexto = 1000;
+    dineroIA = 2000;
+    enanotimer= 0;
+    contadorenano=0;
+    enAtacando=0;
+    trasAtacando=0;
+    continua=0;
+    showDebug = true;
+    niveltropa=1;
+    textvida = 100;
+    textdaño = 25;
+
     this.game.paused = false;
     this.state.start('MainMenu');
-    console.log('Adio');
   },
 
   unpause: function(event)
@@ -253,18 +232,11 @@ DagorDagorath.Game.prototype = {
     {
       console.log("Menu despausado");
     }
->>>>>>> master
   },
-<<<<<<< HEAD
-update: function () {
-
-//movimiento de camara con raton
-=======
 
   update: function () 
   {
     //movimiento de camara con raton
->>>>>>> master
     if(this.game.input.mousePointer.x>985)
     {
       this.game.camera.x+=6;
@@ -319,15 +291,7 @@ update: function () {
       this.game.camera.x += 6;
     }
 
-<<<<<<< HEAD
-  contadorenano.setText(enanotimer);
-
-  this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
-  this.game.debug.bodyInfo(this.enanos, 500, 300);
-  this.game.debug.body(this.enanos);
-=======
     contadorenano.setText(enanotimer);
->>>>>>> master
 
   this.game.physics.arcade.collide(this.enanos,this.trasgos, this.pruebaColision,null,this);
   this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
@@ -337,22 +301,6 @@ update: function () {
 
   },
 
-<<<<<<< HEAD
-generateEnanos: function(){
-  var en;
-  en = this.enanos.create(370, 545, 'momia');
-  en.width = 55.25;
-  en.height = 65;
-  en.vida = 105;
-  en.daño = 25;
-  en.animations.add('walk');
-  en.animations.play('walk', 7.5, true);
-  en.body.velocity.x = 30;
-  dinero -= 100;
-  dineroTexto.setText(dinero);
-  enanotimer= 1;
-  en.body.setSize(100, 91, 5, 5);
-=======
   render: function()
   {
     this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
@@ -362,12 +310,16 @@ generateEnanos: function(){
 
   subirNivel: function()
   {
-    dinero -= 1000;
-    dineroTexto.setText(dinero);
-    niveltropa = 2;
-    lvl.setText('lvl = ' + niveltropa);
-    textvida.setText('vida = ' + 105);
-    textdaño.setText('daño = ' + 30);
+    if((dinero > 1000)&&(niveltropa == 1))
+    {
+      dinero -= 1000;
+      dineroTexto.setText(dinero);
+      niveltropa = 2;
+      lvl.setText('lvl = ' + niveltropa);
+      textvida.setText('vida = ' + 105);
+      textdaño.setText('daño = ' + 30);
+    }
+    
 
   },
 
@@ -405,22 +357,17 @@ generateEnanos: function(){
     en2.body.setSize(50, 91, 5, 5);
     numeroEnanos++;
   }
->>>>>>> master
 },
 
 generateTrasgos: function()
   {
 
     var tras;
-<<<<<<< HEAD
-    tras = this.trasgos.create(770, 561, 'Trasgo_Andando_Sheet');
-=======
     tras = this.trasgos.create(1600, 561, 'Trasgo_Andando_Sheet');
->>>>>>> master
     tras.width = 70;
     tras.height =50;
     tras.vida = 100;
-    tras.daño = 15;
+    tras.daño = 5;
     tras.animations.add('walk');
     tras.animations.play('walk', 7, true);
     tras.body.velocity.x = -30;
@@ -439,11 +386,10 @@ pelea: function(ena, trasga)
     if (enAtacando==0)
     {
       enAtacando=1;
-      if(niveltropa==1){
       ena.loadTexture('enanopegando', 0);
       ena.animations.add('pegar');
       ena.animations.play('pegar', 7.5, true);
-    } if (niveltropa==2){
+    if (niveltropa==2){
       ena.loadTexture('enanolvl2pegando', 0);
       ena.animations.add('pegarlvl2');
       ena.animations.play('pegarlvl2', 7.5, true);
@@ -461,11 +407,7 @@ pelea: function(ena, trasga)
     continua2=false;
     if(trasAtacando==0){
       trasAtacando=1;
-<<<<<<< HEAD
-      trasga.loadTexture('Trasgo_pegando',0);
-=======
       trasga.loadTexture('Trasgo_Pegando',0);
->>>>>>> master
       trasga.animations.add('pegar');
       trasga.animations.play('pegar',7.5,true);
          this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
@@ -490,16 +432,18 @@ pelea: function(ena, trasga)
   }
 },
 
-continua: function(){
-  if(this.niveltropa==1){
-  this.enanos.setAll('body.velocity.x',30);
-  this.enanos.callAll('loadTexture',null,'momia', 0);
-  this.enanos.callAll('play',null,'walk',7.5,true);
-} if(niveltropa==2){
-  this.enanos.setAll('body.velocity.x',30);
-  this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
-  this.enanos.callAll('play',null,'andar',7.5,true);
-}
+
+continua: function()
+{
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('loadTexture',null,'momia', 0);
+    this.enanos.callAll('play',null,'walk',7.5,true);
+  if(niveltropa==2)
+  {
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
+    this.enanos.callAll('play',null,'andar',7.5,true);
+  }
   this.trasgos.setAll('body.velocity.x',-30);
   this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
   this.trasgos.callAll('play',null,'walk',7,true);
@@ -523,7 +467,7 @@ pruebaColision: function(enan, trasg)
 
   colisionMismoGrupo2: function(grupo, grupo)
   {
-    grupo.animations.stop(null, false);
+    //grupo.animations.stop(null, true);
     grupo.body.velocity.x = 0;
   },
 
@@ -555,9 +499,6 @@ pruebaColision: function(enan, trasg)
       console.log('vida base'+ base.vida);
     }
     if(base.vida<=0){
-<<<<<<< HEAD
-      this.state.start('MainMenu');
-=======
       this.finalpartida1();
     }
   },
@@ -585,32 +526,10 @@ pruebaColision: function(enan, trasg)
     }
     if(base.vida<=0){
       this.finalpartida2();
->>>>>>> master
     }
   },
 
-  colisionconbase2: function(tropa, base){
-    //tropa.animations.stop(null, true);
-    tropa.body.velocity.x = 0;
-    this.peleabase2(tropa, base);
-  },
 
-<<<<<<< HEAD
-  peleabase2: function(tropa, base){
-    if (trasAtacando==0){
-      trasAtacando=1;
-      tropa.loadTexture('Trasgo_pegando', 0);
-      tropa.animations.add('pegar');
-      tropa.animations.play('pegar', 7.5, true);
-      this.game.time.events.add(Phaser.Timer.SECOND*0.50, function(){
-        base.vida -= tropa.daño;
-        trasAtacando=0;
-        tropa.body.velocity.x=-1;
-        barravida1.width -= tropa.daño;
-      }, this);
-   
-      console.log('vida base'+ base.vida);
-=======
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
     if(this.game.paused === true)
@@ -619,25 +538,29 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       image_menu.alpha = 0;
       mascara.alpha = 0;
 
+      button1_menu_Pause.x = -200;
+      button1_menu_Pause.y = -200;
+      button1_menu_Pause.alpha = 0;
+
       button2_menu_Pause.x = -200;
       button2_menu_Pause.y = -200;
       button2_menu_Pause.alpha = 0;
->>>>>>> master
     }
-    if(base.vida<=0){
-      this.state.start('MainMenu');
+    else
+    {
+      this.game.paused = true;
+      image_menu.alpha = 1;
+      mascara.alpha = 1;
+
+      button1_menu_Pause.x = image_menu.x + 100;
+      button1_menu_Pause.y = image_menu.y + 280;
+      button1_menu_Pause.alpha = 1;
+
+      button2_menu_Pause.x = image_menu.x + 320;
+      button2_menu_Pause.y = image_menu.y + 280;
+      button2_menu_Pause.alpha = 1;
     }
   },
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-
-actionOnClick: function () //Boton, provisional, para volver al menu de inicio
-  {
-    this.game.state.start('MainMenu');
-=======
-=======
->>>>>>> master
   finalpartida1: function(){
     this.game.paused = true;
       //image_menu.alpha = 1;
@@ -656,7 +579,6 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       //button2_menu_Pause.x = image_menu.x + 110;
       //button2_menu_Pause.y = image_menu.y + 270;
       //button2_menu_Pause.alpha = 1;
->>>>>>> master
   },
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
@@ -664,14 +586,9 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
     if (dinero>=100 && enanotimer==0)
     {
       this.generateEnanos();
-<<<<<<< HEAD
-      this.generateTrasgos();
-      if (enanotimer==1){
-=======
       //this.generateTrasgos();
       if (enanotimer==1)
       {
->>>>>>> master
         this.game.time.events.add(Phaser.Timer.SECOND*3, this.enanostimer, this);
       } 
     }
