@@ -17,11 +17,13 @@ DagorDagorath.Preload.prototype = {
     //Audio
     this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
     this.load.audio('Cinematic_Music','audio/May It Be - Lord Of The Rings.wav');
+    this.load.audio('isengard','audio/isengard.wav');
 
 
     //load game assets
     this.load.image('titulo', 'images/titulo4.png');
     this.load.image('controles', 'images/Controles.png');
+    this.load.image('Letras_Musica', 'images/Letras_Menu_Musica.png');
     this.load.spritesheet('Boton1', 'images/boton.png',296,143);
     this.load.spritesheet('Boton2', 'images/boton_2.png',296,143);
     this.load.spritesheet('Boton3', 'images/boton3.png',296,143);
@@ -58,6 +60,7 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('Boton_Tropa_Enano', 'images/boton_tropa_enano.png',194,190);
     this.load.spritesheet('boton_tropa_nivel', 'images/boton_tropa_nivel.png',97,95);
     this.load.spritesheet('enanopegando', 'images/Enano_Ataque_Spritesheet.png', 114, 115);
+    this.load.spritesheet('enanolvl2pegando', 'images/Enano_Ataque_Spritesheetlvl2.png', 114, 115);    
     this.load.spritesheet('Trasgo_Andando_Sheet', 'images/Trasgo_Andando_Sheet.png',105,75);
 <<<<<<< HEAD
     this.load.spritesheet('Trasgo_pegando','images/Trasgo_Atacando_Sheet.png',105,75);
@@ -71,13 +74,15 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('Boton_Reinicio', 'images/Boton_Final_Reiniciar.png',296,143);
     this.load.image('Pantalla_Final_Victoria', 'images/Pantalla_Victoria.png');
     this.load.image('Pantalla_Final_Derrota', 'images/Pantalla_Derrota.png');
+    this.load.image('Panel_Stats_Enano', 'images/Panel_Stats.png');
+
 
 
     this.load.image('Texto_1', 'images/Texto1.png');
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
-    //this.load.image('Texto_4', 'images/Texto4.png');
+    this.load.image('Texto_4', 'images/Texto4.png');
     
 
   },

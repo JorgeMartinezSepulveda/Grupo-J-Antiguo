@@ -15,6 +15,7 @@ var texto1;
 var texto1_2;
 var texto2;
 var texto3;
+var texto4;
 
 var alrededores;
 var morgoth;
@@ -100,6 +101,11 @@ DagorDagorath.Cinematic.prototype = {
 		valar2.width = 500;
 		valar2.height = 500;
 		valar2.alpha = 0;
+
+		texto4 = this.game.add.sprite(220,50, 'Texto_4');  // TEXTO 4 //
+		texto4.width = 560;
+		texto4.height = 186.6;
+		texto4.alpha = 0;
 		////////////////////////////////////////////////////////////////////////////////////////////////////  
 
 
@@ -256,6 +262,14 @@ DagorDagorath.Cinematic.prototype = {
 		tween = this.game.add.tween(valar2).to( { alpha: 1 }, 5000,  Phaser.Easing.Quadratic.In, true);
 		tween.start();
 
+		tween4.onComplete.add(this.entradaTexto4, this);
+	},
+
+	entradaTexto4: function()
+	{
+		tween4 = this.game.add.tween(texto4).to( { alpha: 1 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween4.start();
+
 		tween4.onComplete.add(this.cinematicaFinalFin, this);
 	},
 
@@ -269,8 +283,11 @@ DagorDagorath.Cinematic.prototype = {
 		tween4.start();
 		tween = this.game.add.tween(valar2).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
 		tween.start();
+		tween4 = this.game.add.tween(texto4).to( { alpha: 0 }, 7500,  Phaser.Easing.Quadratic.In, true);
+		tween4.start();
 
 		tween4.onComplete.add(this.saltar, this);
 	}
+	
 
 }

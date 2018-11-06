@@ -5,6 +5,9 @@ var button3;
 var menu;
 var music;
 var sprite;
+var letras_Musica;
+var letras_Musica2;
+var letras_Musica3;
 //title screen
 DagorDagorath.MainMenu = function(){};
 
@@ -18,8 +21,11 @@ DagorDagorath.MainMenu.prototype = {
     music=this.game.add.audio('Menu_Music',0.5, true);
 =======
 
+<<<<<<< HEAD
     music=this.game.add.audio('Menu_Music',0.5, true);
 
+>>>>>>> master
+=======
 >>>>>>> master
     music=this.game.add.audio('Menu_Music',0.5, true); 
     music.play();
@@ -32,6 +38,25 @@ DagorDagorath.MainMenu.prototype = {
     menu.width = 433.4;
     menu.height = 600;
 
+/*
+    letras_Musica = this.game.add.sprite(10, 590, 'Letras_Musica');
+    letras_Musica.width = 270;
+    letras_Musica.height = 64;*/
+
+    letras_Musica = this.game.add.text(10, 605,'MUSIC',{font: "Bold 40px Arial", fill: 'black'});
+    letras_Musica2 = this.game.add.text(10, 625,'COMPOSER: Jhon Williams',{font: "Bold 30px Arial", fill: 'black'});
+    letras_Musica3 = this.game.add.text(10, 640,'ARRANGED BY: Tuvi (Youtube)',{font: "Bold 60pt Arial", fill: 'black'});
+
+
+    letras_Musica.stroke = '#EEE8AA';
+    letras_Musica.strokeThickness = 5;
+    letras_Musica.alpha = 0.6;
+    letras_Musica2.stroke = '#EEE8AA';
+    letras_Musica2.strokeThickness = 5;
+    letras_Musica2.alpha = 0.6;
+    letras_Musica3.stroke = '#EEE8AA';
+    letras_Musica3.strokeThickness = 5;
+    letras_Musica3.alpha = 0.6;
     
     button = this.game.add.button(392.5, 232, 'Boton1', this.actionOnClick1, this,1,0);
     button.width = 220;
