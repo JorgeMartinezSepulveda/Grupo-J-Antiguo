@@ -123,11 +123,11 @@ DagorDagorath.Game.prototype = {
     mascara.alpha = 0;
     mascara.fixedToCamera = true;
 
-    mascarafinal1 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final1');
+    mascarafinal1 = this.game.add.sprite(0, 0, 'Pantalla_Final_Victoria');
     mascarafinal1.alpha = 0;
     mascarafinal1.fixedToCamera = true;
 
-    mascarafinal2 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final2');
+    mascarafinal2 = this.game.add.sprite(0, 0, 'Pantalla_Final_Derrota');
     mascarafinal2.alpha = 0;
     mascarafinal2.fixedToCamera = true;
 
