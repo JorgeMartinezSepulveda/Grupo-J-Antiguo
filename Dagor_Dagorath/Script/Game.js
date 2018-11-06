@@ -50,7 +50,7 @@ DagorDagorath.Game.prototype = {
     //Fondo del estado
     this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
 
-    musica=this.game.add.audio('isengard',0.5, true);
+    musica=this.game.add.audio('isengard',0.2, true);
 
     this.base = this.game.add.group();
     this.base.enableBody = true;
