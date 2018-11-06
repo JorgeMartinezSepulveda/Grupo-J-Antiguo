@@ -29,6 +29,10 @@ var base2;
 var bottonnivel;
 var niveltropa=1;
 var lvl;
+var textvida = 100;
+var textdaño = 25;
+
+var musica;
 
 var numeroEnanos = 0;
 
@@ -45,19 +49,23 @@ DagorDagorath.Game.prototype = {
     //Fondo del estado
     this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
 
+    musica=this.game.add.audio('isengard',0.5, true);
+
     this.base = this.game.add.group();
     this.base.enableBody = true;
     this.base.physicsBodyType = Phaser.Physics.ARCADE;
 
     base1 = this.base.create(0, 330, 'base1'); 
     base1.vida= 200;
-    base1.body.setSize(368, 300, 0, 0);
+    base1.body.setSize(368, 300, 0, 267);
     base1.inputEnabled = true;
+    base1.body.immovable = true;
 
     base2 = this.base.create(1694, 136, 'base2'); 
     base2.vida= 200;
-    base2.body.setSize(300, 400, 0, 0);
+    base2.body.setSize(300, 400, 0, 267);
     base2.inputEnabled = true;
+    base2.body.immovable = true;
 
     barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
     barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -97,6 +105,10 @@ DagorDagorath.Game.prototype = {
     tropa1.fixedToCamera = true;
     tropa1.inputEnabled = true;
 
+
+    musica.play();
+    
+
     cursors = this.game.input.keyboard.createCursorKeys();
 
     //Definicion Grupos de Tropas/////////////////////////////////////////////////////////////////
@@ -117,15 +129,23 @@ DagorDagorath.Game.prototype = {
     panel_Stats.fixedToCamera = true;
     panel_Stats.alpha = 0;
 
+    textvida = this.add.text(590, 65, 'vida = 100', { fontSize: '24px', fill: '#000000' });
+    textvida.alpha= 0;
+    textvida.fixedToCamera = true;
+
+    textdaño = this.add.text(590, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
+    textdaño.alpha= 0;
+    textdaño.fixedToCamera = true;
+
     mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
     mascara.alpha = 0;
     mascara.fixedToCamera = true;
 
-    mascarafinal1 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final1');
+    mascarafinal1 = this.game.add.sprite(0, 0, 'Pantalla_Final_Victoria');
     mascarafinal1.alpha = 0;
     mascarafinal1.fixedToCamera = true;
 
-    mascarafinal2 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final2');
+    mascarafinal2 = this.game.add.sprite(0, 0, 'Pantalla_Final_Derrota');
     mascarafinal2.alpha = 0;
     mascarafinal2.fixedToCamera = true;
 
@@ -149,6 +169,7 @@ DagorDagorath.Game.prototype = {
     this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
     this.game.input.onDown.add(this.unpause, this);
+
 
   },
 
@@ -208,10 +229,15 @@ DagorDagorath.Game.prototype = {
 
     if (tropa1.input.pointerOver())
     {
-      panel_Stats.alpha = 1;    }
+      panel_Stats.alpha = 1;
+      textvida.alpha = 1;
+      textdaño.alpha = 1;
+    }
     else
     {
       panel_Stats.alpha = 0;
+      textdaño.alpha = 0;
+      textvida.alpha = 0;
     }
 
     //movimiento de camara con teclado
@@ -243,10 +269,13 @@ DagorDagorath.Game.prototype = {
 
   subirNivel: function()
   {
-    dinero -= 500;
+    dinero -= 1000;
     dineroTexto.setText(dinero);
     niveltropa = 2;
     lvl.setText('lvl = ' + niveltropa);
+    textvida.setText('vida = ' + 105);
+    textdaño.setText('daño = ' + 30);
+
   },
 
 generateEnanos: function(){
@@ -265,7 +294,6 @@ generateEnanos: function(){
     enanotimer= 1;
     en.body.setSize(50, 91, 5, 5);
     numeroEnanos++;
-    console.log('Nuemro de enanos: '+ numeroEnanos)
   }
   else if (niveltropa==2)
   {
@@ -290,7 +318,7 @@ generateTrasgos: function()
   {
 
     var tras;
-    tras = this.trasgos.create(1450, 561, 'Trasgo_Andando_Sheet');
+    tras = this.trasgos.create(1600, 561, 'Trasgo_Andando_Sheet');
     tras.width = 70;
     tras.height =50;
     tras.vida = 100;
@@ -344,7 +372,7 @@ pelea: function(ena, trasga)
     trasga.kill();
     ena.body.velocity.x=30;
     this.continua();
-    this.dinero += 150;
+    dinero += 50;
     dineroTexto.setText(dinero);
   }
   if(ena.vida<=0){
@@ -353,6 +381,7 @@ pelea: function(ena, trasga)
     this.continua();
   }
 },
+
 continua: function(){
   this.enanos.setAll('body.velocity.x',30);
   this.enanos.callAll('loadTexture',null,'momia', 0);
