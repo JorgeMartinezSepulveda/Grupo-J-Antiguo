@@ -53,11 +53,13 @@ DagorDagorath.Game.prototype = {
     base1.vida= 200;
     base1.body.setSize(368, 300, 0, 0);
     base1.inputEnabled = true;
+    base1.immovable = true;
 
     base2 = this.base.create(1694, 136, 'base2'); 
     base2.vida= 200;
     base2.body.setSize(300, 400, 0, 0);
     base2.inputEnabled = true;
+    base2.immovable = true;
 
     barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
     barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -265,7 +267,6 @@ generateEnanos: function(){
     enanotimer= 1;
     en.body.setSize(50, 91, 5, 5);
     numeroEnanos++;
-    console.log('Nuemro de enanos: '+ numeroEnanos)
   }
   else if (niveltropa==2)
   {
@@ -290,7 +291,7 @@ generateTrasgos: function()
   {
 
     var tras;
-    tras = this.trasgos.create(1450, 561, 'Trasgo_Andando_Sheet');
+    tras = this.trasgos.create(1600, 561, 'Trasgo_Andando_Sheet');
     tras.width = 70;
     tras.height =50;
     tras.vida = 100;
@@ -344,7 +345,7 @@ pelea: function(ena, trasga)
     trasga.kill();
     ena.body.velocity.x=30;
     this.continua();
-    this.dinero += 150;
+    dinero += 150;
     dineroTexto.setText(dinero);
   }
   if(ena.vida<=0){
@@ -353,6 +354,7 @@ pelea: function(ena, trasga)
     this.continua();
   }
 },
+
 continua: function(){
   this.enanos.setAll('body.velocity.x',30);
   this.enanos.callAll('loadTexture',null,'momia', 0);
