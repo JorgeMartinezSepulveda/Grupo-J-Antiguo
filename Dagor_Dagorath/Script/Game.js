@@ -51,13 +51,13 @@ DagorDagorath.Game.prototype = {
 
     base1 = this.base.create(0, 330, 'base1'); 
     base1.vida= 200;
-    base1.body.setSize(368, 300, 0, 0);
+    base1.body.setSize(368, 300, 0, 267);
     base1.inputEnabled = true;
     base1.immovable = true;
 
     base2 = this.base.create(1694, 136, 'base2'); 
     base2.vida= 200;
-    base2.body.setSize(300, 400, 0, 0);
+    base2.body.setSize(300, 400, 0, 267);
     base2.inputEnabled = true;
     base2.immovable = true;
 
