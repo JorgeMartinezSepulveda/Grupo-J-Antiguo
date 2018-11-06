@@ -422,12 +422,9 @@ pelea: function(ena, trasga)
 
 continua: function()
 {
-  if(this.niveltropa==1)
-  {
     this.enanos.setAll('body.velocity.x',30);
     this.enanos.callAll('loadTexture',null,'momia', 0);
     this.enanos.callAll('play',null,'walk',7.5,true);
-  } 
   if(niveltropa==2)
   {
     this.enanos.setAll('body.velocity.x',30);
