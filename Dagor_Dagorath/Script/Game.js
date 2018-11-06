@@ -166,7 +166,7 @@ DagorDagorath.Game.prototype = {
     button2_menu_Pause.alpha = 0;
     button2_menu_Pause.fixedToCamera = true;
 
-    //this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
+    this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
     this.game.input.onDown.add(this.unpause, this);
 
@@ -288,7 +288,7 @@ generateEnanos: function(){
     en.daño = 25;
     en.animations.add('walk');
     en.animations.play('walk', 7.5, true);
-    en.body.velocity.x = 300;
+    en.body.velocity.x = 30;
     dinero -= 100;
     dineroTexto.setText(dinero);
     enanotimer= 1;
