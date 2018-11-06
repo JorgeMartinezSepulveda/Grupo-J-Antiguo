@@ -47,12 +47,14 @@ DagorDagorath.Game.prototype = {
 
   base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
-  base1.body.setSize(368, 300, 0, 337);
+  base1.body.setSize(368, 300, 0, 267);
+  base1.body.immovable = true;
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
   base2.body.setSize(300, 400, 0, 267);
-
+  base2.body.immovable = true;
+  
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
   barravidabg1.alpha = 0;
@@ -107,11 +109,11 @@ DagorDagorath.Game.prototype = {
   mascara.alpha = 0;
   mascara.fixedToCamera = true;
 
-  mascarafinal1 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final1');
+  mascarafinal1 = this.game.add.sprite(0, 0, 'Pantalla_Final_Victoria');
   mascarafinal1.alpha = 0;
   mascarafinal1.fixedToCamera = true;
 
-  mascarafinal2 = this.game.add.sprite(0, 0, 'Mascara_Menu_Final2');
+  mascarafinal2 = this.game.add.sprite(0, 0, 'Pantalla_Final_Derrota');
   mascarafinal2.alpha = 0;
   mascarafinal2.fixedToCamera = true;
 
@@ -215,6 +217,7 @@ update: function () {
   this.game.physics.arcade.collide(this.enanos,this.enanos, this.colisionMismoGrupo,null,this);
   this.game.physics.arcade.collide(this.trasgos,this.trasgos, this.colisionMismoGrupo2,null,this);
   this.game.physics.arcade.collide(this.enanos,this.base, this.colisionconbase,null,this);
+  this.game.physics.arcade.collide(this.trasgos,this.base, this.colisionconbase2,null,this);
 
 },
 
@@ -227,7 +230,7 @@ sibirnivel: function(){
 generateEnanos: function(){
   if (niveltropa==1){
   var en;
-  en = this.enanos.create(1500, 545, 'momia');
+  en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
   en.vida = 100;
@@ -279,6 +282,7 @@ enanostimer: function(){
 
 pelea: function(ena, trasga){
   if (trasga.vida>0){
+    continua=false;
     if (enAtacando==0){
       enAtacando=1;
       ena.loadTexture('enanopegando', 0);
@@ -288,20 +292,47 @@ pelea: function(ena, trasga){
         trasga.vida -= ena.daño;
         enAtacando=0;
         ena.body.velocity.x=1;
-        trasga.body.velocity.x=-1;
       }, this);
+   
       console.log('vida trasgos'+ trasga.vida);
     }
+  }
+  if(ena.vida>0){
+    continua2=false;
+    if(trasAtacando==0){
+      trasAtacando=1;
+      trasga.loadTexture('Trasgo_Pegando',0);
+      trasga.animations.add('pegar');
+      trasga.animations.play('pegar',7.5,true);
+         this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
+        ena.vida-=trasga.daño;
+        trasAtacando=0;
+        trasga.body.velocity.x=-1;
+        console.log('vida enano: '+ ena.vida);
+      })
+    }
   }   
-  if(trasga.vida<=0){
+    if(trasga.vida<=0){
     trasga.kill();
     ena.body.velocity.x=30;
-    ena.animations.play('walk',7.5,true);
-    continua=1;
-    ena.loadTexture('momia', 0);
-    ena.animations.add('walk');
-    ena.animations.play('walk',7.5, true);
+    this.continua();
+    this.dinero += 150;
+    dineroTexto.setText(dinero);
   }
+  if(ena.vida<=0){
+    ena.kill();
+    trasga.body.velocity.x=-30;
+    this.continua();
+  }
+},
+
+continua: function(){
+  this.enanos.setAll('body.velocity.x',30);
+  this.enanos.callAll('loadTexture',null,'momia', 0);
+  this.enanos.callAll('play',null,'walk',7.5,true);
+  this.trasgos.setAll('body.velocity.x',-30);
+  this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
+  this.trasgos.callAll('play',null,'walk',7,true);
 },
 
 pruebaColision: function(enan, trasg)
@@ -325,15 +356,55 @@ colisionMismoGrupo: function(grupo2, grupo1)
   },
 
   colisionconbase: function(tropa, base){
-    tropa.animations.stop(null, true);
+    //tropa.animations.stop(null, true);
     tropa.body.velocity.x = 0;
     this.peleabase(tropa, base);
   },
 
   peleabase: function(tropa, base){
-    tropa.loadTexture('enanopegando', 0);
-    tropa.animations.add('pegar');
-    tropa.animations.play('pegar', 7.5, true);
+    if (enAtacando==0){
+      enAtacando=1;
+      tropa.loadTexture('enanopegando', 0);
+      tropa.animations.add('pegar');
+      tropa.animations.play('pegar', 7.5, true);
+      this.game.time.events.add(Phaser.Timer.SECOND*0.70, function(){
+        base.vida -= tropa.daño;
+        enAtacando=0;
+        tropa.body.velocity.x=1;
+        barravida2.width -= tropa.daño;
+      }, this);
+   
+      console.log('vida base'+ base.vida);
+    }
+    if(base.vida<=0){
+      this.finalpartida1();
+    }
+  },
+
+  colisionconbase2: function(tropa, base){
+    //tropa.animations.stop(null, true);
+    tropa.body.velocity.x = 0;
+    this.peleabase2(tropa, base);
+  },
+
+  peleabase2: function(tropa, base){
+    if (trasAtacando==0){
+      trasAtacando=1;
+      tropa.loadTexture('Trasgo_Pegando', 0);
+      tropa.animations.add('pegar');
+      tropa.animations.play('pegar', 7.5, true);
+      this.game.time.events.add(Phaser.Timer.SECOND*0.50, function(){
+        base.vida -= tropa.daño;
+        trasAtacando=0;
+        tropa.body.velocity.x=-1;
+        barravida1.width -= tropa.daño;
+      }, this);
+   
+      console.log('vida base'+ base.vida);
+    }
+    if(base.vida<=0){
+      this.finalpartida2();
+    }
   },
 
 
@@ -365,12 +436,22 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
 
   finalpartida1: function(){
     this.game.paused = true;
-      image_menu.alpha = 1;
-      mascara.alpha = 1;
+      //image_menu.alpha = 1;
+      mascarafinal1.alpha = 1;
 
-      button2_menu_Pause.x = image_menu.x + 110;
-      button2_menu_Pause.y = image_menu.y + 270;
-      button2_menu_Pause.alpha = 1;
+      //button2_menu_Pause.x = image_menu.x + 110;
+      //button2_menu_Pause.y = image_menu.y + 270;
+      //button2_menu_Pause.alpha = 1;
+  },
+
+  finalpartida2: function(){
+    this.game.paused = true;
+      //image_menu.alpha = 1;
+      mascarafinal2.alpha = 1;
+
+      //button2_menu_Pause.x = image_menu.x + 110;
+      //button2_menu_Pause.y = image_menu.y + 270;
+      //button2_menu_Pause.alpha = 1;
   },
 
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
