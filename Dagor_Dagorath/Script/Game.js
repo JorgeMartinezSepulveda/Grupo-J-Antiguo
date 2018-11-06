@@ -205,6 +205,19 @@ DagorDagorath.Game.prototype = {
 
   backToMenu: function()
   {
+    dinero = 1000;
+    dineroTexto = 1000;
+    dineroIA = 2000;
+    enanotimer= 0;
+    contadorenano=0;
+    enAtacando=0;
+    trasAtacando=0;
+    continua=0;
+    showDebug = true;
+    niveltropa=1;
+    textvida = 100;
+    textdaño = 25;
+
     this.game.paused = false;
     this.state.start('MainMenu');
   },
@@ -540,11 +553,11 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       mascara.alpha = 1;
 
       button1_menu_Pause.x = image_menu.x + 100;
-      button1_menu_Pause.y = image_menu.y + 260;
+      button1_menu_Pause.y = image_menu.y + 280;
       button1_menu_Pause.alpha = 1;
 
       button2_menu_Pause.x = image_menu.x + 320;
-      button2_menu_Pause.y = image_menu.y + 260;
+      button2_menu_Pause.y = image_menu.y + 280;
       button2_menu_Pause.alpha = 1;
     }
   },

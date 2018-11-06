@@ -17,13 +17,12 @@ DagorDagorath.Preload.prototype = {
     //Audio
     this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
     this.load.audio('Cinematic_Music','audio/May It Be - Lord Of The Rings.wav');
-    this.load.audio('isengard','audio/isengard.wav');
+    //this.load.audio('isengard','audio/isengard.wav');
 
 
     //load game assets
     this.load.image('titulo', 'images/titulo4.png');
     this.load.image('controles', 'images/Controles.png');
-    this.load.image('Letras_Musica', 'images/Letras_Menu_Musica.png');
     this.load.spritesheet('Boton1', 'images/boton.png',296,143);
     this.load.spritesheet('Boton2', 'images/boton_2.png',296,143);
     this.load.spritesheet('Boton3', 'images/boton3.png',296,143);

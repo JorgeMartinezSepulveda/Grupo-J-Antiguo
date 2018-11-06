@@ -29,11 +29,6 @@ DagorDagorath.MainMenu.prototype = {
     menu.width = 433.4;
     menu.height = 600;
 
-/*
-    letras_Musica = this.game.add.sprite(10, 590, 'Letras_Musica');
-    letras_Musica.width = 270;
-    letras_Musica.height = 64;*/
-
     letras_Musica = this.game.add.text(10, 605,'MUSIC',{font: "Bold 40px Arial", fill: 'black'});
     letras_Musica2 = this.game.add.text(10, 625,'COMPOSER: Jhon Williams',{font: "Bold 30px Arial", fill: 'black'});
     letras_Musica3 = this.game.add.text(10, 640,'ARRANGED BY: Tuvi (Youtube)',{font: "Bold 60pt Arial", fill: 'black'});
