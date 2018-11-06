@@ -17,7 +17,7 @@ DagorDagorath.Preload.prototype = {
     //Audio
     this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
     this.load.audio('Cinematic_Music','audio/May It Be - Lord Of The Rings.wav');
-    //this.load.audio('isengard','audio/isengard.wav');
+    this.load.audio('isengard','audio/isengard.ogg');
 
 
     //load game assets
