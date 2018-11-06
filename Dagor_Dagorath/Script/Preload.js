@@ -16,6 +16,8 @@ DagorDagorath.Preload.prototype = {
 
     //Audio
     this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
+    this.load.audio('Cinematic_Music','audio/May It Be - Lord Of The Rings.wav');
+
 
     //load game assets
     this.load.image('titulo', 'images/titulo4.png');
@@ -39,6 +41,10 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Ilustracion2_Marco', 'images/ilustracion2_MARCO.png');
     this.load.image('Ilustracion2_Morgoth', 'images/Ilustracion_2_MORGOTH.png');
     this.load.image('Ilustracion2_Nazguls', 'images/ilustracion2_NAZGUL.png');
+
+    this.load.image('Ilustracion3_Valar', 'images/Ilustracion_3_valar.png');
+    this.load.image('Ilustracion3_Valar2', 'images/Ilustracion_3_valar2.png');
+
     this.load.image('base1', 'images/base1.png');
     this.load.image('base2', 'images/base2.png');
     this.load.image('barravidabg', 'images/barravidabg.png');
@@ -57,11 +63,16 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Mascara_Menu_Pausa', 'images/Mascara_MenuPausa.png');
     this.load.spritesheet('Boton_Menu_Pausa', 'images/boton_pausa.png',194,190);
     this.load.spritesheet('Boton_Vuelta_A_Inicio', 'images/boton_pausa_regresoAMenu.png',296,143);
+    this.load.spritesheet('Boton_Reinicio', 'images/Boton_Final_Reiniciar.png',296,143);
+    this.load.image('Pantalla_Final_Victoria', 'images/Pantalla_Victoria.png');
+    this.load.image('Pantalla_Final_Derrota', 'images/Pantalla_Derrota.png');
+
 
     this.load.image('Texto_1', 'images/Texto1.png');
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
+    //this.load.image('Texto_4', 'images/Texto4.png');
     
 
   },
