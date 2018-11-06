@@ -148,7 +148,7 @@ DagorDagorath.Game.prototype = {
     button2_menu_Pause.alpha = 0;
     button2_menu_Pause.fixedToCamera = true;
 
-    this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
+    //this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
     this.game.input.onDown.add(this.unpause, this);
 
@@ -261,7 +261,7 @@ generateEnanos: function(){
     en.daño = 25;
     en.animations.add('walk');
     en.animations.play('walk', 7.5, true);
-    en.body.velocity.x = 30;
+    en.body.velocity.x = 300;
     dinero -= 100;
     dineroTexto.setText(dinero);
     enanotimer= 1;
@@ -314,9 +314,15 @@ pelea: function(ena, trasga)
     if (enAtacando==0)
     {
       enAtacando=1;
+      if(niveltropa==1){
       ena.loadTexture('enanopegando', 0);
       ena.animations.add('pegar');
       ena.animations.play('pegar', 7.5, true);
+    } if (niveltropa==2){
+      ena.loadTexture('enanolvl2pegando', 0);
+      ena.animations.add('pegarlvl2');
+      ena.animations.play('pegarlvl2', 7.5, true);
+    }
       this.game.time.events.add(Phaser.Timer.SECOND*0.70, function()
       {
         trasga.vida -= ena.daño;
@@ -356,9 +362,15 @@ pelea: function(ena, trasga)
 },
 
 continua: function(){
+  if(this.niveltropa==1){
   this.enanos.setAll('body.velocity.x',30);
   this.enanos.callAll('loadTexture',null,'momia', 0);
   this.enanos.callAll('play',null,'walk',7.5,true);
+} if(niveltropa==2){
+  this.enanos.setAll('body.velocity.x',30);
+  this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
+  this.enanos.callAll('play',null,'andar',7.5,true);
+}
   this.trasgos.setAll('body.velocity.x',-30);
   this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
   this.trasgos.callAll('play',null,'walk',7,true);
@@ -395,9 +407,15 @@ pruebaColision: function(enan, trasg)
   peleabase: function(tropa, base){
     if (enAtacando==0){
       enAtacando=1;
+      if(niveltropa==1){
       tropa.loadTexture('enanopegando', 0);
       tropa.animations.add('pegar');
       tropa.animations.play('pegar', 7.5, true);
+    } if (niveltropa==2){
+      tropa.loadTexture('enanolvl2pegando', 0);
+      tropa.animations.add('pegarlvl2');
+      tropa.animations.play('pegarlvl2', 7.5, true);
+    }
       this.game.time.events.add(Phaser.Timer.SECOND*0.70, function(){
         base.vida -= tropa.daño;
         enAtacando=0;
