@@ -19,6 +19,8 @@ DagorDagorath.MainMenu.prototype = {
                                              //0, 0, this.game.width, this.game.height, 'background'
 
     music=this.game.add.audio('Menu_Music',0.5, true);
+
+    music=this.game.add.audio('Menu_Music',0.5, true); 
     music.play();
     this.game.input.onDown.add(this.changeVolume, this);
 
