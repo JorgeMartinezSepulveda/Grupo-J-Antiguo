@@ -41,13 +41,20 @@ DagorDagorath.Game.prototype = {
 
   base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
+<<<<<<< HEAD
   base1.body.setSize(368, 300, 0, 267);
   base1.body.immovable = true;
+=======
+  base1.body.setSize(368, 300, 0, 337);
+>>>>>>> master
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
   base2.body.setSize(300, 400, 0, 267);
+<<<<<<< HEAD
   base2.body.immovable = true;
+=======
+>>>>>>> master
 
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -171,7 +178,7 @@ update: function () {
 
 generateEnanos: function(){
   var en;
-  en = this.enanos.create(370, 545, 'momia');
+  en = this.enanos.create(1500, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
   en.vida = 105;
