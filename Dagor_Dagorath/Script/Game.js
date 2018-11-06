@@ -273,7 +273,7 @@ DagorDagorath.Game.prototype = {
 
   subirNivel: function()
   {
-    if((dinero > 1000)&&(nivelTropa == 1))
+    if((dinero > 1000)&&(niveltropa == 1))
     {
       dinero -= 1000;
       dineroTexto.setText(dinero);
@@ -349,11 +349,10 @@ pelea: function(ena, trasga)
     if (enAtacando==0)
     {
       enAtacando=1;
-      if(niveltropa==1){
       ena.loadTexture('enanopegando', 0);
       ena.animations.add('pegar');
       ena.animations.play('pegar', 7.5, true);
-    } if (niveltropa==2){
+    if (niveltropa==2){
       ena.loadTexture('enanolvl2pegando', 0);
       ena.animations.add('pegarlvl2');
       ena.animations.play('pegarlvl2', 7.5, true);
@@ -397,11 +396,10 @@ pelea: function(ena, trasga)
 },
 
 continua: function(){
-  if(this.niveltropa==1){
   this.enanos.setAll('body.velocity.x',30);
   this.enanos.callAll('loadTexture',null,'momia', 0);
   this.enanos.callAll('play',null,'walk',7.5,true);
-} if(niveltropa==2){
+  if(niveltropa==2){
   this.enanos.setAll('body.velocity.x',30);
   this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
   this.enanos.callAll('play',null,'andar',7.5,true);
