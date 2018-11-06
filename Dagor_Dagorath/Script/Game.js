@@ -227,6 +227,7 @@ pelea: function(ena, trasga){
     ena.body.velocity.x=30;
     this.continua();
     this.dinero += 150;
+    dineroTexto.setText(dinero);
   }
   if(ena.vida<=0){
     ena.kill();
