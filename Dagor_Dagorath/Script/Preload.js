@@ -22,6 +22,7 @@ DagorDagorath.Preload.prototype = {
     //load game assets
     this.load.image('titulo', 'images/titulo4.png');
     this.load.image('controles', 'images/Controles.png');
+    this.load.image('Letras_Musica', 'images/Letras_Menu_Musica.png');
     this.load.spritesheet('Boton1', 'images/boton.png',296,143);
     this.load.spritesheet('Boton2', 'images/boton_2.png',296,143);
     this.load.spritesheet('Boton3', 'images/boton3.png',296,143);
@@ -66,13 +67,15 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('Boton_Reinicio', 'images/Boton_Final_Reiniciar.png',296,143);
     this.load.image('Pantalla_Final_Victoria', 'images/Pantalla_Victoria.png');
     this.load.image('Pantalla_Final_Derrota', 'images/Pantalla_Derrota.png');
+    this.load.image('Panel_Stats_Enano', 'images/Panel_Stats.png');
+
 
 
     this.load.image('Texto_1', 'images/Texto1.png');
     this.load.image('Texto_1_2', 'images/Texto1_2.png');
     this.load.image('Texto_2', 'images/Texto2.png');
     this.load.image('Texto_3', 'images/Texto3.png');
-    //this.load.image('Texto_4', 'images/Texto4.png');
+    this.load.image('Texto_4', 'images/Texto4.png');
     
 
   },
