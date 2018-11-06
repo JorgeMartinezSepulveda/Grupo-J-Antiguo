@@ -59,7 +59,11 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('boton_tropa_nivel', 'images/boton_tropa_nivel.png',97,95);
     this.load.spritesheet('enanopegando', 'images/Enano_Ataque_Spritesheet.png', 114, 115);
     this.load.spritesheet('Trasgo_Andando_Sheet', 'images/Trasgo_Andando_Sheet.png',105,75);
+<<<<<<< HEAD
     this.load.spritesheet('Trasgo_pegando','images/Trasgo_Atacando_Sheet.png',105,75);
+=======
+    this.load.spritesheet('Trasgo_Pegando', 'images/Trasgo_Atacando_Sheet.png',105,75);
+>>>>>>> master
     this.load.image('Menu_Pausa', 'images/Imagen_Menu_Pausa.png');
     this.load.image('Mascara_Menu_Pausa', 'images/Mascara_MenuPausa.png');
     this.load.spritesheet('Boton_Menu_Pausa', 'images/boton_pausa.png',194,190);

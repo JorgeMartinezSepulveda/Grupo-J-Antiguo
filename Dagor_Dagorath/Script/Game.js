@@ -41,13 +41,20 @@ DagorDagorath.Game.prototype = {
   base1.vida= 200;
   base1.body.setSize(368, 300, 0, 267);
   base1.body.immovable = true;
+<<<<<<< HEAD
   base1.body.setSize(368, 300, 0, 337);
+=======
+>>>>>>> master
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
   base2.body.setSize(300, 400, 0, 267);
   base2.body.immovable = true;
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> master
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
   barravidabg1.alpha = 0;
@@ -95,6 +102,64 @@ DagorDagorath.Game.prototype = {
   base1.inputEnabled = true;
   base2.inputEnabled = true;
 
+<<<<<<< HEAD
+=======
+  mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
+  mascara.alpha = 0;
+  mascara.fixedToCamera = true;
+
+  mascarafinal1 = this.game.add.sprite(0, 0, 'Pantalla_Final_Victoria');
+  mascarafinal1.alpha = 0;
+  mascarafinal1.fixedToCamera = true;
+
+  mascarafinal2 = this.game.add.sprite(0, 0, 'Pantalla_Final_Derrota');
+  mascarafinal2.alpha = 0;
+  mascarafinal2.fixedToCamera = true;
+
+
+  button = this.game.add.button(15, 15, 'Boton_Menu_Pausa', this.actionOnClick, this,1,0);
+  button.width = 50;
+  button.height = 50;
+  button.fixedToCamera = true;
+
+  image_menu = this.game.add.sprite(180, 100, 'Menu_Pausa');//image_menu
+  image_menu.width = 640;
+  image_menu.height = 462;
+  image_menu.fixedToCamera = true;
+  image_menu.alpha = 0;
+
+  button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+  button2_menu_Pause.width = 220;
+  button2_menu_Pause.height = 100;
+  button2_menu_Pause.alpha = 0;
+  button2_menu_Pause.fixedToCamera = true;
+
+  this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
+
+  this.game.input.onDown.add(this.unpause, this);
+
+
+
+  },
+
+  backToMenu: function()
+  {
+    console.log('Hola');
+    this.game.paused = false;
+    this.state.start('MainMenu');
+    console.log('Adio');
+  },
+
+  unpause: function(event){
+    if(this.game.paused === true)
+    {
+      console.log("Menu pausado");
+    }
+    else
+    {
+      console.log("Menu despausado");
+    }
+>>>>>>> master
   },
 update: function () {
 
@@ -211,7 +276,11 @@ pelea: function(ena, trasga){
     continua2=false;
     if(trasAtacando==0){
       trasAtacando=1;
+<<<<<<< HEAD
       trasga.loadTexture('Trasgo_pegando',0);
+=======
+      trasga.loadTexture('Trasgo_Pegando',0);
+>>>>>>> master
       trasga.animations.add('pegar');
       trasga.animations.play('pegar',7.5,true);
          this.game.time.events.add(Phaser.Timer.SECOND*0.50,function(){
@@ -287,7 +356,37 @@ colisionMismoGrupo: function(grupo2, grupo1)
       console.log('vida base'+ base.vida);
     }
     if(base.vida<=0){
+<<<<<<< HEAD
       this.state.start('MainMenu');
+=======
+      this.finalpartida1();
+    }
+  },
+
+  colisionconbase2: function(tropa, base){
+    //tropa.animations.stop(null, true);
+    tropa.body.velocity.x = 0;
+    this.peleabase2(tropa, base);
+  },
+
+  peleabase2: function(tropa, base){
+    if (trasAtacando==0){
+      trasAtacando=1;
+      tropa.loadTexture('Trasgo_Pegando', 0);
+      tropa.animations.add('pegar');
+      tropa.animations.play('pegar', 7.5, true);
+      this.game.time.events.add(Phaser.Timer.SECOND*0.50, function(){
+        base.vida -= tropa.daño;
+        trasAtacando=0;
+        tropa.body.velocity.x=-1;
+        barravida1.width -= tropa.daño;
+      }, this);
+   
+      console.log('vida base'+ base.vida);
+    }
+    if(base.vida<=0){
+      this.finalpartida2();
+>>>>>>> master
     }
   },
 
@@ -317,10 +416,31 @@ colisionMismoGrupo: function(grupo2, grupo1)
     }
   },
 
+<<<<<<< HEAD
 
 actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   {
     this.game.state.start('MainMenu');
+=======
+  finalpartida1: function(){
+    this.game.paused = true;
+      //image_menu.alpha = 1;
+      mascarafinal1.alpha = 1;
+
+      //button2_menu_Pause.x = image_menu.x + 110;
+      //button2_menu_Pause.y = image_menu.y + 270;
+      //button2_menu_Pause.alpha = 1;
+  },
+
+  finalpartida2: function(){
+    this.game.paused = true;
+      //image_menu.alpha = 1;
+      mascarafinal2.alpha = 1;
+
+      //button2_menu_Pause.x = image_menu.x + 110;
+      //button2_menu_Pause.y = image_menu.y + 270;
+      //button2_menu_Pause.alpha = 1;
+>>>>>>> master
   },
 
 actionOnClick1: function () //Prueba de spawn de tropas aliadas
