@@ -14,8 +14,6 @@ var contadorenano=0;
 var monedas;
 var enAtacando=0;
 var trasAtacando=0;
-var continua=false;
-var continua2=false;
 var showDebug = true;
 var barravidabg1;
 var barravidabg2;
@@ -41,20 +39,14 @@ DagorDagorath.Game.prototype = {
 
   base1 = this.base.create(0, 330, 'base1'); 
   base1.vida= 200;
-<<<<<<< HEAD
   base1.body.setSize(368, 300, 0, 267);
   base1.body.immovable = true;
-=======
   base1.body.setSize(368, 300, 0, 337);
->>>>>>> master
 
   base2 = this.base.create(1694, 136, 'base2'); 
   base2.vida= 200;
   base2.body.setSize(300, 400, 0, 267);
-<<<<<<< HEAD
   base2.body.immovable = true;
-=======
->>>>>>> master
 
   barravidabg1 = this.game.add.sprite(50, 630, 'barravidabg');
   barravida1 = this.game.add.sprite(50, 630, 'barravida');
@@ -160,25 +152,11 @@ update: function () {
   this.game.physics.arcade.collide(this.enanos,this.base, this.colisionconbase,null,this);
   this.game.physics.arcade.collide(this.trasgos,this.base, this.colisionconbase2,null,this);
 
-  if (continua){
-    this.enanos.setAll('body.velocity.x',30);
-    this.enanos.callAll('loadTexture',null,'momia', 0);
-    this.enanos.callAll('play',null,'walk',7.5,true);
-    continua=false;
-  }
-
-  if (continua2){
-    this.trasgos.setAll('body.velocity.x',-30);
-    this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
-    this.trasgos.callAll('play',null,'walk',7,true);
-    continua2=false;
-  }
-  
 },
 
 generateEnanos: function(){
   var en;
-  en = this.enanos.create(1500, 545, 'momia');
+  en = this.enanos.create(370, 545, 'momia');
   en.width = 55.25;
   en.height = 65;
   en.vida = 105;
@@ -244,19 +222,26 @@ pelea: function(ena, trasga){
       })
     }
   }   
-  if(trasga.vida<=0){
+    if(trasga.vida<=0){
     trasga.kill();
     ena.body.velocity.x=30;
-    continua=true;
+    this.continua();
     this.dinero += 150;
   }
   if(ena.vida<=0){
     ena.kill();
     trasga.body.velocity.x=-30;
-    continua2=true;
-    trasga.loadTexture('Trasgo_Andando_Sheet',0);
-    trasga.animations.play('walk',7.5,true);
+    this.continua();
   }
+},
+
+continua: function(){
+  this.enanos.setAll('body.velocity.x',30);
+  this.enanos.callAll('loadTexture',null,'momia', 0);
+  this.enanos.callAll('play',null,'walk',7.5,true);
+  this.trasgos.setAll('body.velocity.x',-30);
+  this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
+  this.trasgos.callAll('play',null,'walk',7,true);
 },
 
 pruebaColision: function(enan, trasg)
