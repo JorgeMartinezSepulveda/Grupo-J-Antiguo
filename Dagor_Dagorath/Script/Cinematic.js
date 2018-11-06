@@ -3,6 +3,9 @@ var button;
 var tween;
 var tween2;
 var tween3;
+var tween4;
+
+var music;
 
 var tierra;
 var marco;
@@ -17,6 +20,9 @@ var alrededores;
 var morgoth;
 var nazguls;
 
+var valar;
+var valar2;
+
 DagorDagorath.Cinematic = function(){};
 
 DagorDagorath.Cinematic.prototype = {
@@ -27,6 +33,9 @@ DagorDagorath.Cinematic.prototype = {
 
 		//Fondo
 		this.background = this.game.add.tileSprite(0, 0, 1000, 667, 'Fondo');
+
+		music=this.game.add.audio('Cinematic_Music',0.5, true);
+    	
 
 		//Cinematica 1//////////////////////////////////////////////////////////////////////////////////////
 		olas = this.game.add.sprite(0,0,'Ilustracion1_Olas');
@@ -79,9 +88,23 @@ DagorDagorath.Cinematic.prototype = {
 		texto3.height = 130;
 		texto3.alpha = 0;
 		////////////////////////////////////////////////////////////////////////////////////////////////////
-		  
+
+
+		//Cinematica 2//////////////////////////////////////////////////////////////////////////////////////
+		valar = this.game.add.sprite(-500,170,'Ilustracion3_Valar');
+		valar.width = 500;
+		valar.height = 500;
+		valar.alpha = 0;
+
+		valar2 = this.game.add.sprite(1000,170,'Ilustracion3_Valar2');
+		valar2.width = 500;
+		valar2.height = 500;
+		valar2.alpha = 0;
+		////////////////////////////////////////////////////////////////////////////////////////////////////  
+
 
 		//Animacion entrada textos1/////////////////////////////////////////////////////////////////////////
+		music.play();
 		tween3 = this.game.add.tween(texto1).to( { alpha: 1 }, 6000,  Phaser.Easing.Quartic.Out, true);
 		tween3.start();
 		tween3 = this.game.add.tween(texto1_2).to( { alpha: 1 }, 6000,  Phaser.Easing.Quartic.Out, true);
@@ -115,6 +138,8 @@ DagorDagorath.Cinematic.prototype = {
 	},
 
 	saltar: function(){
+		music.pause();
+    	music.destroy();
 		this.game.state.start('Game');
 	},
 
@@ -217,7 +242,35 @@ DagorDagorath.Cinematic.prototype = {
 		tween3 = this.game.add.tween(nazguls).to({x:645, y:-280}, 5000, Phaser.Easing.Bounce.Out);   
 		tween3.start();
 
-		tween3.onComplete.add(this.saltar, this);
+		tween3.onComplete.add(this.cinematicaFinal, this);
+	},
+
+	cinematicaFinal: function()
+	{
+		tween4 = this.game.add.tween(valar).to({x: 25}, 5000, Phaser.Easing.Quadratic.Out, true);   
+		tween4.start();
+		tween = this.game.add.tween(valar).to( { alpha: 1 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+		tween4 = this.game.add.tween(valar2).to({x: 525}, 5000, Phaser.Easing.Quadratic.Out, true);   
+		tween4.start();
+		tween = this.game.add.tween(valar2).to( { alpha: 1 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+
+		tween4.onComplete.add(this.cinematicaFinalFin, this);
+	},
+
+	cinematicaFinalFin: function()
+	{
+		tween4 = this.game.add.tween(valar).to({x: -500}, 5000, Phaser.Easing.Quadratic.In, true);   
+		tween4.start();
+		tween = this.game.add.tween(valar).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+		tween4 = this.game.add.tween(valar2).to({x: 1000}, 5000, Phaser.Easing.Quadratic.In, true);   
+		tween4.start();
+		tween = this.game.add.tween(valar2).to( { alpha: 0 }, 5000,  Phaser.Easing.Quadratic.In, true);
+		tween.start();
+
+		tween4.onComplete.add(this.saltar, this);
 	}
 
 }
