@@ -245,7 +245,7 @@ DagorDagorath.Game.prototype = {
 
   subirNivel: function()
   {
-    dinero -= 500;
+    dinero -= 1000;
     dineroTexto.setText(dinero);
     niveltropa = 2;
     lvl.setText('lvl = ' + niveltropa);
@@ -345,7 +345,7 @@ pelea: function(ena, trasga)
     trasga.kill();
     ena.body.velocity.x=30;
     this.continua();
-    dinero += 150;
+    dinero += 50;
     dineroTexto.setText(dinero);
   }
   if(ena.vida<=0){
