@@ -2,6 +2,7 @@ var DagorDagorath = DagorDagorath || {};
 var ventanaControles;
 var button;
 var marco;
+var olas;
 
 DagorDagorath.ControlMenu = function(){};
 
@@ -15,7 +16,9 @@ DagorDagorath.ControlMenu.prototype = {
 
     marco = this.game.add.sprite(0,0, 'Ilustracion1_Marco');
     marco.width = 1000;
-    marco.height = 667;    
+    marco.height = 667;  
+
+    olas = this.game.add.sprite(0,0,'Ilustracion1_Olas');  
 
   	ventanaControles = this.game.add.sprite(110,58, 'controles');
     ventanaControles.width = 780;
