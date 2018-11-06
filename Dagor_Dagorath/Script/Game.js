@@ -77,7 +77,7 @@ DagorDagorath.Game.prototype = {
     barravidabg2.alpha = 0;
     barravida2.alpha = 0;
 
-    dineroTexto = this.add.text(100, 20, '2000', { fontSize: '30px', fill: '#EBE54C' });
+    dineroTexto = this.add.text(100, 20, '1000', { fontSize: '30px', fill: '#EBE54C' });
     dineroTexto.fixedToCamera = true;
 
     monedas = this.game.add.sprite(70, 25, 'monedas');
@@ -129,13 +129,17 @@ DagorDagorath.Game.prototype = {
     panel_Stats.fixedToCamera = true;
     panel_Stats.alpha = 0;
 
-    textvida = this.add.text(590, 65, 'vida = 100', { fontSize: '24px', fill: '#000000' });
+    textvida = this.add.text(580, 65, 'Vida = 100', { fontSize: '24px', fill: '#000000' });
     textvida.alpha= 0;
     textvida.fixedToCamera = true;
+    textvida.stroke = '#EEE8AA';
+    textvida.strokeThickness = 3.5;
 
-    textdaño = this.add.text(590, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
+    textdaño = this.add.text(580, 110, 'daño = 25', { fontSize: '24px', fill: '#000000' });
     textdaño.alpha= 0;
     textdaño.fixedToCamera = true;
+    textdaño.stroke = '#EEE8AA';
+    textdaño.strokeThickness = 3.5;
 
     mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
     mascara.alpha = 0;
@@ -269,12 +273,16 @@ DagorDagorath.Game.prototype = {
 
   subirNivel: function()
   {
-    dinero -= 1000;
-    dineroTexto.setText(dinero);
-    niveltropa = 2;
-    lvl.setText('lvl = ' + niveltropa);
-    textvida.setText('vida = ' + 105);
-    textdaño.setText('daño = ' + 30);
+    if((dinero > 1000)&&(nivelTropa == 1))
+    {
+      dinero -= 1000;
+      dineroTexto.setText(dinero);
+      niveltropa = 2;
+      lvl.setText('lvl = ' + niveltropa);
+      textvida.setText('vida = ' + 105);
+      textdaño.setText('daño = ' + 30);
+    }
+    
 
   },
 
