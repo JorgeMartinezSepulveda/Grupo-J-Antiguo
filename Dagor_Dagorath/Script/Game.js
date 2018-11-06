@@ -4,6 +4,7 @@ var cursors;
 var image1;
 var image_menu;
 var mascara;
+var button1_menu_Pause;
 var button2_menu_Pause;
 var panel_Stats;
 var tropa1;
@@ -164,7 +165,13 @@ DagorDagorath.Game.prototype = {
     image_menu.fixedToCamera = true;
     image_menu.alpha = 0;
 
-    button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button1_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button1_menu_Pause.width = 220;
+    button1_menu_Pause.height = 100;
+    button1_menu_Pause.alpha = 0;
+    button1_menu_Pause.fixedToCamera = true;
+
+    button2_menu_Pause = this.game.add.button(-300,-300, 'Boton_Reinicio', this.restart, this,1,0);
     button2_menu_Pause.width = 220;
     button2_menu_Pause.height = 100;
     button2_menu_Pause.alpha = 0;
@@ -177,12 +184,29 @@ DagorDagorath.Game.prototype = {
 
   },
 
+  restart: function()
+  {
+    dinero = 1000;
+    dineroTexto = 1000;
+    dineroIA = 2000;
+    enanotimer= 0;
+    contadorenano=0;
+    enAtacando=0;
+    trasAtacando=0;
+    continua=0;
+    showDebug = true;
+    niveltropa=1;
+    textvida = 100;
+    textdaño = 25;
+
+    this.game.paused = false;
+    this.state.start('Game');
+  }
+
   backToMenu: function()
   {
-    console.log('Hola');
     this.game.paused = false;
     this.state.start('MainMenu');
-    console.log('Adio');
   },
 
   unpause: function(event)
@@ -273,7 +297,7 @@ DagorDagorath.Game.prototype = {
 
   subirNivel: function()
   {
-    if((dinero > 1000)&&(nivelTropa == 1))
+    if((dinero > 1000)&&(niveltropa == 1))
     {
       dinero -= 1000;
       dineroTexto.setText(dinero);
@@ -396,16 +420,21 @@ pelea: function(ena, trasga)
   }
 },
 
-continua: function(){
-  if(this.niveltropa==1){
-  this.enanos.setAll('body.velocity.x',30);
-  this.enanos.callAll('loadTexture',null,'momia', 0);
-  this.enanos.callAll('play',null,'walk',7.5,true);
-} if(niveltropa==2){
-  this.enanos.setAll('body.velocity.x',30);
-  this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
-  this.enanos.callAll('play',null,'andar',7.5,true);
-}
+continua: function()
+{
+  if(this.niveltropa==1)
+  {
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('loadTexture',null,'momia', 0);
+    this.enanos.callAll('play',null,'walk',7.5,true);
+  } 
+  if(niveltropa==2)
+  {
+    this.enanos.setAll('body.velocity.x',30);
+    this.enanos.callAll('loadTexture',null,'enanolvl2', 0);
+    this.enanos.callAll('play',null,'andar',7.5,true);
+  }
+  
   this.trasgos.setAll('body.velocity.x',-30);
   this.trasgos.callAll('loadTexture',null,'Trasgo_Andando_Sheet', 0);
   this.trasgos.callAll('play',null,'walk',7,true);
@@ -500,6 +529,10 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       image_menu.alpha = 0;
       mascara.alpha = 0;
 
+      button1_menu_Pause.x = -200;
+      button1_menu_Pause.y = -200;
+      button1_menu_Pause.alpha = 0;
+
       button2_menu_Pause.x = -200;
       button2_menu_Pause.y = -200;
       button2_menu_Pause.alpha = 0;
@@ -510,8 +543,12 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       image_menu.alpha = 1;
       mascara.alpha = 1;
 
-      button2_menu_Pause.x = image_menu.x + 110;
-      button2_menu_Pause.y = image_menu.y + 270;
+      button1_menu_Pause.x = image_menu.x + 100;
+      button1_menu_Pause.y = image_menu.y + 260;
+      button1_menu_Pause.alpha = 1;
+
+      button2_menu_Pause.x = image_menu.x + 320;
+      button2_menu_Pause.y = image_menu.y + 260;
       button2_menu_Pause.alpha = 1;
     }
   },
