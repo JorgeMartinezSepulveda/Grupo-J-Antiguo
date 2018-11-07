@@ -521,7 +521,7 @@ pruebaColision: function(enan, trasg)
     }
     if(base.vida<=0){
       tropa.animations.stop(null, true);
-      this.finalpartida1(this);
+      this.finalpartida1();
     }
   },
 
