@@ -183,11 +183,14 @@ DagorDagorath.Game.prototype = {
     button2_menu_Pause.alpha = 0;
     button2_menu_Pause.fixedToCamera = true;
 
-    button_final = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    /*
+    button_final = this.game.add.button(0,0,'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button_final.x = 200;
+    button_final.y = 200;
     button_final.width = 220;
     button_final.height = 100;
     button_final.alpha = 0;
-    button_final.fixedToCamera = true;
+    button_final.fixedToCamera = true;*/
 
     this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
@@ -321,7 +324,7 @@ DagorDagorath.Game.prototype = {
 
   render: function()
   {
-    this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
+    //this.game.debug.text("Time until event: " + this.game.time.events.duration.toFixed(0), 32, 100);
     this.game.debug.bodyInfo(this.enanos, 500, 300);
     this.game.debug.body(this.enanos);
   },
@@ -517,7 +520,8 @@ pruebaColision: function(enan, trasg)
       console.log('vida base'+ base.vida);
     }
     if(base.vida<=0){
-      this.finalpartida1();
+      tropa.animations.stop(null, true);
+      this.finalpartida1(this);
     }
   },
 
@@ -543,6 +547,7 @@ pruebaColision: function(enan, trasg)
       console.log('vida base'+ base.vida);
     }
     if(base.vida<=0){
+      tropa.animations.stop(null, true);
       this.finalpartida2();
     }
   },
@@ -581,29 +586,32 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
   },
   finalpartida1: function()
   {
-    this.actionOnClick();
     mascarafinal1.alpha = 1;
     mascaraFin.alpha = 1;
-    console.log('iaaa:' + button2_menu_Pause.alpha);
+    musica.stop();
+
+    this.game.time.events.add(Phaser.Timer.SECOND*5, this.backToMenu, this);
   },
 
   finalpartida2: function()
   {
-    //mascarafinal2.alpha = 1;
-    //mascaraFin.alpha = 1;
-    button_final.x = 0;
-    button_final.y = 0;
+    mascarafinal2.alpha = 1;
+    mascaraFin.alpha = 1;
+    musica.stop();
+
+    this.game.time.events.add(Phaser.Timer.SECOND*5, this.backToMenu, this);
+    /*    button_final.x = 500;
+    button_final.y = 250;
     button_final.alpha = 1;
 
     console.log(button_final.alpha);
     console.log(button_final.x);
     console.log(button_final.y);
+    console.log(button_final.position);
 
     button2_menu_Pause.x = mascarafinal2.x + 320;
     button2_menu_Pause.y = mascarafinal2.y + 280;
-    button2_menu_Pause.alpha = 1;
-
-    this.game.paused = true;
+    button2_menu_Pause.alpha = 1;*/
   },
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
