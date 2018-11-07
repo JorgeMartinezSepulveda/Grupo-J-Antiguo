@@ -4,6 +4,7 @@ var cursors;
 var image1;
 var image_menu;
 var mascara;
+var mascaraFin;
 var button1_menu_Pause;
 var button2_menu_Pause;
 var panel_Stats;
@@ -34,6 +35,7 @@ var textvida = 100;
 var textdaño = 25;
 
 var musica;
+var button_final;
 
 var numeroEnanos = 0;
 
@@ -42,6 +44,8 @@ DagorDagorath.Game = function(){};
 DagorDagorath.Game.prototype = {
   create: function() 
   {
+    musica=this.game.add.audio('isengard',0.2, true);
+    musica.play();
     //Dimensiones del mundo
     this.game.world.setBounds(0, 0, 2000, 667);
 
@@ -49,8 +53,6 @@ DagorDagorath.Game.prototype = {
 
     //Fondo del estado
     this.background = this.game.add.tileSprite(0, 0, 2000, 667, 'back');
-
-    musica=this.game.add.audio('isengard',0.2, true);
 
     this.base = this.game.add.group();
     this.base.enableBody = true;
@@ -106,10 +108,6 @@ DagorDagorath.Game.prototype = {
     tropa1.fixedToCamera = true;
     tropa1.inputEnabled = true;
 
-
-    musica.play();
-    
-
     cursors = this.game.input.keyboard.createCursorKeys();
 
     //Definicion Grupos de Tropas/////////////////////////////////////////////////////////////////
@@ -144,26 +142,34 @@ DagorDagorath.Game.prototype = {
 
     mascara = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
     mascara.alpha = 0;
-    mascara.fixedToCamera = true;
-
-    mascarafinal1 = this.game.add.sprite(0, 0, 'Pantalla_Final_Victoria');
-    mascarafinal1.alpha = 0;
-    mascarafinal1.fixedToCamera = true;
-
-    mascarafinal2 = this.game.add.sprite(0, 0, 'Pantalla_Final_Derrota');
-    mascarafinal2.alpha = 0;
-    mascarafinal2.fixedToCamera = true;
+    mascara.fixedToCamera = true; 
 
     button = this.game.add.button(15, 15, 'Boton_Menu_Pausa', this.actionOnClick, this,1,0);
     button.width = 50;
     button.height = 50;
     button.fixedToCamera = true;
 
-    image_menu = this.game.add.sprite(180, 100, 'Menu_Pausa');//image_menu
+    image_menu = this.game.add.sprite(180, 100, 'Menu_Pausa');
     image_menu.width = 640;
     image_menu.height = 462;
     image_menu.fixedToCamera = true;
     image_menu.alpha = 0;
+
+    mascaraFin = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
+    mascaraFin.alpha = 0;
+    mascaraFin.fixedToCamera = true;
+
+    mascarafinal1 = this.game.add.sprite(180, 100, 'Pantalla_Final_Victoria');
+    mascarafinal1.width = 640;
+    mascarafinal1.height = 462;
+    mascarafinal1.alpha = 0;
+    mascarafinal1.fixedToCamera = true;
+
+    mascarafinal2 = this.game.add.sprite(180, 100, 'Pantalla_Final_Derrota');
+    mascarafinal2.width = 640;
+    mascarafinal2.height = 462;
+    mascarafinal2.alpha = 0;
+    mascarafinal2.fixedToCamera = true;
 
     button1_menu_Pause = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
     button1_menu_Pause.width = 220;
@@ -176,6 +182,12 @@ DagorDagorath.Game.prototype = {
     button2_menu_Pause.height = 100;
     button2_menu_Pause.alpha = 0;
     button2_menu_Pause.fixedToCamera = true;
+
+    button_final = this.game.add.button(-300,-300, 'Boton_Vuelta_A_Inicio', this.backToMenu, this,1,0);
+    button_final.width = 220;
+    button_final.height = 100;
+    button_final.alpha = 0;
+    button_final.fixedToCamera = true;
 
     this.game.time.events.loop(this.game.rnd.integerInRange(3000, 8000), this.generateTrasgos, this);
 
@@ -199,6 +211,9 @@ DagorDagorath.Game.prototype = {
     textvida = 100;
     textdaño = 25;
 
+    musica.pause();
+    musica.destroy();
+
     this.game.paused = false;
     this.state.start('Game');
   },
@@ -217,6 +232,9 @@ DagorDagorath.Game.prototype = {
     niveltropa=1;
     textvida = 100;
     textdaño = 25;
+
+    musica.pause();
+    musica.destroy();
 
     this.game.paused = false;
     this.state.start('MainMenu');
@@ -561,24 +579,31 @@ actionOnClick: function () //Boton, provisional, para volver al menu de inicio
       button2_menu_Pause.alpha = 1;
     }
   },
-  finalpartida1: function(){
-    this.game.paused = true;
-      //image_menu.alpha = 1;
-      mascarafinal1.alpha = 1;
-
-      //button2_menu_Pause.x = image_menu.x + 110;
-      //button2_menu_Pause.y = image_menu.y + 270;
-      //button2_menu_Pause.alpha = 1;
+  finalpartida1: function()
+  {
+    this.actionOnClick();
+    mascarafinal1.alpha = 1;
+    mascaraFin.alpha = 1;
+    console.log('iaaa:' + button2_menu_Pause.alpha);
   },
 
-  finalpartida2: function(){
-    this.game.paused = true;
-      //image_menu.alpha = 1;
-      mascarafinal2.alpha = 1;
+  finalpartida2: function()
+  {
+    //mascarafinal2.alpha = 1;
+    //mascaraFin.alpha = 1;
+    button_final.x = 0;
+    button_final.y = 0;
+    button_final.alpha = 1;
 
-      //button2_menu_Pause.x = image_menu.x + 110;
-      //button2_menu_Pause.y = image_menu.y + 270;
-      //button2_menu_Pause.alpha = 1;
+    console.log(button_final.alpha);
+    console.log(button_final.x);
+    console.log(button_final.y);
+
+    button2_menu_Pause.x = mascarafinal2.x + 320;
+    button2_menu_Pause.y = mascarafinal2.y + 280;
+    button2_menu_Pause.alpha = 1;
+
+    this.game.paused = true;
   },
 
   actionOnClick1: function () //Prueba de spawn de tropas aliadas
