@@ -80,7 +80,8 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('BotonEnanoOnline', 'Dagor/images/boton_enano_on.png',227,320);   
     this.load.spritesheet('BotonTrasgoOnline', 'Dagor/images/boton_trasgo_on.png',227,320);
     this.load.image('Panel_Conectado', 'Dagor/images/Panel_Texto_Conectado.png');
-    //Panel_Texto_Conectado.png
+    this.load.image('Titulo_Online', 'Dagor/images/boton_online.png');
+    //boton_online.png
   },
   create: function() {
   	this.state.start('MainMenu');  //'MainMenu'
