@@ -13,6 +13,7 @@ var caparBoton2 = false;
 var numJugadores;
 var oldlength=0;
 var panel;
+var titulo;
 DagorDagorath.OnlineRoom = function(){};
 
 DagorDagorath.OnlineRoom.prototype = {
@@ -25,23 +26,24 @@ DagorDagorath.OnlineRoom.prototype = {
     	button.width = 85;
     	button.height = 60;
     	
-    	panel = this.game.add.sprite(270, 595, 'Panel_Conectado');
+    	panel = this.game.add.sprite(275, 595, 'Panel_Conectado');
     	panel.width = 450;
     	panel.height = 55;
     	panel.alpha = 0;
+    	
+    	titulo = this.game.add.sprite(352, 20, 'Titulo_Online');
+    	//Titulo_Online
 
-    	button2 = this.game.add.button(150, 200, 'BotonEnanoOnline', this.actionOnClick2, this,1,0);
-    	//button2.width = 85;
-    	//button2.height = 60;
+    	button2 = this.game.add.button(136.5, 220, 'BotonEnanoOnline', this.actionOnClick2, this,1,0);
 
-    	button3 = this.game.add.button(620, 200, 'BotonTrasgoOnline', this.actionOnClick3, this,1,0);
+    	button3 = this.game.add.button(636.5, 220, 'BotonTrasgoOnline', this.actionOnClick3, this,1,0);
 
-    	texto = this.add.text(290, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
+    	texto = this.add.text(300, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
     	texto.alpha = 0;
     	texto.stroke = '#EEE8AA';
     	texto.strokeThickness = 3;
 
-    	texto2 = this.add.text(290, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
+    	texto2 = this.add.text(300, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
     	texto2.alpha = 0;
     	texto2.stroke = '#EEE8AA';
     	texto2.strokeThickness = 3.5;
