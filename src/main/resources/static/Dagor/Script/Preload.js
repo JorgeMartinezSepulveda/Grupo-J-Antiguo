@@ -15,9 +15,9 @@ DagorDagorath.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
     //Audio
-    this.load.audio('Menu_Music','audio/The Lord Of The Rings - Concerning Hobbits.wav');
-    this.load.audio('Cinematic_Music','audio/May It Be - Lord Of The Rings.wav');
-    this.load.audio('isengard','audio/isengard.ogg');
+    this.load.audio('Menu_Music','Dagor/audio/The Lord Of The Rings - Concerning Hobbits.wav');
+    this.load.audio('Cinematic_Music','Dagor/audio/May It Be - Lord Of The Rings.wav');
+    this.load.audio('isengard','Dagor/audio/isengard.ogg');
 
 
     //load game assets
@@ -71,16 +71,16 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Pantalla_Final_Derrota', 'Dagor/images/Pantalla_Derrota.png');
     this.load.image('Panel_Stats_Enano', 'Dagor/images/Panel_Stats.png');
 
-
-
     this.load.image('Texto_1', 'Dagor/images/Texto1.png');
     this.load.image('Texto_1_2', 'Dagor/images/Texto1_2.png');
     this.load.image('Texto_2', 'Dagor/images/Texto2.png');
     this.load.image('Texto_3', 'Dagor/images/Texto3.png');
     this.load.image('Texto_4', 'Dagor/images/Texto4.png');
     
-    this.load.spritesheet('BotonEnanoOnline', 'Dagor/images/boton_enano_on.png',454,320);   
-    this.load.spritesheet('BotonTrasgoOnline', 'Dagor/images/boton_trasgo_on.png',454,320);
+    this.load.spritesheet('BotonEnanoOnline', 'Dagor/images/boton_enano_on.png',227,320);   
+    this.load.spritesheet('BotonTrasgoOnline', 'Dagor/images/boton_trasgo_on.png',227,320);
+    this.load.image('Panel_Conectado', 'Dagor/images/Panel_Texto_Conectado.png');
+    //Panel_Texto_Conectado.png
   },
   create: function() {
   	this.state.start('MainMenu');  //'MainMenu'
