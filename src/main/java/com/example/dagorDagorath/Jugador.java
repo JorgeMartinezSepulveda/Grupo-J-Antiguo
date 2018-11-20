@@ -3,6 +3,7 @@ package com.example.dagorDagorath;
 public class Jugador {
 	
 	private long id;
+	private String nombre;
 	private boolean conectado;
 	private int personaje;
 	
@@ -31,6 +32,14 @@ public class Jugador {
 
 	public void setPersonaje(int personaje) {
 		this.personaje = personaje;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
