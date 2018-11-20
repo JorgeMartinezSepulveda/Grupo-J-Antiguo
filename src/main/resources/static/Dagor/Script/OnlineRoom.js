@@ -8,6 +8,8 @@ var seleccionado = false;
 var id;
 var caparBoton1 = false;
 var caparBoton2 = false;
+var numJugadores;
+var oldlength=0;
 DagorDagorath.OnlineRoom = function(){};
 
 DagorDagorath.OnlineRoom.prototype = {
@@ -36,23 +38,33 @@ DagorDagorath.OnlineRoom.prototype = {
 	},
 	
 	update: function()
-	{
+	{	
 		$.ajax({
 	        method: 'GET',
 	        url: 'http://10.0.56.129:8090/jugadores/',
 	        success: function(variab)
 	        {
-	        	if(variab[0] != undefined)
+	        	if(oldlength!==variab.length){
+	        		caparBoton1=false;
+	        		caparBoton2=false;
+	        	for(var i = 0; variab.length > i; i++ )
 	        	{
-	        		if(variab[0].personaje == 1)
-	        		{
-	        			caparBoton1 = true;
-	        		} 
-	        		else if(variab[0].personaje == 2)
-	        		{
-	        			caparBoton2 = true;
+	        		if(variab[i] != undefined)
+		        	{
+	        			
+		        		if(variab[i].personaje == 1)
+		        		{
+		        			caparBoton1 = true;
+		        		} 
+		        		else if(variab[i].personaje == 2)
+		        		{
+		        			caparBoton2 = true;
+		        		}
+		        	}
 	        		}
+	        	oldlength=variab.length;
 	        	}
+	        	
 	    	}
 	    })
 	},
@@ -65,15 +77,15 @@ DagorDagorath.OnlineRoom.prototype = {
 	    })
 	    //this.game.state.clearCurrentState('OnlineRoom');
 	    seleccionado = false;
-		caparBoton1  = false;
-		caparBoton2  = false;
+	
 		this.game.state.start('MainMenu');
 	},
 
 	actionOnClick2: function()
 	{
-		if((seleccionado == false)&&(!caparBoton1))
+		if(!caparBoton1)
 		{
+			if(seleccionado == false){
 			$.ajax({
 		        method: "POST",
 		        url: 'http://10.0.56.129:8090/jugadores',
@@ -90,14 +102,16 @@ DagorDagorath.OnlineRoom.prototype = {
     			{
     	        	id = id1;
     			})
+			}
 		}
 		
 	},
 
 	actionOnClick3: function()
 	{
-		if((seleccionado == false)&&(!caparBoton2))
+		if(!caparBoton2)
 		{
+			if(seleccionado == false){
 			$.ajax({
 		        method: "POST",
 		        url: 'http://10.0.56.129:8090/jugadores',
@@ -114,6 +128,7 @@ DagorDagorath.OnlineRoom.prototype = {
         		{
 	        		id = id2;
         		})
+			}
 		}
 	}
 }
