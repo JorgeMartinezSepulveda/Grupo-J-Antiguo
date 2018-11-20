@@ -79,7 +79,8 @@ DagorDagorath.Preload.prototype = {
     this.load.image('Texto_3', 'Dagor/images/Texto3.png');
     this.load.image('Texto_4', 'Dagor/images/Texto4.png');
     
-
+    this.load.spritesheet('BotonEnanoOnline', 'Dagor/images/boton_enano_on.png',454,320);   
+    this.load.spritesheet('BotonTrasgoOnline', 'Dagor/images/boton_trasgo_on.png',454,320);
   },
   create: function() {
   	this.state.start('MainMenu');  //'MainMenu'

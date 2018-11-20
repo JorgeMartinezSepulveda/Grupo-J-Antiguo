@@ -22,11 +22,11 @@ DagorDagorath.OnlineRoom.prototype = {
     	button.width = 85;
     	button.height = 60;
 
-    	button2 = this.game.add.button(80, 200, 'base1', this.actionOnClick2, this,1);
+    	button2 = this.game.add.button(80, 200, 'BotonEnanoOnline', this.actionOnClick2, this,1);
     	//button2.width = 85;
     	//button2.height = 60;
 
-    	button3 = this.game.add.button(620, 90, 'base2', this.actionOnClick3, this,1);
+    	button3 = this.game.add.button(620, 90, 'BotonTrasgoOnline', this.actionOnClick3, this,1);
 
     	texto = this.add.text(380, 40, 'Conectado, bando de los valar', { fontSize: '18px', fill: '#000000' });
     	texto.alpha = 0;
