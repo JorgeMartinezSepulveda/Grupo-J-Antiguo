@@ -21,7 +21,7 @@ DagorDagorath.Preload.prototype = {
 
 
     //load game assets
-    this.load.image('titulo', 'Dagor/images/titulo4.png');
+    this.load.image('titulo', 'Dagor/images/Titulo4.png');
     this.load.image('controles', 'Dagor/images/Controles.png');
     this.load.spritesheet('Boton1', 'Dagor/images/boton.png',296,143);
     this.load.spritesheet('Boton2', 'Dagor/images/boton_2.png',296,143);
