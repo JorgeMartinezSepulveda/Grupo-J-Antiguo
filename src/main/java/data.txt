@@ -1,0 +1,6 @@
+- Nombre Jugador: Pepito | Id: 1
+- Nombre Jugador: Pepito4m65gp | Id: 2
+- Nombre Jugador: jolsd | Id: 1
+- Nombre Jugador: Pepito | Id: 1
+- Nombre Jugador: Pepito | Id: 1
+- Nombre Jugador: Pepito | Id: 2
