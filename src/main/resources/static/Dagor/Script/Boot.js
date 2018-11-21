@@ -6,7 +6,7 @@ DagorDagorath.Boot = function(){};
 DagorDagorath.Boot.prototype = {
   preload: function() {
   	//assets we'll use in the loading screen
-    this.load.image('logo', 'Dagor/images/titulo.png');
+    this.load.image('logo', 'Dagor/images/Titulo.png');
     this.load.image('preloadbar', 'Dagor/images/preloader-bar.png');
   },
   create: function() {
