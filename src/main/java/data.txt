@@ -1,6 +1,32 @@
+- Nombre Jugador: Prueba1 | Id: 1
+- Nombre Jugador: Prueba2 | Id: 2
+- Nombre Jugador: Prueba3 | Id: 3
+- Nombre Jugador: Prueba2.1 | Id: 1
+- Nombre Jugador: Prueba2.2 | Id: 2
 - Nombre Jugador: Pepito | Id: 1
-- Nombre Jugador: Pepito4m65gp | Id: 2
-- Nombre Jugador: jolsd | Id: 1
 - Nombre Jugador: Pepito | Id: 1
-- Nombre Jugador: Pepito | Id: 1
-- Nombre Jugador: Pepito | Id: 2
+- Nombre Jugador: Pruebaaa | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: kk | Id: 2 | Bando escogido: Valar
+- Nombre Jugador: prueba | Id: 3 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 4 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 2 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 3 | Bando escogido: Morgoth
+- Nombre Jugador: hgs | Id: 4 | Bando escogido: Valar
+- Nombre Jugador: PRUEBA | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: null | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: bsghds | Id: 1 | Bando escogido: Morgoth
+- Nombre Jugador: g | Id: 1 | Bando escogido: Morgoth
+- Nombre Jugador: lol | Id: 2 | Bando escogido: Valar
+- Nombre Jugador: f44 | Id: 3 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 3 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 4 | Bando escogido: Valar
