@@ -117,6 +117,7 @@ DagorDagorath.OnlineRoom.prototype = {
 			            "Content-Type": "application/json"
 			        },
 			        success: function(){
+			        	
 		        		texto.alpha = 1;
 		        		panel.alpha = 1;
 		        		seleccionado = true;
@@ -124,6 +125,10 @@ DagorDagorath.OnlineRoom.prototype = {
 	    		}).done(function (id1) 
 	    			{
 	    	        	id = id1;
+	    	        	$.ajax({
+			        		method: "GET",
+			        		url: 'http://192.168.0.155:8090/jugadores/' + id1
+			        	})
 	    			})
 			}else{
 				texto3.alpha = 1;
@@ -160,6 +165,10 @@ DagorDagorath.OnlineRoom.prototype = {
 	    		}).done(function (id2) 
 	        		{
 		        		id = id2;
+		        		$.ajax({
+			        		method: "GET",
+			        		url: 'http://192.168.0.155:8090/jugadores/' + id2
+			        	})
 	        		})
 			} else{
 				texto4.alpha = 1;
