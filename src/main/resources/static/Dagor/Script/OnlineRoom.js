@@ -6,6 +6,9 @@ var texto;
 var texto2;
 var texto3;
 var texto4;
+var texto5;
+var texto6;
+var texto7;
 var seleccionado = false;
 var id;
 var caparBoton1 = false;
@@ -26,7 +29,7 @@ DagorDagorath.OnlineRoom.prototype = {
     	button.width = 85;
     	button.height = 60;
     	
-    	panel = this.game.add.sprite(275, 595, 'Panel_Conectado');
+    	panel = this.game.add.sprite(275, 580, 'Panel_Conectado');
     	panel.width = 450;
     	panel.height = 55;
     	panel.alpha = 0;
@@ -38,15 +41,20 @@ DagorDagorath.OnlineRoom.prototype = {
 
     	button3 = this.game.add.button(636.5, 220, 'BotonTrasgoOnline', this.actionOnClick3, this,1,0);
 
-    	texto = this.add.text(300, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
+    	texto = this.add.text(300, 595, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
     	texto.alpha = 0;
     	texto.stroke = '#EEE8AA';
     	texto.strokeThickness = 3;
 
-    	texto2 = this.add.text(300, 610, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
+    	texto2 = this.add.text(300, 595, '- Conectado al servidor, esperando jugador 2 -', { fontSize: '18px', fill: '#000000' });
     	texto2.alpha = 0;
     	texto2.stroke = '#EEE8AA';
     	texto2.strokeThickness = 3.5;
+    	
+    	texto7 = this.add.text(295, 595, '- Conexión establecida entre ambos jugadores -', { fontSize: '18px', fill: '#000000' });
+    	texto7.alpha = 0;
+    	texto7.stroke = '#EEE8AA';
+    	texto7.strokeThickness = 3.5;
     	
     	texto3 = this.add.text(125, 540, ' Ya has seleccionado un bando ', { fontSize: '18px', fill: '#FE0000', backgroundColor: '#FDFDFD' });
     	texto3.alpha = 0;
@@ -54,6 +62,11 @@ DagorDagorath.OnlineRoom.prototype = {
     	texto4 = this.add.text(595, 540, ' Ya has seleccionado un bando ', { fontSize: '18px', fill: '#FE0000', backgroundColor: '#FDFDFD' });
     	texto4.alpha = 0;
 
+    	texto5 = this.add.text(390, 220, 'SELECCIONE UN BANDO', { fontSize: '18px', fill: '#000000'});
+    	texto5.stroke = '#EEE8AA';
+    	texto5.strokeThickness = 3.5;
+    	
+    	texto6 = this.add.text(400, 250, 'Numero de jugadores: 0', { fontSize: '18px', fill: '#000000'});
     	
 	},
 	
@@ -61,30 +74,57 @@ DagorDagorath.OnlineRoom.prototype = {
 	{	
 		$.ajax({
 	        method: 'GET',
-	        url: 'http://192.168.0.155:8090/jugadores/',
+	        url: 'http://10.0.47.167:8090/jugadores/',
 	        success: function(variab)
 	        {
+	        	numJugadores = variab.length;
+	        	
 	        	if(oldlength!==variab.length){
 	        		caparBoton1=false;
 	        		caparBoton2=false;
-	        	for(var i = 0; variab.length > i; i++ )
-	        	{
-	        		if(variab[i] != undefined)
+		        	for(var i = 0; variab.length > i; i++ )
 		        	{
-	        			
-		        		if(variab[i].personaje == 1)
-		        		{
-		        			caparBoton1 = true;
-		        		} 
-		        		else if(variab[i].personaje == 2)
-		        		{
-		        			caparBoton2 = true;
-		        		}
+		        		if(variab[i] != undefined)
+			        	{
+		        			
+			        		if(variab[i].personaje == 1)
+			        		{
+			        			caparBoton1 = true;
+			        		} 
+			        		else if(variab[i].personaje == 2)
+			        		{
+			        			caparBoton2 = true;
+			        		}
+			        		if(numJugadores > 0){
+			        			texto6.setText('Numero de jugadores: ' + variab.length);
+			        		}
+				        	
+			        	}
 		        	}
-	        		}
-	        	oldlength=variab.length;
-	        	}
-	        	
+		        	oldlength=variab.length;
+		        	
+		        	if ((numJugadores > 0)&&(seleccionado))
+		        	{
+		        		if (variab.length == 2)
+			        	{
+			        		texto.alpha = 0;
+			        		texto2.alpha = 0;
+			        		texto7.alpha = 1;
+			        	} else if(variab.length == 1)
+			        	{
+			        		if(variab[0].personaje == 1)
+			        		{
+			        			texto.alpha = 1;
+			        			texto7.alpha = 0;
+			        		} 
+			        		else if(variab[0].personaje == 2)
+			        		{
+			        			texto2.alpha = 1;
+			        			texto7.alpha = 0;
+			        		}
+			        	}
+		        	}
+	        	}    	
 	    	}
 	    })
 	},
@@ -93,10 +133,12 @@ DagorDagorath.OnlineRoom.prototype = {
 	{
 		$.ajax({
 	        method: 'DELETE',
-	        url: 'http://192.168.0.155:8090/jugadores/' + id
+	        url: 'http://10.0.47.167:8090/jugadores/' + id
 	    })
 	    //this.game.state.clearCurrentState('OnlineRoom');
 	    seleccionado = false;
+		numJugadores = 0;
+		oldlength = 0;
 	
 		this.game.state.start('MainMenu');
 	},
@@ -110,7 +152,7 @@ DagorDagorath.OnlineRoom.prototype = {
 				var name = prompt("Inserte su nombre", "Pepito");
 				$.ajax({
 			        method: "POST",
-			        url: 'http://192.168.0.155:8090/jugadores',
+			        url: 'http://10.0.47.167:8090/jugadores',
 			        data: JSON.stringify({"nombre": name, "conectado":true, "personaje": 1}),
 			        processData: false,
 			        headers: {
@@ -118,7 +160,13 @@ DagorDagorath.OnlineRoom.prototype = {
 			        },
 			        success: function(){
 			        	
-		        		texto.alpha = 1;
+			        	if(numJugadores == 1){
+			        		texto.alpha = 1;
+			        	} else if(numJugadores == 2){
+			        		texto.alpha = 0;
+			        		texto7.alpha = 1;
+			        	}
+		        		
 		        		panel.alpha = 1;
 		        		seleccionado = true;
 		    		}
@@ -127,7 +175,7 @@ DagorDagorath.OnlineRoom.prototype = {
 	    	        	id = id1;
 	    	        	$.ajax({
 			        		method: "GET",
-			        		url: 'http://192.168.0.155:8090/jugadores/' + id1
+			        		url: 'http://10.0.47.167:8090/jugadores/' + id1
 			        	})
 	    			})
 			}else{
@@ -151,14 +199,21 @@ DagorDagorath.OnlineRoom.prototype = {
 				var name = prompt("Inserte su nombre", "Pepito");
 				$.ajax({
 			        method: "POST",
-			        url: 'http://192.168.0.155:8090/jugadores',
+			        url: 'http://10.0.47.167:8090/jugadores',
 			        data: JSON.stringify({"nombre": name,"conectado":true, "personaje": 2}),
 			        processData: false,
 			        headers: {
 			            "Content-Type": "application/json"
 			        },
 			        success: function(){
-		        		texto2.alpha = 1;
+			        	
+			        	if(numJugadores == 1){
+			        		texto2.alpha = 1;
+			        	} else if(numJugadores == 2){
+			        		texto2.alpha = 0;
+			        		texto7.alpha = 1;
+			        	}
+			        	
 		        		panel.alpha = 1;
 		        		seleccionado = true;
 		    		}
@@ -167,7 +222,7 @@ DagorDagorath.OnlineRoom.prototype = {
 		        		id = id2;
 		        		$.ajax({
 			        		method: "GET",
-			        		url: 'http://192.168.0.155:8090/jugadores/' + id2
+			        		url: 'http://10.0.47.167:8090/jugadores/' + id2
 			        	})
 	        		})
 			} else{
