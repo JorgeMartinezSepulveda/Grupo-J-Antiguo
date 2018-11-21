@@ -110,3 +110,39 @@ Artista: Nick Phoenix / Thomas Bergersen
 (https://www.youtube.com/watch?v=rl7i_YxDl-8)
 
 * En futuras fases se pretende mejorar el sitema de combate para que sea mas fluido y ampliar el numero de tropas del juego (tanto de los Valar como de Morgoth).
+
+## Fase 3
+
+* Lo primero que mostramos es el menu principal en el que hay tres botones, uno para jugar el juego en offline, otro que abre la interfaz del modo online y el ultimo para ver los controles:
+
+![futyk](https://user-images.githubusercontent.com/43203256/48100780-f3b18e80-e224-11e8-8304-b74fe16c48b6.PNG)
+
+ * Al pulsar en controles se muestra una pestaña explicativa de los controles basicos.
+ 
+ ![sadrh](https://user-images.githubusercontent.com/43203256/48100956-a5e95600-e225-11e8-8bd3-54dcc7b2c596.PNG)
+ 
+ * Al pulsar jugar, empezara una animacion con una pequeña descripcion de la historia del juego, esta animacion see puede saltar en case de no querer verla, en la flecha situada en la parte superior derecha de la pantalla.
+ 
+ ![sdfgh](https://user-images.githubusercontent.com/43203256/48101069-185a3600-e226-11e8-9a55-6f59c686f389.PNG)
+
+* Cuando acaba (o lo salta el jugador) llega al estado Game donde se puede jugar en modo un jugador
+
+![rwtj](https://user-images.githubusercontent.com/43203256/48101424-42f8be80-e227-11e8-84e5-9b605963ea61.PNG)
+
+* Al pulsar en Online nos llevara a una interfaz donde escogeremos un bando y nos preguntara por nuestro nombre
+
+![online](https://user-images.githubusercontent.com/43203217/48832706-0cb85480-ed7a-11e8-8a91-c2c14fbeb09b.jpg)
+
+* Añadido Diagrama de Navegacion por los estados del juego
+
+![diagramanavegacion](https://user-images.githubusercontent.com/43203217/48812164-52046400-ed31-11e8-810c-07ba2e286900.png)
+
+# Diagrama de Clases
+
+* En la implementacion de nuestro servidor hemos usado 3 clases: 
+
+![diagramaclases](https://user-images.githubusercontent.com/43203217/48829824-84cf4c00-ed73-11e8-8cda-0f38eecc836b.png)
+
+# Instrucciones precisas para ejecutar la aplicación
+
+* Para compilar se correra el archivo DagorDagorathApplication.java como una aplicación de java y esto iniciará el servidor. Para ejecutar el jar escribiremos en el simbolo del sistema la linea java -jar DagorDagorath-0.0.1-SNAPSHOT.jar desde el directorio target de nuestro proyecto. Cada vez que se inicia el servidor se ha de copiar la url donde el servidor esta corriendo la aplicación.
