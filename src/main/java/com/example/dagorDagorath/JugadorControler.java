@@ -76,31 +76,16 @@ public class JugadorControler {
 		pw.append("- Nombre Jugador: " + jgd.getNombre());
 		pw.print(' ');
 		pw.print("| Id: " + jgd.getId());
+		pw.print(' ');
+		if(jgd.getPersonaje() == 1) {
+			pw.print("| Bando escogido: Valar");
+		}else if (jgd.getPersonaje() == 2) {
+			pw.print("| Bando escogido: Morgoth");
+		}
 		pw.println();
 		pw.close();
 		
 		return jugadores.values();
-		
-		/*
-		Jugador jgd = jugadores.get(id);
+	}
 
-		if (jgd != null) {
-			return new ResponseEntity<>(jgd, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}*/
-	}
-	
-	@RequestMapping(value = "/jugadores/lol/{id}", method  = RequestMethod.GET)
-	public void guardarDatos (@PathVariable long id) throws FileNotFoundException {
-		PrintWriter pw = new PrintWriter (new FileOutputStream("src/main/java/data.txt",true));
-		
-		
-		Jugador jgd = jugadores.get(id);
-		pw.append("- Nombre Jugador: " + jgd.getNombre());
-		pw.print(' ');
-		pw.print("| Id: " + jgd.getId());
-		pw.println();
-		pw.close();
-	}
 }
