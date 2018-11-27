@@ -141,7 +141,7 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 * En la implementacion de nuestro servidor hemos usado 3 clases: 
 
-![diagramaclases](https://user-images.githubusercontent.com/43203217/48829824-84cf4c00-ed73-11e8-8cda-0f38eecc836b.png)
+![diagramaclases](https://user-images.githubusercontent.com/43203217/49114096-9cd52d00-f297-11e8-8ef1-23a5b6599c0a.png)
 
 # Instrucciones precisas para ejecutar la aplicación
 
