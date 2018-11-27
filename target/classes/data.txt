@@ -76,3 +76,13 @@
 - Nombre Jugador: Pepito | Id: 4 | Bando escogido: Valar
 - Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
 - Nombre Jugador: Pepito | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Morgoth
+- Nombre Jugador: lol | Id: 2 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 3 | Bando escogido: Morgoth
+- Nombre Jugador: lol | Id: 4 | Bando escogido: Valar
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: lol | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: Pepito | Id: 1 | Bando escogido: Valar
+- Nombre Jugador: lol | Id: 2 | Bando escogido: Morgoth
+- Nombre Jugador: lol | Id: 3 | Bando escogido: Valar
+- Nombre Jugador: Jorge | Id: 1 | Bando escogido: Valar

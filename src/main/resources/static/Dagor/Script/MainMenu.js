@@ -122,6 +122,7 @@ DagorDagorath.MainMenu.prototype = {
 		    music.pause();
 		    music.destroy();
 		    this.game.state.start('ControlMenu');
+		    leerFichero();
 	  },
 	
 	  actionOnClick3: function () 
@@ -164,6 +165,19 @@ function comprobarServer()
 			serverDisconnected = false;
 			console.log(serverDisconnected);
 		}
+	}).fail(function () {
+		serverDisconnected = true;
+		console.log(serverDisconnected);
+    })
+}
+///historialJugadores
+function leerFichero()
+{
+	$.ajax({
+		method: 'GET',
+		url: 'http://192.168.0.155:8090/historialJugadores'
+	}).done(function (lista) {
+		console.log(lista);
 	}).fail(function () {
 		serverDisconnected = true;
 		console.log(serverDisconnected);
