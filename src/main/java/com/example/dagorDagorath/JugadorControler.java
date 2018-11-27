@@ -95,19 +95,21 @@ public class JugadorControler {
 	}
 	
 	@RequestMapping(value = "/historialJugadores", method  = RequestMethod.GET)
-	public String getHistorial() throws IOException{
+	public String[] getHistorial() throws IOException{
 		
 		BufferedReader historial = new BufferedReader(new FileReader (new File("target/classes/data.txt")));
 		String line;
-		String [] nombre = null;
+		String [] nombre = new String [50];
 		int aux  = 0;
+
 		while((line = historial.readLine()) != null) 
 		{
 			String [] splited = line.split(" ");
 			nombre[aux] = splited[3];
-			System.out.println(nombre);
+			System.out.println(nombre[aux]);
 			aux++;
 		}
+		
 		historial.close();
 		return nombre;
 	}

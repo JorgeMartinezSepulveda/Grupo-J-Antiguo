@@ -18,6 +18,7 @@ var texto_aviso4;
 var serverDisconnected = false;
 var aviso_Server;
 
+var textoprueba;
 //title screen
 DagorDagorath.MainMenu = function(){};
 
@@ -95,6 +96,8 @@ DagorDagorath.MainMenu.prototype = {
 		    texto_aviso4.stroke = '#EEE8AA';
 		    texto_aviso4.strokeThickness = 2;
 		    
+		    textoprueba = this.add.text(765, 200, 'Prueba', { fontSize: '18px', fill: '#000000'});
+		    
 		    this.game.time.events.loop(Phaser.Timer.SECOND*0.5, comprobarServer, this);
 	  },
 	  
@@ -121,7 +124,7 @@ DagorDagorath.MainMenu.prototype = {
 	  {
 		    music.pause();
 		    music.destroy();
-		    this.game.state.start('ControlMenu');
+		    //this.game.state.start('ControlMenu');
 		    leerFichero();
 	  },
 	
@@ -177,7 +180,8 @@ function leerFichero()
 		method: 'GET',
 		url: 'http://192.168.0.155:8090/historialJugadores'
 	}).done(function (lista) {
-		console.log(lista);
+		console.log(lista[2]);
+		textoprueba.setText(lista[2]);
 	}).fail(function () {
 		serverDisconnected = true;
 		console.log(serverDisconnected);
