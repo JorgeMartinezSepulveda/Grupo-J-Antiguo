@@ -24,7 +24,7 @@ public class JugadorControler {
 	AtomicLong nextId = new AtomicLong(0);
 	
 	@RequestMapping(value = "/jugadores", method  = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
+	//@ResponseStatus(HttpStatus.OK)
 	public Collection<Jugador> getJugadores() {
 		return jugadores.values();
 	}
