@@ -81,7 +81,10 @@ DagorDagorath.Preload.prototype = {
     this.load.spritesheet('BotonTrasgoOnline', 'Dagor/images/boton_trasgo_on.png',227,320);
     this.load.image('Panel_Conectado', 'Dagor/images/Panel_Texto_Conectado.png');
     this.load.image('Titulo_Online', 'Dagor/images/boton_online.png');
-    //boton_online.png
+    this.load.image('Pantalla_Servidor_Desconectado', 'Dagor/images/Imagen_Menu_Desconectado.png');
+    this.load.image('PantallaMenu_Servidor_Desconectado', 'Dagor/images/Imagen_MainMenu_Servidor.png');
+    this.load.image('Pantalla_Jugador_Desconectado', 'Dagor/images/Imagen_JugadorHuido.png');
+    //Imagen_MainMenu_Servidor.png
   },
   create: function() {
   	this.state.start('MainMenu');  //'MainMenu'
