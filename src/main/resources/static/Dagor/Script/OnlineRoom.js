@@ -16,6 +16,10 @@ var texto9;
 var textoUser1;
 var textoUser2;
 var textoAvisoNombre;
+var textoAvisoServidor;
+
+var mascaraFin;
+var pantallaServidorDesconectado;
 
 var id;
 var name = null;
@@ -32,6 +36,10 @@ var titulo;
 
 var listaJugadores;
 var actualiza = false;
+var serverDisconnected = false;
+
+var timerEvents = [];
+var iAux = 1;
 
 DagorDagorath.OnlineRoom = function(){};
 
@@ -65,8 +73,8 @@ DagorDagorath.OnlineRoom.prototype = {
 			texto2.stroke = '#EEE8AA';
 			texto2.strokeThickness = 3.5;
 
-			texto7 = this.add.text(295, 595, '- Conexión establecida entre ambos jugadores -', { fontSize: '18px', fill: '#000000' });
-			texto7.alpha = 0;
+			texto7 = this.add.text(295, 595, '- Conexión establecida, iniciando la partida -', { fontSize: '18px', fill: '#000000' });
+			texto7.alpha = 0;                 //Conexión establecida entre ambos jugadores
 			texto7.stroke = '#EEE8AA';
 			texto7.strokeThickness = 3.5;
 			
@@ -99,16 +107,27 @@ DagorDagorath.OnlineRoom.prototype = {
 			textoAvisoNombre.stroke = '#EEE8AA';
 			textoAvisoNombre.strokeThickness = 3;
 
+			mascaraFin = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
+		    mascaraFin.alpha = 0;
+		    
+		    pantallaServidorDesconectado = this.game.add.sprite(180, 100, 'Pantalla_Servidor_Desconectado');
+		    pantallaServidorDesconectado.width = 640;
+		    pantallaServidorDesconectado.height = 462;
+		    pantallaServidorDesconectado.alpha = 0;
+			
 			texto6 = this.add.text(400, 265, 'Numero de jugadores: 0', { fontSize: '18px', fill: '#000000'});
 			
 			document.getElementById('namedong').style.display = 'block';
 			
-			this.actualizar();
+			timerEvents[iAux] = this.game.time.events.loop(Phaser.Timer.SECOND*0.5, this.comprobarJugadores, this);
+			
+			//this.actualizar();
 
 		},
-
-		update: function()
-		{	
+		
+		comprobarJugadores: function()
+		{
+			console.log("Mismuertos");
 			$.ajax({
 				method: 'GET',
 				url: 'http://192.168.0.155:8090/jugadores/',
@@ -126,13 +145,35 @@ DagorDagorath.OnlineRoom.prototype = {
 						actualiza = false;
 					}
 				}
-			})
-			
+			}).fail(function () {
+				serverDisconnected = true;
+		    })
+		},
+
+		update: function()
+		{	
 			if(actualiza)
 			{
 				this.actualizar();
 				this.actualizarBotones();
 				this.actualizarJugadores();
+				actualiza = false;
+			}
+			
+			if(serverDisconnected)
+			{
+				serverDisconnected = false;
+				this.game.time.events.remove(timerEvents[iAux]);
+				texto6.setText('');
+				document.getElementById('namedong').style.display = 'none' ;
+				mascaraFin.alpha = 1;
+				pantallaServidorDesconectado.alpha = 1;
+				deleteUserRoom(id);
+				this.game.time.events.add(Phaser.Timer.SECOND*6, function()
+					{
+						this.reiniciarVariables();
+						this.game.state.start('MainMenu');
+					}, this);
 			}
 		},
 		
@@ -160,8 +201,12 @@ DagorDagorath.OnlineRoom.prototype = {
 					texto.alpha = 0;
 					texto2.alpha = 0;
 					texto7.alpha = 1;
-					//this.reiniciarVariables();
-					//this.game.state.start('Game');
+					var idAux = id;
+					this.game.time.events.add(Phaser.Timer.SECOND*2, function()
+						{
+							this.reiniciarVariables();
+							this.game.state.start('OnlineGame',true,false, idAux);
+						}, this);
 				} 
 				else if(numJugadores == 1)
 				{
@@ -284,7 +329,8 @@ DagorDagorath.OnlineRoom.prototype = {
 
 		actionOnClick: function()
 		{ 
-			deleteUser();
+			console.log("ECHA PA TRAS" + id);
+			deleteUserRoom(id);
 			this.reiniciarVariables();
 			this.game.state.start('MainMenu');
 		},
@@ -307,9 +353,13 @@ DagorDagorath.OnlineRoom.prototype = {
 			button2.alpha = 1;
 			button3.alpha = 1;
 
-			texto6.setText('Numero de jugadores: ' + numJugadores);
+			texto6.setText('');
 			textoUser1.setText('- VALAR: ');
 			textoUser2.setText('- MORGOTH: ');
+			
+			mascaraFin.alpha = 0;
+			pantallaServidorDesconectado.alpha = 0;
+			serverDisconnected = false;
 			
 			document.getElementById('namedong').style.display = 'none' ;
 		},
@@ -360,9 +410,7 @@ DagorDagorath.OnlineRoom.prototype = {
 					if(name !== '')
 					{
 	    				console.log(name);
-	    				
 	    				bando = 2;
-	    				
 	    				createUser();
 					}
 					else
@@ -389,13 +437,15 @@ DagorDagorath.OnlineRoom.prototype = {
 window.onbeforeunload = function() 
 {
 	console.log("ADIO");
-	deleteUser();
+	deleteUserRoom();
 }
 
-function deleteUser(){
+function deleteUserRoom(idBorrar)
+{
+	console.log("ID A BORRAR" + idBorrar);
 	$.ajax({
 		method: 'DELETE',
-		url: 'http://192.168.0.155:8090/jugadores/' + id 
+		url: 'http://192.168.0.155:8090/jugadores/' + idBorrar 
 	})
 }
 
@@ -409,7 +459,7 @@ function writeUser(){
 function createUser(){
 	$.ajax({
 		method: "POST",
-		url: 'http://192.168.0.155:8090/jugadores',
+		url: 'http://192.168.0.155:8090/jugadores',   //192.168.0.155
 		data: JSON.stringify({"nombre": name, "conectado":true, "personaje": bando}),
 		processData: false,
 		headers: {
@@ -433,6 +483,7 @@ function createUser(){
 	}).done(function (id1) 
 		{
 			id = id1;
+			console.log("Mis muertos por dos " + id);
 			writeUser();
 		})
 }
