@@ -158,7 +158,7 @@ function comprobarServer()
 {
 	$.ajax({
 		method: 'GET',
-		url: 'http://192.168.0.155:8090/jugadores',
+		url: 'http://10.0.12.52:8090/jugadores',
 		success: function(jugadores)
 		{
 			serverDisconnected = false;

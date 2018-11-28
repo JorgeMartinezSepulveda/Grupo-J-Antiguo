@@ -143,7 +143,7 @@ DagorDagorath.OnlineRoom.prototype = {
 		{
 			$.ajax({
 				method: 'GET',
-				url: 'http://192.168.0.155:8090/jugadores/',
+				url: 'http://10.0.12.52:8090/jugadores/',
 				success: function(jugadores)
 				{
 					numJugadores = jugadores.length;
@@ -509,14 +509,14 @@ function deleteUserRoom()
 {
 	$.ajax({
 		method: 'DELETE',
-		url: 'http://192.168.0.155:8090/jugadores/' + id 
+		url: 'http://10.0.12.52:8090/jugadores/' + id 
 	})
 }
 
 function writeUser(){
 	$.ajax({
 		method: "GET",
-		url: 'http://192.168.0.155:8090/jugadores/' + id
+		url: 'http://10.0.12.52:8090/jugadores/' + id
 	})
 }
 
@@ -524,7 +524,7 @@ function leerFichero()
 {
 	$.ajax({
 		method: 'GET',
-		url: 'http://192.168.0.155:8090/historialJugadores'
+		url: 'http://10.0.12.52:8090/historialJugadores'
 	}).done(function (listaAux) {
 		arrayNombres = listaAux;
 	})
@@ -533,7 +533,7 @@ function leerFichero()
 function createUser(){
 	$.ajax({
 		method: "POST",
-		url: 'http://192.168.0.155:8090/jugadores',   //192.168.0.155
+		url: 'http://10.0.12.52:8090/jugadores',   //192.168.0.155
 		data: JSON.stringify({"nombre": name, "conectado":true, "personaje": bando}),
 		processData: false,
 		headers: {
