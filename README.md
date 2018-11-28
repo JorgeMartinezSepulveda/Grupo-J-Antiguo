@@ -129,9 +129,9 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 ![rwtj](https://user-images.githubusercontent.com/43203256/48101424-42f8be80-e227-11e8-84e5-9b605963ea61.PNG)
 
-* Al pulsar en Online nos llevara a una interfaz donde escogeremos un bando y nos preguntara por nuestro nombre
+* Al pulsar en Online nos llevara a una interfaz donde escogeremos un bando y nos preguntara por nuestro nombre y nuestra elecion del bando con el que queremos luchar. El servidor muestra los jugadores conectados, el bando al que pertenezen, y notifica si el servidor se encuentra disponible o no y permite a los jugadores entrar en partida, notificando si alguno de los mismos abandona en mitad de la partida. Tambien el servidor puede leer el un fichero con informacion relevante del juego para mostrala a los jugadores.
 
-![online](https://user-images.githubusercontent.com/43203217/48832706-0cb85480-ed7a-11e8-8a91-c2c14fbeb09b.jpg)
+![whatsapp image 2018-11-28 at 00 20 11](https://user-images.githubusercontent.com/43203256/49118205-b7150800-f2a3-11e8-8069-a631b06b8f97.jpeg)
 
 * Añadido Diagrama de Navegacion por los estados del juego
 
@@ -141,7 +141,7 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 * En la implementacion de nuestro servidor hemos usado 3 clases: 
 
-![diagramaclases](https://user-images.githubusercontent.com/43203217/48829824-84cf4c00-ed73-11e8-8cda-0f38eecc836b.png)
+![diagramaclases](https://user-images.githubusercontent.com/43203217/49114096-9cd52d00-f297-11e8-8ef1-23a5b6599c0a.png)
 
 # Instrucciones precisas para ejecutar la aplicación
 
