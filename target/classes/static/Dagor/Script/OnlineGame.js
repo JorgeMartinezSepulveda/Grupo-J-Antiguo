@@ -40,7 +40,7 @@ var button_final;
 
 var numeroEnanos = 0;
 
-var idPass;
+var id;
 var serverDisconnected = false;
 var numJugadores;
 var timerEvents = [];
@@ -51,9 +51,9 @@ var pantalla_Jugador_Desconectado;
 DagorDagorath.OnlineGame = function(){};
 
 DagorDagorath.OnlineGame.prototype = {
-		init: function(id)
+		init: function(id1)
 		{
-			idPass = id;
+			id = id1;
 		},
 		
 		create: function() 
@@ -260,7 +260,7 @@ DagorDagorath.OnlineGame.prototype = {
 		    musica.pause();
 		    musica.destroy();
 		    
-		    deleteUser();
+		    borrarUser();
 
 		    this.game.paused = false;
 		    this.state.start('OnlineRoom');
@@ -306,7 +306,7 @@ DagorDagorath.OnlineGame.prototype = {
 		    musica.pause();
 		    musica.destroy();
 		    
-		    deleteUser();
+		    borrarUser();
 
 		    this.game.paused = false;
 		    this.state.start('MainMenu');
@@ -395,7 +395,7 @@ DagorDagorath.OnlineGame.prototype = {
 			  	this.game.time.events.remove(timerEvents[iAux]);
 			  	mascaraFin.alpha = 1;
 				pantallaServidorDesconectado.alpha = 1;
-				deleteUser();
+				borrarUser();
 				this.game.time.events.add(Phaser.Timer.SECOND*6, function()
 					{
 						mascaraFin.alpha = 0;
@@ -403,7 +403,6 @@ DagorDagorath.OnlineGame.prototype = {
 						this.backToMenu();
 					}, this);
 		  }
-
 		},
 
 		render: function()
@@ -702,11 +701,21 @@ DagorDagorath.OnlineGame.prototype = {
 		      } 
 		    }
 		}
+		
+		
 }
+/*
+window.onbeforeunload = function() 
+{
+	borrarUser();
+	return null;
+}*/
 
-function deleteUser(){
+
+
+function borrarUser(){
 	$.ajax({
 		method: 'DELETE',
-		url: 'http://192.168.0.155:8090/jugadores/' + idPass 
+		url: 'http://192.168.0.155:8090/jugadores/' + id
 	})
 }
