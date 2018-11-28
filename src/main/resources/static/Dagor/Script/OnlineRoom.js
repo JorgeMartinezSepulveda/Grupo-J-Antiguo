@@ -18,6 +18,11 @@ var textoUser2;
 var textoAvisoNombre;
 var textoAvisoServidor;
 
+var textoAvisoNombreNoPermitido;
+
+var arrayNombres;
+var isFree = true;
+
 var mascaraFin;
 var pantallaServidorDesconectado;
 
@@ -106,6 +111,12 @@ DagorDagorath.OnlineRoom.prototype = {
 			textoAvisoNombre.alpha = 0;
 			textoAvisoNombre.stroke = '#EEE8AA';
 			textoAvisoNombre.strokeThickness = 3;
+			
+			textoAvisoNombreNoPermitido = this.add.text(390, 375, '*Ese nombre ya existe*', { fontSize: '18px', fill: '#000000'});
+			textoAvisoNombreNoPermitido.alpha = 0;
+			textoAvisoNombreNoPermitido.stroke = '#EEE8AA';
+			textoAvisoNombreNoPermitido.strokeThickness = 3;
+			
 
 			mascaraFin = this.game.add.sprite(0, 0, 'Mascara_Menu_Pausa');
 		    mascaraFin.alpha = 0;
@@ -121,13 +132,15 @@ DagorDagorath.OnlineRoom.prototype = {
 			
 			timerEvents[iAux] = this.game.time.events.loop(Phaser.Timer.SECOND*0.5, this.comprobarJugadores, this);
 			
+			this.game.time.events.loop(Phaser.Timer.SECOND*0.5, leerFichero, this);
+			
+			
 			//this.actualizar();
 
 		},
 		
 		comprobarJugadores: function()
 		{
-			console.log("Mismuertos");
 			$.ajax({
 				method: 'GET',
 				url: 'http://192.168.0.155:8090/jugadores/',
@@ -168,7 +181,7 @@ DagorDagorath.OnlineRoom.prototype = {
 				document.getElementById('namedong').style.display = 'none' ;
 				mascaraFin.alpha = 1;
 				pantallaServidorDesconectado.alpha = 1;
-				deleteUserRoom(id);
+				deleteUserRoom();
 				this.game.time.events.add(Phaser.Timer.SECOND*6, function()
 					{
 						this.reiniciarVariables();
@@ -329,8 +342,7 @@ DagorDagorath.OnlineRoom.prototype = {
 
 		actionOnClick: function()
 		{ 
-			console.log("ECHA PA TRAS" + id);
-			deleteUserRoom(id);
+			deleteUserRoom();
 			this.reiniciarVariables();
 			this.game.state.start('MainMenu');
 		},
@@ -346,6 +358,7 @@ DagorDagorath.OnlineRoom.prototype = {
 			caparBoton1 = false;
 			caparBoton2 = false;
 			actualiza = false;
+			isFree = true;
 			
 			name = null;
 			listaJugadores = null;
@@ -375,9 +388,35 @@ DagorDagorath.OnlineRoom.prototype = {
     				
 					if(name !== '')
 					{
-	    				console.log(name);
-	    				bando = 1;
-	    				createUser();
+						var contador = 0;
+						
+						while((contador < arrayNombres.length)&&(isFree)&&(arrayNombres[contador] != null))
+						{
+							if(arrayNombres[contador] == name)
+							{
+								isFree = false;
+								console.log('Nombre cogido ompare')
+								
+							}
+							else
+							{
+								isFree = true;
+								contador++;
+							}
+						}
+						
+						if(isFree)
+						{
+							console.log(name);
+		    				bando = 1;
+		    				createUser();
+						}
+						else
+						{
+							isFree = true;
+							textoAvisoNombreNoPermitido.alpha = 1;
+							this.game.time.events.add(Phaser.Timer.SECOND*2, function(){textoAvisoNombreNoPermitido.alpha = 0;}, this);
+						}
 					}
 					else
 					{
@@ -409,9 +448,35 @@ DagorDagorath.OnlineRoom.prototype = {
     				
 					if(name !== '')
 					{
-	    				console.log(name);
-	    				bando = 2;
-	    				createUser();
+						var contador = 0;
+						
+						while((contador < arrayNombres.length)&&(isFree)&&(arrayNombres[contador] != null))
+						{
+							if(arrayNombres[contador] == name)
+							{
+								isFree = false;
+								console.log('Nombre cogido ompare')
+								
+							}
+							else
+							{
+								isFree = true;
+								contador++;
+							}
+						}
+						
+						if(isFree)
+						{
+							console.log(name);
+		    				bando = 2;
+		    				createUser();
+						}
+						else
+						{
+							isFree = true;
+							textoAvisoNombreNoPermitido.alpha = 1;
+							this.game.time.events.add(Phaser.Timer.SECOND*2, function(){textoAvisoNombreNoPermitido.alpha = 0;}, this);
+						}
 					}
 					else
 					{
@@ -431,21 +496,20 @@ DagorDagorath.OnlineRoom.prototype = {
 				texto9.alpha = 1;
 				this.game.time.events.add(Phaser.Timer.SECOND*2, function(){texto9.alpha = 0;}, this);
 			}
-		}	
+		}
 }
 
 window.onbeforeunload = function() 
 {
-	console.log("ADIO");
 	deleteUserRoom();
+	return null;
 }
 
-function deleteUserRoom(idBorrar)
+function deleteUserRoom()
 {
-	console.log("ID A BORRAR" + idBorrar);
 	$.ajax({
 		method: 'DELETE',
-		url: 'http://192.168.0.155:8090/jugadores/' + idBorrar 
+		url: 'http://192.168.0.155:8090/jugadores/' + id 
 	})
 }
 
@@ -453,6 +517,16 @@ function writeUser(){
 	$.ajax({
 		method: "GET",
 		url: 'http://192.168.0.155:8090/jugadores/' + id
+	})
+}
+
+function leerFichero()
+{
+	$.ajax({
+		method: 'GET',
+		url: 'http://192.168.0.155:8090/historialJugadores'
+	}).done(function (listaAux) {
+		arrayNombres = listaAux;
 	})
 }
 
@@ -483,7 +557,7 @@ function createUser(){
 	}).done(function (id1) 
 		{
 			id = id1;
-			console.log("Mis muertos por dos " + id);
+			console.log(id);
 			writeUser();
 		})
 }
