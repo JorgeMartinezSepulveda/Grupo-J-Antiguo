@@ -129,7 +129,7 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 ![rwtj](https://user-images.githubusercontent.com/43203256/48101424-42f8be80-e227-11e8-84e5-9b605963ea61.PNG)
 
-* Al pulsar en Online nos llevara a una interfaz donde escogeremos un bando y nos preguntara por nuestro nombre y nuestra elecion del bando con el que queremos luchar. El servidor muestra los jugadores conectados, el bando al que pertenezen, y notifica si el servidor se encuentra disponible o no y permite a los jugadores entrar en partida, notificando si alguno de los mismos abandona en mitad de la partida. Tambien el servidor puede leer el un fichero con informacion relevante del juego para mostrala a los jugadores.
+* Al pulsar en Online nos llevara a una interfaz donde escogeremos un bando y nos preguntara por nuestro nombre y nuestra elecion del bando con el que queremos luchar. El servidor muestra los jugadores conectados, el bando al que pertenezen, y notifica si el servidor se encuentra disponible o no y permite a los jugadores entren en partida, notificando si alguno de los mismos abandona en mitad de la partida. Tambien el servidor puede leer el un fichero con informacion relevante del juego para mostrala a los jugadores.
 
 ![whatsapp image 2018-11-28 at 00 20 11](https://user-images.githubusercontent.com/43203256/49118205-b7150800-f2a3-11e8-8069-a631b06b8f97.jpeg)
 
@@ -145,4 +145,4 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 # Instrucciones precisas para ejecutar la aplicación
 
-* Para compilar se correra el archivo DagorDagorathApplication.java como una aplicación de java y esto iniciará el servidor. Para ejecutar el jar escribiremos en el simbolo del sistema la linea java -jar DagorDagorath-0.0.1-SNAPSHOT.jar desde el directorio target de nuestro proyecto. Cada vez que se inicia el servidor se ha de copiar la url donde el servidor esta corriendo la aplicación.
+* Para compilar se correra el archivo DagorDagorathApplication.java como una aplicación de java y esto iniciará el servidor. Para ejecutar el jar escribiremos en el simbolo del sistema la linea java -jar dagorDagorath-0.0.1-SNAPSHOT.jar desde el directorio target de nuestro proyecto. Cada vez que se inicia el servidor se ha de copiar la url donde el servidor esta corriendo la aplicación, tambien se puede usar localhost:8090 para aceder al juego, si es el ordenador que esta corriedo el servidor.
