@@ -106,7 +106,6 @@ public class JugadorControler {
 		{
 			String [] splited = line.split(" ");
 			nombre[aux] = splited[3];
-			System.out.println(nombre[aux]);
 			aux++;
 		}
 		
