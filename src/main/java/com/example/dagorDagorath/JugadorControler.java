@@ -69,7 +69,7 @@ public class JugadorControler {
 	@RequestMapping(value = "/jugadores/{id}", method  = RequestMethod.GET)
 	public Collection<Jugador> getItem(@PathVariable long id) throws FileNotFoundException{
 		
-		PrintWriter pw = new PrintWriter (new FileOutputStream(new File("target/classes/data.txt"),true));
+		PrintWriter pw = new PrintWriter (new FileOutputStream(new File("classes/data.txt"),true));
 		
 		Jugador jgd = jugadores.get(id);
 		
@@ -97,16 +97,17 @@ public class JugadorControler {
 	@RequestMapping(value = "/historialJugadores", method  = RequestMethod.GET)
 	public String[] getHistorial() throws IOException{
 		
-		BufferedReader historial = new BufferedReader(new FileReader (new File("target/classes/data.txt")));
+		BufferedReader historial = new BufferedReader(new FileReader (new File("classes/data.txt")));
 		String line;
 		String [] nombre = new String [50];
 		int aux  = 0;
 
-		while((line = historial.readLine()) != null) 
+		while(((line = historial.readLine()) != null)&&(aux<=50)) 
 		{
-			String [] splited = line.split(" ");
-			nombre[aux] = splited[3];
-			aux++;
+				String [] splited = line.split(" ");
+				nombre[aux] = splited[3];
+				aux++;
+			
 		}
 		
 		historial.close();
