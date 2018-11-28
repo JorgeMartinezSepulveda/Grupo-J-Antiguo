@@ -145,4 +145,4 @@ Artista: Nick Phoenix / Thomas Bergersen
 
 # Instrucciones precisas para ejecutar la aplicación
 
-* Para compilar se correra el archivo DagorDagorathApplication.java como una aplicación de java y esto iniciará el servidor. Para ejecutar el jar escribiremos en el simbolo del sistema la linea java -jar dagorDagorath-0.0.1-SNAPSHOT.jar desde el directorio target de nuestro proyecto. Cada vez que se inicia el servidor se ha de copiar la url donde el servidor esta corriendo la aplicación, tambien se puede usar localhost:8090 para aceder al juego, si es el ordenador que esta corriedo el servidor.
+* Para compilar se correra el archivo DagorDagorathApplication.java como una aplicación de java y esto iniciará el servidor. Para ejecutar el jar escribiremos en el simbolo del sistema la linea java -jar dagorDagorath-0.0.1-SNAPSHOT.jar desde el directorio target de nuestro proyecto. Cada vez que se inicia el servidor se ha de usar localhost:8090 para aceder al juego, si es el ordenador que esta corriedo el servidor.
